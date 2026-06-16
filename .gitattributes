@@ -1,0 +1,10 @@
+# 저장소 내 텍스트는 LF로 정규화 (Linux 러너에서 CRLF로 인한 셸/YAML 오류 방지)
+* text=auto eol=lf
+
+# Windows 배치 파일만 CRLF 유지
+*.bat text eol=crlf
+
+# 바이너리 취급(혹시 모를 변환 방지)
+*.png binary
+*.jpg binary
+*.ico binary
