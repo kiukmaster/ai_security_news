@@ -23,7 +23,7 @@ def _fmt_dt(dt):
     return local.strftime("%Y-%m-%d %H:%M")
 
 
-def _card(entry):
+def _card(entry, rank_no=None, badge=None):
     tier = entry.get("tier", "low")
     tier_label = TIER_LABELS.get(tier, tier)
     score = entry.get("score", 0)
@@ -45,14 +45,19 @@ def _card(entry):
         corrob_html = f'<div class="corrob">🔗 교차보도: {names}</div>'
 
     meta_bits = [f'<span class="source">{_esc(entry.get("source", ""))}</span>']
+    if badge:
+        meta_bits.insert(0, f'<span class="catbadge">{_esc(badge)}</span>')
     if when:
         meta_bits.append(f'<span class="when">{when}</span>')
     meta_html = " · ".join(meta_bits)
 
+    rank_html = f'<span class="rankno">{rank_no}</span>' if rank_no else ""
+    head_badge = f'<span class="badge tier-{tier}">{tier_label} · {score}</span>'
+
     return f"""
       <article class="card tier-{tier}">
         <div class="card-head">
-          <span class="badge tier-{tier}">{tier_label} · {score}</span>
+          {rank_html}{head_badge}
           <div class="meta">{meta_html}</div>
         </div>
         <h3 class="title">{title_html}</h3>
@@ -76,6 +81,21 @@ def _section(category, entries):
     return f"""
     <section class="cat" id="cat-{_esc(category)}">
       <h2 class="cat-title">{label} <span class="count">{len(entries)}</span></h2>
+      {cards}
+    </section>"""
+
+
+def _headline_section(headlines):
+    label = feeds_mod.CATEGORY_LABELS.get("headline", "📌 헤드라인")
+    items = sorted(headlines, key=lambda e: -e.get("impact", 0))
+    cards = ""
+    for i, e in enumerate(items, 1):
+        cat_label = feeds_mod.CATEGORY_LABELS.get(e.get("category"), e.get("category", ""))
+        cards += _card(e, rank_no=i, badge=cat_label)
+    return f"""
+    <section class="cat headline" id="cat-headline">
+      <h2 class="cat-title">{label} <span class="count">{len(items)}</span></h2>
+      <p class="cat-note">오늘 하루 중 중요도(교차보도·고위험 키워드·취약점 심각도 등)를 기준으로 자동 선별했습니다.</p>
       {cards}
     </section>"""
 
@@ -106,7 +126,9 @@ def generate(entries, stats, out_path, generated_at):
     for e in entries:
         by_cat.setdefault(e.get("category", "etc"), []).append(e)
 
-    sections = ""
+    headlines = stats.get("headlines", [])
+
+    sections = _headline_section(headlines) if headlines else ""
     for cat in feeds_mod.CATEGORY_ORDER:
         if by_cat.get(cat):
             sections += _section(cat, by_cat[cat])
@@ -116,7 +138,7 @@ def generate(entries, stats, out_path, generated_at):
 
     if not entries:
         sections = (
-            '<section class="cat"><p class="empty">어제 이후 새로 수집된 항목이 없습니다. '
+            '<section class="cat"><p class="empty">해당 날짜에 새로 수집된 항목이 없습니다. '
             '잠시 후 다시 시도하거나 소스를 추가해 보세요.</p></section>'
         )
 
@@ -132,8 +154,14 @@ def generate(entries, stats, out_path, generated_at):
         f'<span class="stat low"><b>{tier_counts.get("low", 0)}</b> 주의</span>'
     )
 
-    # 클릭하면 해당 카테고리 섹션으로 이동하는 내비게이션(취약점 포함)
-    nav_chips = "".join(
+    # 클릭하면 해당 카테고리 섹션으로 이동하는 내비게이션(헤드라인 맨 앞)
+    nav_chips = ""
+    if headlines:
+        nav_chips += (
+            f'<a class="nav-chip cat-headline" href="#cat-headline">'
+            f'{feeds_mod.CATEGORY_LABELS.get("headline", "헤드라인")} <b>{len(headlines)}</b></a>'
+        )
+    nav_chips += "".join(
         f'<a class="nav-chip cat-{_esc(c)}" href="#cat-{_esc(c)}">'
         f'{feeds_mod.CATEGORY_LABELS.get(c, c)} <b>{len(by_cat.get(c, []))}</b></a>'
         for c in feeds_mod.CATEGORY_ORDER if by_cat.get(c)
@@ -156,7 +184,7 @@ def generate(entries, stats, out_path, generated_at):
 <div class="wrap">
   <header class="top">
     <h1>🛰️ 보안 · AI 데일리 브리핑</h1>
-    <p class="date">{date_str} 기준 · 최근 {stats.get('lookback_days', 1)}일 신규 {stats.get('total', 0)}건</p>
+    <p class="date">📅 {_esc(stats.get('collect_date', ''))} 하루 동안 · 신규 {stats.get('total', 0)}건 · 생성 {date_str}</p>
     <div class="stats">{summary_chips}</div>
     <div class="stats tiers">{tier_chips}</div>
   </header>
@@ -218,6 +246,15 @@ body{margin:0;background:var(--bg);color:var(--text);
 .nav-chip b{color:var(--accent);}
 .nav-chip.cat-vuln{border-color:var(--low);}
 .nav-chip.cat-vuln b{color:var(--low);}
+.nav-chip.cat-headline{border-color:var(--accent);background:rgba(59,102,245,.12);}
+.cat.headline .cat-title{border-bottom-color:var(--accent);}
+.cat-note{font-size:12px;color:var(--muted);margin:-6px 0 12px;}
+.cat.headline .card{border-left-color:var(--accent);}
+.rankno{display:inline-flex;align-items:center;justify-content:center;
+  width:22px;height:22px;border-radius:50%;background:var(--accent);color:#fff;
+  font-size:12px;font-weight:700;margin-right:2px;}
+.catbadge{background:var(--bg);border:1px solid var(--line);border-radius:6px;
+  padding:1px 7px;font-size:11px;}
 .cat{margin:22px 0 8px;scroll-margin-top:60px;}
 .cat-title{font-size:17px;display:flex;align-items:center;gap:8px;
   border-bottom:2px solid var(--line);padding-bottom:6px;margin:0 0 12px;}

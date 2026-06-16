@@ -50,6 +50,7 @@ DEFAULT_FEEDS = [
 # 보고서/요약에서 카테고리를 표시할 때 쓰는 라벨과 정렬 순서
 CATEGORY_ORDER = ["security", "security_kr", "vuln", "ai", "tech", "research"]
 CATEGORY_LABELS = {
+    "headline": "📌 헤드라인 (꼭 읽어볼 것)",
     "security": "🛡️ 보안(해외)",
     "security_kr": "🇰🇷 보안(국내)",
     "vuln": "🐞 취약점(CVE)",

@@ -92,3 +92,52 @@ def analyze(entries):
     for e in entries:
         e.pop("_kw", None)
     return entries
+
+
+# --------------------------------------------------------------------------- #
+# 헤드라인(꼭 읽어야 할 글) 선별
+# --------------------------------------------------------------------------- #
+# 제목에 등장하면 '중요/시급'으로 보는 고위험 키워드(소문자 부분일치)
+_IMPACT_TERMS = (
+    "zero-day", "0-day", "zeroday", "actively exploited", "exploited", "exploit",
+    "rce", "remote code", "ransomware", "breach", "backdoor", "supply chain",
+    "supply-chain", "emergency", "critical", "data leak", "leak", "hacked",
+    "malware", "botnet", "spyware", "wormable", "patch now", "심각", "긴급", "제로데이",
+)
+
+# 카테고리별 '꼭 읽어야 함' 가중치
+_CAT_WEIGHT = {"security": 12, "security_kr": 12, "vuln": 12, "ai": 6, "tech": 3, "research": 0}
+
+
+def _impact(entry):
+    """기사 중요도 점수(높을수록 헤드라인 후보)."""
+    s = float(entry.get("score", 0)) * 0.4                       # 신뢰도/교차검증 기반 점수
+    s += min(30, len(entry.get("corroborators", [])) * 10)        # 여러 매체 보도 = 큰 사건
+    title = (entry.get("title", "") + " " + entry.get("summary", "")).lower()
+    hits = sum(1 for t in _IMPACT_TERMS if t in title)
+    s += min(36, hits * 12)                                       # 고위험 키워드
+    s += _CAT_WEIGHT.get(entry.get("category"), 0)                # 카테고리 가중치
+    if entry.get("category") == "vuln":                           # 치명적 취약점은 필독
+        rank = entry.get("rank") or 0
+        if rank >= 9.0:
+            s += 40
+        elif rank >= 7.5:
+            s += 22
+    return s
+
+
+def pick_headlines(entries, k=6):
+    """중요도 상위 k건을 선별(같은 사건 중복은 제외)하여 반환."""
+    ranked = sorted(entries, key=lambda e: -_impact(e))
+    chosen, chosen_kw = [], []
+    for e in ranked:
+        kw = _keywords(e.get("title", ""))
+        if any(len(kw & ck) >= 3 for ck in chosen_kw):  # 이미 뽑은 헤드라인과 같은 사건이면 건너뜀
+            continue
+        e["impact"] = round(_impact(e))
+        e["is_headline"] = True
+        chosen.append(e)
+        chosen_kw.append(kw)
+        if len(chosen) >= k:
+            break
+    return chosen

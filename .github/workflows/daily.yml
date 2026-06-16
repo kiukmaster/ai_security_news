@@ -1,10 +1,11 @@
 name: Daily Briefing
 
-# 매일 아침 한국시간 06:30에 자동 실행 (UTC 21:30 = KST 06:30)
+# 매일 밤 한국시간 23:59에 그날 하루치를 수집 (UTC 14:59 = KST 23:59)
+# 아침에 일어나면 '어제 하루'가 정리되어 있습니다.
 # 시각을 바꾸려면 아래 cron의 분/시(UTC 기준)를 조정하세요.
 on:
   schedule:
-    - cron: "30 21 * * *"
+    - cron: "59 14 * * *"
   workflow_dispatch: {}      # GitHub 앱/웹에서 'Run workflow'로 수동 실행(딸깍)도 가능
 
 permissions:

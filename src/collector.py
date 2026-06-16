@@ -261,11 +261,12 @@ def _collect_nvd(feed):
     """NVD에서 '어제(로컬 기준) 발행' CVE를 수집. 링크는 cvedetails.com로 연결.
 
     cvedetails.com이 자동 접근을 차단(403)하므로, 동일 원본인 NVD JSON API에서
-    어제 0시~오늘 0시(로컬) 사이 발행분만 정확히 가져온다.
+    '대상일 하루'(00:00~24:00 로컬) 사이 발행분만 정확히 가져온다.
     """
-    mid = datetime.now().astimezone().replace(hour=0, minute=0, second=0, microsecond=0)
-    start = (mid - timedelta(days=1)).astimezone(timezone.utc)
-    end = mid.astimezone(timezone.utc)
+    import daterange
+    start_local, end_local = daterange.day_window()
+    start = start_local.astimezone(timezone.utc)
+    end = end_local.astimezone(timezone.utc)
     fmt = lambda d: d.strftime("%Y-%m-%dT%H:%M:%S.000")
     url = f"{feed['url']}?pubStartDate={fmt(start)}&pubEndDate={fmt(end)}&resultsPerPage=2000"
 
