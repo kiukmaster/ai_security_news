@@ -1,0 +1,8 @@
+# Python
+__pycache__/
+*.pyc
+
+# 로컬 중간 산출물 (상태 파일 data/latest.md 는 증분 수집을 위해 추적합니다)
+data/reports/
+
+# 웹 발행물(docs/)은 GitHub Pages 서빙을 위해 추적합니다 — 무시하지 않습니다.

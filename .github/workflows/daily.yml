@@ -1,0 +1,45 @@
+name: Daily Briefing
+
+# 매일 아침 한국시간 06:30에 자동 실행 (UTC 21:30 = KST 06:30)
+# 시각을 바꾸려면 아래 cron의 분/시(UTC 기준)를 조정하세요.
+on:
+  schedule:
+    - cron: "30 21 * * *"
+  workflow_dispatch: {}      # GitHub 앱/웹에서 'Run workflow'로 수동 실행(딸깍)도 가능
+
+permissions:
+  contents: write             # 보고서/상태를 저장소에 커밋하기 위해 필요
+
+# 동시에 여러 번 돌지 않도록
+concurrency:
+  group: daily-briefing
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      TZ: Asia/Seoul            # '어제/오늘' 날짜 계산을 한국시간 기준으로
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Generate & publish report
+        run: python main.py --no-gui --publish docs
+
+      - name: Commit results
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs data/latest.md
+          if git diff --quiet --staged; then
+            echo "변경 사항 없음 — 커밋 생략"
+          else
+            git commit -m "chore: daily briefing $(date +%F)"
+            git push
+          fi
