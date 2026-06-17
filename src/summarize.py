@@ -8,9 +8,11 @@ API 키는 코드에 하드코딩하지 않고 환경변수에서 읽습니다.
 키가 없어도 프로그램은 정상 동작합니다(무료 티어 한도 초과/오류도 안전 폴백).
 """
 
+import concurrent.futures
 import json
 import os
 import socket
+import threading
 import time
 import urllib.error
 import urllib.request
@@ -19,11 +21,10 @@ API_ENV = "GEMINI_API_KEY"
 MODEL = os.environ.get("GEMINI_MODEL", "gemini-2.5-flash-lite")
 ENDPOINT = "https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
 
-# 무료 티어 한도(분당 15요청) 대응: 15건 처리 후 70초 대기 → 다시 15건 …
-BATCH_SIZE = 15
-BATCH_PAUSE = 70     # 초
+# 유료 티어 기준 병렬 처리. 동시 요청 수(무료 티어면 1~2로 낮추세요).
+CONCURRENCY = int(os.environ.get("SUMMARY_CONCURRENCY", "8"))
 TIMEOUT = 30
-MAX_RETRY = 2
+MAX_RETRY = 4        # 429/일시오류 시 지수 백오프 재시도
 
 
 def available():
@@ -81,8 +82,9 @@ def _summarize_one(entry, key, log):
             return _call(_prompt(entry), key)
         except urllib.error.HTTPError as e:
             if e.code in (429, 500, 502, 503) and attempt < MAX_RETRY:
-                back = 20 * (attempt + 1)
-                log(f"    속도제한/일시오류({e.code}) — {back}s 대기 후 재시도")
+                retry_after = e.headers.get("Retry-After") if e.headers else None
+                back = int(retry_after) if (retry_after and retry_after.isdigit()) \
+                    else min(45, 4 * (2 ** attempt))
                 time.sleep(back)
                 continue
             raise
@@ -106,24 +108,35 @@ def summarize_entries(entries, log=lambda m: None, max_items=300):
 
     targets = [e for e in entries if e.get("summary")][:max_items]
     total = len(targets)
-    log(f"AI 요약 시작 ({MODEL}) — 대상 {total}건. "
-        f"분당 {BATCH_SIZE}건씩 처리(한도 도달 시 {BATCH_PAUSE}초 대기).")
+    if not total:
+        return 0
+    workers = max(1, min(CONCURRENCY, total))
+    log(f"AI 요약 시작 ({MODEL}) — 대상 {total}건, 동시 {workers}개 병렬 처리…")
 
-    done = 0
-    for i, e in enumerate(targets):
-        # 직전 배치(15건)를 채웠으면 다음 요청 전에 한도 회복까지 대기
-        if i > 0 and i % BATCH_SIZE == 0:
-            log(f"    분당 한도({BATCH_SIZE}건) 도달 — {BATCH_PAUSE}초 대기 후 계속… "
-                f"({i}/{total})")
-            time.sleep(BATCH_PAUSE)
+    counter = {"n": 0, "ok": 0}
+    lock = threading.Lock()
+
+    def work(e):
         try:
             summary = _summarize_one(e, key, log)
-            if summary:
+            ok = bool(summary)
+            if ok:
                 e["summary"] = summary
                 e["ai_summary"] = True
-                done += 1
         except Exception as ex:  # noqa: BLE001 — 한 건 실패가 전체를 막지 않도록
             log(f"    요약 실패({e.get('title', '')[:28]}…): {ex}")
+            ok = False
+        with lock:
+            counter["n"] += 1
+            if ok:
+                counter["ok"] += 1
+            n = counter["n"]
+        if n % 20 == 0 or n == total:
+            log(f"    AI 요약 진행 {n}/{total}…")
+        return ok
 
-    log(f"AI 요약 완료: {done}/{total}건.")
-    return done
+    with concurrent.futures.ThreadPoolExecutor(max_workers=workers) as pool:
+        list(pool.map(work, targets))
+
+    log(f"AI 요약 완료: {counter['ok']}/{total}건.")
+    return counter["ok"]

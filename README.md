@@ -104,9 +104,16 @@ new_data/
    ```
 
 - 모델 변경: 환경변수 `GEMINI_MODEL`(기본 `gemini-2.5-flash-lite`).
-- 무료 티어는 **분당 15요청** 한도라, 요약을 **15건 처리 → 70초 대기 → 다시 15건** 방식으로 돌립니다.
-  새벽 자동 실행이라 신규 기사 수에 따라 수 분 걸려도 괜찮습니다(아침엔 이미 완성).
+- 요약은 **병렬(기본 동시 8건)** 로 처리해 한 번에 빠르게 끝납니다. 동시 수는 `SUMMARY_CONCURRENCY`로 조절.
 - `.env`, `*.key`, `secret*` 등은 `.gitignore`로 커밋이 차단됩니다.
+
+> **속도/429 오류 해결 — 결제(billing) 활성화 권장**
+> 무료 티어는 분당 15요청 한도라 16번째부터 429(Too Many Requests)가 납니다(키 문제 아님).
+> Gemini 키에 **billing을 켜면** 같은 키가 유료 Tier로 올라가 분당 한도가 수천 RPM이 되어
+> 95건도 수 초에 처리됩니다. `gemini-2.5-flash-lite`는 최저가급이라 이 사용량이면
+> **월 몇 센트** 수준입니다. 켜는 법: [Google AI Studio](https://aistudio.google.com/apikey)에서
+> 해당 키의 프로젝트에 **Set up Billing / 결제 계정 연결**(Google Cloud Console → Billing).
+> 결제만 켜면 코드는 그대로 두어도 자동으로 빨라집니다. (무료로 쓰려면 `SUMMARY_CONCURRENCY=1`로 낮추세요.)
 
 ## 팩트체크 방식 (휴리스틱)
 
