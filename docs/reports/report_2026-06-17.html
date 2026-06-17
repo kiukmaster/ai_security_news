@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>보안·AI 데일리 브리핑 — 2026년 06월 17일 (14:55)</title>
+<style>
+
+:root{
+  --bg:#f5f6f8; --card:#ffffff; --text:#1b1f24; --muted:#5b6470; --line:#e4e7eb;
+  --accent:#3b66f5; --high:#137333; --high-bg:#e6f4ea; --medium:#9a6700;
+  --medium-bg:#fff4d6; --low:#b3261e; --low-bg:#fce8e6;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0f1318; --card:#171c23; --text:#e7ebf0; --muted:#9aa4b1; --line:#262d36;
+    --accent:#6f8cff; --high:#6cd58a; --high-bg:#10301d; --medium:#e8c46a;
+    --medium-bg:#332a10; --low:#f08a82; --low-bg:#3a1614;
+  }
+}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Malgun Gothic",Roboto,sans-serif;
+  line-height:1.5;-webkit-text-size-adjust:100%;}
+.wrap{max-width:860px;margin:0 auto;padding:16px;}
+.top{padding:14px 4px 6px;}
+.top h1{font-size:22px;margin:0 0 4px;}
+.date{color:var(--muted);margin:0 0 12px;font-size:14px;}
+.stats{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px;}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:999px;
+  padding:4px 12px;font-size:13px;color:var(--muted);}
+.stat b{color:var(--text);font-size:14px;}
+.stat.high b{color:var(--high);} .stat.medium b{color:var(--medium);} .stat.low b{color:var(--low);}
+.catnav{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;gap:8px;
+  padding:10px 4px;margin:0 -4px 4px;background:var(--bg);
+  border-bottom:1px solid var(--line);}
+.nav-chip{text-decoration:none;font-size:13px;color:var(--text);background:var(--card);
+  border:1px solid var(--line);border-radius:999px;padding:6px 13px;white-space:nowrap;}
+.nav-chip:hover{border-color:var(--accent);color:var(--accent);}
+.nav-chip b{color:var(--accent);}
+.nav-chip.cat-vuln{border-color:var(--low);}
+.nav-chip.cat-vuln b{color:var(--low);}
+.nav-chip.cat-headline{border-color:var(--accent);background:rgba(59,102,245,.12);}
+.cat.headline .cat-title{border-bottom-color:var(--accent);}
+.cat-note{font-size:12px;color:var(--muted);margin:-6px 0 12px;}
+.cat.headline .card{border-left-color:var(--accent);}
+.rankno{display:inline-flex;align-items:center;justify-content:center;
+  width:22px;height:22px;border-radius:50%;background:var(--accent);color:#fff;
+  font-size:12px;font-weight:700;margin-right:2px;}
+.catbadge{background:var(--bg);border:1px solid var(--line);border-radius:6px;
+  padding:1px 7px;font-size:11px;}
+.cat{margin:22px 0 8px;scroll-margin-top:60px;}
+.cat-title{font-size:17px;display:flex;align-items:center;gap:8px;
+  border-bottom:2px solid var(--line);padding-bottom:6px;margin:0 0 12px;}
+.count{font-size:13px;color:#fff;background:var(--accent);border-radius:999px;
+  padding:1px 9px;font-weight:600;}
+.card{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--line);
+  border-radius:12px;padding:14px 16px;margin-bottom:12px;}
+.card.tier-high{border-left-color:var(--high);}
+.card.tier-medium{border-left-color:var(--medium);}
+.card.tier-low{border-left-color:var(--low);}
+.card-head{display:flex;flex-wrap:wrap;align-items:center;gap:8px;justify-content:space-between;}
+.badge{font-size:12px;font-weight:700;border-radius:6px;padding:2px 8px;white-space:nowrap;}
+.badge.tier-high{color:var(--high);background:var(--high-bg);}
+.badge.tier-medium{color:var(--medium);background:var(--medium-bg);}
+.badge.tier-low{color:var(--low);background:var(--low-bg);}
+.meta{font-size:12px;color:var(--muted);}
+.meta .source{font-weight:600;color:var(--text);}
+.title{font-size:16px;margin:8px 0 6px;line-height:1.4;}
+.title a{color:var(--text);text-decoration:none;}
+.title a:hover{color:var(--accent);text-decoration:underline;}
+.sumbox{margin:2px 0 8px;}
+.sumtoggle{cursor:pointer;display:inline-block;font-size:12px;color:var(--accent);
+  background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:3px 10px;
+  list-style:none;user-select:none;}
+.sumtoggle::-webkit-details-marker{display:none;}
+.sumtoggle::marker{content:"";}
+.sumbox[open] .sumtoggle{margin-bottom:6px;border-color:var(--accent);}
+.summary{font-size:14px;color:var(--muted);margin:0 0 4px;}
+.corrob{font-size:12px;color:var(--accent);margin:0 0 8px;}
+.chips{display:flex;flex-wrap:wrap;gap:6px;}
+.chip{font-size:11px;color:var(--muted);background:var(--bg);border:1px solid var(--line);
+  border-radius:6px;padding:2px 7px;}
+.empty{color:var(--muted);text-align:center;padding:30px 0;}
+.sources{margin:24px 0;background:var(--card);border:1px solid var(--line);border-radius:12px;
+  padding:10px 14px;}
+.sources summary{cursor:pointer;font-weight:600;font-size:14px;}
+table.status{width:100%;border-collapse:collapse;margin-top:10px;font-size:13px;}
+table.status th,table.status td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line);}
+table.status td.num,table.status th:nth-child(2){text-align:right;}
+table.status tr.fail td{color:var(--low);}
+.foot{color:var(--muted);font-size:12px;margin:24px 0 40px;text-align:center;}
+.foot .gen{opacity:.7;margin-top:6px;}
+@media (max-width:520px){
+  .top h1{font-size:19px;} .title{font-size:15px;} .wrap{padding:12px;}
+}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <h1>🛰️ 보안 · AI 데일리 브리핑</h1>
+    <p class="date">📅 2026-06-17 하루 동안 · 신규 95건 · 생성 2026년 06월 17일 (14:55)</p>
+    <div class="stats"><span class="stat"><b>14</b> 🛡️ 보안(해외)</span><span class="stat"><b>20</b> 🇰🇷 보안(국내)</span><span class="stat"><b>20</b> 🐞 취약점(CVE)</span><span class="stat"><b>1</b> 🤖 AI</span><span class="stat"><b>20</b> 🚀 신기술(Trending)</span><span class="stat"><b>20</b> 📄 연구(arXiv)</span></div>
+    <div class="stats tiers"><span class="stat high"><b>0</b> 높음</span><span class="stat medium"><b>95</b> 보통</span><span class="stat low"><b>0</b> 주의</span></div>
+  </header>
+
+  <nav class="catnav"><a class="nav-chip cat-headline" href="#cat-headline">📌 헤드라인 (꼭 읽어볼 것) <b>6</b></a><a class="nav-chip cat-security" href="#cat-security">🛡️ 보안(해외) <b>14</b></a><a class="nav-chip cat-security_kr" href="#cat-security_kr">🇰🇷 보안(국내) <b>20</b></a><a class="nav-chip cat-vuln" href="#cat-vuln">🐞 취약점(CVE) <b>20</b></a><a class="nav-chip cat-ai" href="#cat-ai">🤖 AI <b>1</b></a><a class="nav-chip cat-tech" href="#cat-tech">🚀 신기술(Trending) <b>20</b></a><a class="nav-chip cat-research" href="#cat-research">📄 연구(arXiv) <b>20</b></a></nav>
+
+  
+    <section class="cat headline" id="cat-headline">
+      <h2 class="cat-title">📌 헤드라인 (꼭 읽어볼 것) <span class="count">6</span></h2>
+      <p class="cat-note">오늘 하루 중 중요도(교차보도·고위험 키워드·취약점 심각도 등)를 기준으로 자동 선별했습니다.</p>
+      
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="rankno">1</span><span class="badge tier-medium">신뢰도 보통 · 62</span>
+          <div class="meta"><span class="catbadge">🐞 취약점(CVE)</span> · <span class="source">CVE (NVD→cvedetails)</span> · <span class="when">2026-06-17 02:16</span></div>
+        </div>
+        <h3 class="title"><a href="https://www.cvedetails.com/cve/CVE-2026-53776/" target="_blank" rel="noopener">CVE-2026-53776 · 심각 9.3</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">Perry 0.5.1166 이전 버전의 JWT 검증 과정에서 `validate_exp` 설정이 강제로 비활성화되어, 만료된 토큰으로도 인증을 우회할 수 있는 취약점이 발견되었습니다. 공격자는 이 결함을 통해 기존에 발급받은 만료된 토큰을 사용하여 시스템에 지속적으로 접근할 수 있어 보안상 심각한 위험을 초래합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 95%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="rankno">2</span><span class="badge tier-medium">신뢰도 보통 · 62</span>
+          <div class="meta"><span class="catbadge">🐞 취약점(CVE)</span> · <span class="source">CVE (NVD→cvedetails)</span> · <span class="when">2026-06-17 05:16</span></div>
+        </div>
+        <h3 class="title"><a href="https://www.cvedetails.com/cve/CVE-2026-48777/" target="_blank" rel="noopener">CVE-2026-48777 · 심각 9.3</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">FileBrowser Quantum 1.3.2-stable 이전 버전에서 사용자 입력값이 검증 전 경로 결합에 사용되어 경로 탐색(Path Traversal) 취약점이 발생합니다. 공격자는 이를 통해 시스템의 임의 파일에 접근할 수 있으며, CVSS 점수 9.3의 심각한 위험을 초래하므로 최신 버전으로의 업데이트가 필수적입니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 95%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="rankno">3</span><span class="badge tier-medium">신뢰도 보통 · 62</span>
+          <div class="meta"><span class="catbadge">🐞 취약점(CVE)</span> · <span class="source">CVE (NVD→cvedetails)</span> · <span class="when">2026-06-17 00:16</span></div>
+        </div>
+        <h3 class="title"><a href="https://www.cvedetails.com/cve/CVE-2025-13036/" target="_blank" rel="noopener">CVE-2025-13036 · 심각 9.2</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">FactoryTalk Historian Site Edition에서 로그인 엔드포인트에 반복적인 요청을 보내 유효한 인증 토큰을 탈취할 수 있는 인증 우회 취약점이 발견되었습니다. 해당 취약점은 CVSS 점수 9.2로 심각도가 높으며, 공격자가 시스템 인증을 무력화할 수 있어 즉각적인 보안 조치가 필요합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 95%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="rankno">4</span><span class="badge tier-medium">신뢰도 보통 · 62</span>
+          <div class="meta"><span class="catbadge">🐞 취약점(CVE)</span> · <span class="source">CVE (NVD→cvedetails)</span> · <span class="when">2026-06-17 05:16</span></div>
+        </div>
+        <h3 class="title"><a href="https://www.cvedetails.com/cve/CVE-2026-22313/" target="_blank" rel="noopener">CVE-2026-22313 · 심각 9.1</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">해당 장비의 웹 서버 REST API에서 OS 명령 주입(Command Injection) 취약점이 발견되어, 인증된 공격자가 관리자 권한으로 임의의 명령을 실행할 수 있습니다. 보안 점수 9.1의 심각한 취약점으로, 공격자가 장비의 제어권을 완전히 탈취할 수 있어 즉각적인 보안 패치가 필요합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 95%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="rankno">5</span><span class="badge tier-medium">신뢰도 보통 · 72</span>
+          <div class="meta"><span class="catbadge">🛡️ 보안(해외)</span> · <span class="source">BleepingComputer</span> · <span class="when">2026-06-17 05:04</span></div>
+        </div>
+        <h3 class="title"><a href="https://www.bleepingcomputer.com/news/security/new-rokarolla-android-malware-targets-217-banking-crypto-apps/" target="_blank" rel="noopener">New Rokarolla Android malware targets 217 banking, crypto apps</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">새로운 안드로이드 뱅킹 트로이 목마인 &#x27;로카롤라(Rokarolla)&#x27;가 217개의 금융 및 암호화폐 앱을 표적으로 삼아 공격을 수행하고 있습니다. 이 악성코드는 137개의 광범위한 명령어를 사용하여 기기를 제어하고 민감한 정보를 탈취할 수 있어 사용자 보안에 심각한 위협이 됩니다.</p></details>
+        <div class="corrob">🔗 교차보도: Dark Reading</div>
+        <div class="chips"><span class="chip">출처 신뢰도 90%</span><span class="chip">1개 타 매체 교차보도</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="rankno">6</span><span class="badge tier-medium">신뢰도 보통 · 62</span>
+          <div class="meta"><span class="catbadge">🐞 취약점(CVE)</span> · <span class="source">CVE (NVD→cvedetails)</span> · <span class="when">2026-06-17 02:16</span></div>
+        </div>
+        <h3 class="title"><a href="https://www.cvedetails.com/cve/CVE-2024-24909/" target="_blank" rel="noopener">CVE-2024-24909 · 높음 8.8</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">Dell OpenManage Integration with Microsoft Windows Admin Center의 게이트웨이 플러그인에서 원격 코드 실행(RCE) 취약점이 발견되었습니다. 인증된 원격 공격자가 이를 악용해 권한을 상승시키고 임의 코드를 실행할 수 있어, Dell은 보안을 위해 최신 버전으로의 즉각적인 업데이트를 권고합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 95%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+    </section>
+    <section class="cat" id="cat-security">
+      <h2 class="cat-title">🛡️ 보안(해외) <span class="count">14</span></h2>
+      
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 72</span>
+          <div class="meta"><span class="source">BleepingComputer</span> · <span class="when">2026-06-17 05:04</span></div>
+        </div>
+        <h3 class="title"><a href="https://www.bleepingcomputer.com/news/security/new-rokarolla-android-malware-targets-217-banking-crypto-apps/" target="_blank" rel="noopener">New Rokarolla Android malware targets 217 banking, crypto apps</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">새로운 안드로이드 뱅킹 트로이 목마인 &#x27;로카롤라(Rokarolla)&#x27;가 217개의 금융 및 암호화폐 앱을 표적으로 삼아 공격을 수행하고 있습니다. 이 악성코드는 137개의 광범위한 명령어를 사용하여 기기를 제어하고 민감한 정보를 탈취할 수 있어 사용자 보안에 심각한 위협이 됩니다.</p></details>
+        <div class="corrob">🔗 교차보도: Dark Reading</div>
+        <div class="chips"><span class="chip">출처 신뢰도 90%</span><span class="chip">1개 타 매체 교차보도</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 70</span>
+          <div class="meta"><span class="source">The Hacker News</span> · <span class="when">2026-06-17 02:41</span></div>
+        </div>
+        <h3 class="title"><a href="https://thehackernews.com/2026/06/clickfix-campaigns-expand-malware.html" target="_blank" rel="noopener">ClickFix Campaigns Expand Malware Delivery With New Loaders and Fake Update Lures</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">최근 교육 및 금융 기관을 표적으로 하는 &#x27;ClickFix&#x27; 캠페인이 BabaDeda, Lorem Ipsum, Potemkin 등 새로운 악성 로더를 유포하며 공격 범위를 확장하고 있습니다. 해당 공격은 가짜 업데이트 알림을 통해 사용자의 클릭을 유도하는 방식을 사용하며, 보안 연구원들은 이들 로더의 위협이 지속적으로 증가하고 있다고 경고했습니다.</p></details>
+        <div class="corrob">🔗 교차보도: Dark Reading</div>
+        <div class="chips"><span class="chip">출처 신뢰도 85%</span><span class="chip">1개 타 매체 교차보도</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 70</span>
+          <div class="meta"><span class="source">Dark Reading</span> · <span class="when">2026-06-17 02:32</span></div>
+        </div>
+        <h3 class="title"><a href="https://www.darkreading.com/endpoint-security/rokarolla-android-trojan" target="_blank" rel="noopener">Rokarolla Android Trojan Levels Up to Full Device Control, Persistence</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">&#x27;Rokarolla&#x27; 안드로이드 트로이 목마가 가짜 틱톡 및 크롬 다운로드를 통해 유포되며, 금융 사기 기능에 기기 원격 제어 및 감시 기능을 결합한 형태로 진화했습니다. 이 악성코드는 기기에 대한 광범위한 통제권과 지속적인 감염 유지 능력을 갖추고 있어 사용자 보안에 심각한 위협이 됩니다.</p></details>
+        <div class="corrob">🔗 교차보도: BleepingComputer</div>
+        <div class="chips"><span class="chip">출처 신뢰도 85%</span><span class="chip">1개 타 매체 교차보도</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 70</span>
+          <div class="meta"><span class="source">Dark Reading</span> · <span class="when">2026-06-17 00:10</span></div>
+        </div>
+        <h3 class="title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/lorem-ipsum-malware-clickfix-delivery" target="_blank" rel="noopener">&#x27;Lorem Ipsum&#x27; Malware Pivots to ClickFix Delivery</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">&#x27;Lorem Ipsum&#x27; 악성코드가 워드프레스 사이트를 해킹하여 &#x27;ClickFix&#x27; 방식을 통해 유포되는 정황이 포착되었습니다. 보안 분석 결과, 해당 캠페인은 랜섬웨어 및 데이터 갈취 조직인 &#x27;바이스 소사이어티(Vice Society)&#x27;와 연관되었을 가능성이 제기되었습니다.</p></details>
+        <div class="corrob">🔗 교차보도: The Hacker News</div>
+        <div class="chips"><span class="chip">출처 신뢰도 85%</span><span class="chip">1개 타 매체 교차보도</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 60</span>
+          <div class="meta"><span class="source">BleepingComputer</span> · <span class="when">2026-06-17 03:27</span></div>
+        </div>
+        <h3 class="title"><a href="https://www.bleepingcomputer.com/news/security/steam-workshop-abused-to-spread-malware-via-wallpaper-engine-app/" target="_blank" rel="noopener">Steam Workshop abused to spread malware via Wallpaper Engine app</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">공격자들이 스팀 워크숍(Steam Workshop)의 월페이퍼 엔진 콘텐츠에 악성코드를 숨겨 유포하는 사례가 확인되었습니다. 사용자가 게임 관련 자료로 위장한 악성 파일을 다운로드할 경우 시스템 감염 위험이 있어 주의가 필요합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 90%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 60</span>
+          <div class="meta"><span class="source">BleepingComputer</span> · <span class="when">2026-06-17 06:54</span></div>
+        </div>
+        <h3 class="title"><a href="https://www.bleepingcomputer.com/news/security/malicious-jetbrains-marketplace-plugins-steal-ai-api-keys-from-developers/" target="_blank" rel="noopener">Malicious JetBrains Marketplace plugins steal AI API keys from developers</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">JetBrains Marketplace에서 개발자의 AI API 키를 탈취하도록 설계된 악성 플러그인 15개 이상이 발견되었습니다. 해당 플러그인들은 개발 환경에서 민감한 인증 정보를 유출해 보안 위협을 초래하므로, 사용자는 설치된 플러그인을 점검하고 API 키를 즉시 교체해야 합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 90%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 58</span>
+          <div class="meta"><span class="source">The Hacker News</span> · <span class="when">2026-06-17 04:05</span></div>
+        </div>
+        <h3 class="title"><a href="https://thehackernews.com/2026/06/google-vertex-ai-sdk-flaw-let-attackers.html" target="_blank" rel="noopener">Google Vertex AI SDK Flaw Let Attackers Hijack Model Uploads via Bucket Squatting</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">Google Vertex AI SDK의 취약점으로 인해 공격자가 버킷 스쿼팅(Bucket Squatting) 기법을 사용하여 타인의 머신러닝 모델 업로드를 가로채고 구글 인프라 내에서 임의 코드를 실행할 수 있음이 확인되었습니다. 해당 취약점은 &#x27;Pickle in the Middle&#x27;로 명명되었으며, 현재까지 실제 악용 사례는 보고되지 않았습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 85%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 58</span>
+          <div class="meta"><span class="source">SecurityWeek</span> · <span class="when">2026-06-17 00:06</span></div>
+        </div>
+        <h3 class="title"><a href="https://www.securityweek.com/irhythm-confirms-data-stolen-in-hack/" target="_blank" rel="noopener">iRhythm Confirms Data Stolen in Hack</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">디지털 헬스케어 기업 iRhythm이 지난 6월 8일 해킹 공격을 통해 데이터가 유출되었으며, 공격자들로부터 금전적 요구를 받았음을 확인했습니다. 이번 사건은 의료 데이터의 보안 취약성을 드러낸 사례로, 환자 정보 보호와 기업의 사이버 보안 대응 체계 강화가 중요함을 시사합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 85%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 58</span>
+          <div class="meta"><span class="source">Dark Reading</span> · <span class="when">2026-06-17 05:11</span></div>
+        </div>
+        <h3 class="title"><a href="https://www.darkreading.com/threat-intelligence/sprysocks-windows-variant-kernel-drivers" target="_blank" rel="noopener">SprySOCKS Windows Variant Abuses Kernel Drivers to Evade Detection</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">중국 연계 해킹 그룹 &#x27;FishMonger&#x27;가 윈도우용 커널 드라이버를 악용해 탐지를 우회하는 새로운 &#x27;SprySOCKS&#x27; 백도어를 개발하여 배포했습니다. 해당 악성코드는 온두라스, 대만, 태국, 파키스탄 등 주요 국가의 정부 기관을 표적으로 삼고 있어 보안 위협이 커지고 있습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 85%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 58</span>
+          <div class="meta"><span class="source">Dark Reading</span> · <span class="when">2026-06-17 07:00</span></div>
+        </div>
+        <h3 class="title"><a href="https://www.darkreading.com/vulnerabilities-threats/security-community-slams-us-ban-on-exporting-mythos-fable" target="_blank" rel="noopener">Security Community Slams US Ban on Exporting Mythos, Fable</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">보안 전문가들이 미국 정부의 앤스로픽 &#x27;클로드 페이블 5&#x27; 및 &#x27;미토스 5&#x27; 모델에 대한 수출 제한 조치를 철회할 것을 요구하는 공개 서한을 발표했습니다. 해당 모델들은 보안 연구 및 방어 기술 개발에 필수적인 도구로, 이번 수출 규제가 글로벌 보안 역량 강화와 기술 협력을 저해할 수 있다는 우려가 제기되었습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 85%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 58</span>
+          <div class="meta"><span class="source">Dark Reading</span> · <span class="when">2026-06-17 07:26</span></div>
+        </div>
+        <h3 class="title"><a href="https://www.darkreading.com/cyberattacks-data-breaches/fileless-phantom-stealer-targets-browser-credentials" target="_blank" rel="noopener">Fileless Phantom Stealer Targets Browser Credentials</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">&#x27;파일리스 팬텀 스틸러(Fileless Phantom Stealer)&#x27;는 메모리 상에서만 실행되고 다양한 분석 방지 기술을 결합하여 탐지를 회피하는 악성코드입니다. 이 악성코드는 브라우저에 저장된 자격 증명을 탈취하는 것을 목표로 하며, 기존 보안 솔루션의 탐지를 어렵게 만든다는 점에서 위험성이 높습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 85%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 55</span>
+          <div class="meta"><span class="source">The Register · Security</span> · <span class="when">2026-06-17 11:16</span></div>
+        </div>
+        <h3 class="title"><a href="https://www.theregister.com/cyber-crime/2026/06/17/cyberattack-sees-crops-kept-in-the-ground/5256321" target="_blank" rel="noopener">Cyberattack sees crops kept in the ground</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">호주의 설탕 제조 기업인 맥케이 슈거(Mackay Sugar)가 사탕수수 수확 최성기에 사이버 공격을 받아 공장 가동이 중단되었습니다. 이로 인해 수확된 사탕수수가 처리되지 못하고 방치되는 등 공급망 차질이 발생하여 식량 생산 및 유통 보안의 취약성이 드러났습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 80%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 55</span>
+          <div class="meta"><span class="source">The Register · Security</span> · <span class="when">2026-06-17 05:15</span></div>
+        </div>
+        <h3 class="title"><a href="https://www.theregister.com/ai-and-ml/2026/06/16/python-dev-saved-from-disaster-by-intuitionand-ai/5256632" target="_blank" rel="noopener">Python dev saved from disaster by intuition...and AI</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">한 파이썬 개발자가 악성 코드가 포함된 저장소를 설치하려던 상황에서 AI 도구가 이를 사전에 감지하고 차단하여 시스템 손상을 방지했습니다. 이는 개발 환경에서 AI가 잠재적인 보안 위협을 실시간으로 식별하고 예방하는 데 효과적인 방어 수단이 될 수 있음을 보여줍니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 80%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 55</span>
+          <div class="meta"><span class="source">The Register · Security</span> · <span class="when">2026-06-17 03:27</span></div>
+        </div>
+        <h3 class="title"><a href="https://www.theregister.com/security/2026/06/16/three-critical-fortinet-sandbox-bugs-splattered-by-unknown-attackers/5256461" target="_blank" rel="noopener">Three critical Fortinet sandbox bugs splattered by unknown attackers</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">포티넷(Fortinet)의 샌드박스 제품에서 알려지지 않은 공격자들에 의해 악용된 3개의 치명적인 보안 취약점이 발견되었습니다. 현재 모든 취약점에 대한 보안 패치가 배포된 상태이므로, 사용자들은 즉시 최신 버전으로 업데이트해야 합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 80%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+    </section>
+    <section class="cat" id="cat-security_kr">
+      <h2 class="cat-title">🇰🇷 보안(국내) <span class="count">20</span></h2>
+      
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 70</span>
+          <div class="meta"><span class="source">보안뉴스</span> · <span class="when">2026-06-17 13:40</span></div>
+        </div>
+        <h3 class="title"><a href="http://www.boannews.com/media/view.asp?idx=144153&amp;kind=&amp;sub_kind=" target="_blank" rel="noopener">공익 AI 보안 이니셔티브 ‘프로젝트 캐노피’ 공식 출범</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">두나무, LG유플러스 등 27개 기업이 참여하는 ‘프로젝트 캐노피’가 30억 원 규모의 기금을 조성해 공식 출범했습니다. 이 프로젝트는 AI 기반의 취약점 점검과 패치 보상을 지원하여 글로벌 오픈소스 보안 생태계를 강화하는 것을 목표로 합니다.</p></details>
+        <div class="corrob">🔗 교차보도: 데일리시큐</div>
+        <div class="chips"><span class="chip">출처 신뢰도 85%</span><span class="chip">1개 타 매체 교차보도</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 70</span>
+          <div class="meta"><span class="source">보안뉴스</span> · <span class="when">2026-06-17 11:40</span></div>
+        </div>
+        <h3 class="title"><a href="http://www.boannews.com/media/view.asp?idx=144150&amp;kind=&amp;sub_kind=" target="_blank" rel="noopener">한싹, N2SF 전환 대응 차세대 망연계 ‘시큐어게이트 V4.0’ 출시</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">한싹이 국가망보안체계(N2SF) 전환에 대응하기 위해 제로 트러스트 기반의 차세대 망연계 솔루션 ‘시큐어게이트 V4.0’을 출시했습니다. 이 제품은 생성형 AI, 클라우드, 다중 운영체제를 지원하며 데이터 통제 인프라를 고도화하여 재편되는 망연계 시장을 공략할 계획입니다.</p></details>
+        <div class="corrob">🔗 교차보도: 데일리시큐</div>
+        <div class="chips"><span class="chip">출처 신뢰도 85%</span><span class="chip">1개 타 매체 교차보도</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 58</span>
+          <div class="meta"><span class="source">보안뉴스</span> · <span class="when">2026-06-17 14:54</span></div>
+        </div>
+        <h3 class="title"><a href="http://www.boannews.com/media/view.asp?idx=144155&amp;kind=&amp;sub_kind=" target="_blank" rel="noopener">공공 망분리 빗장 푼다... KISA, ‘국가 망 보안체계’(N2SF) 도입 전면 지원</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">한국인터넷진흥원(KISA)은 2026년부터 공공기관의 획일적인 망분리 규제를 완화하고 데이터 중요도에 따라 보안 수준을 차등 적용하는 ‘국가 망 보안체계(N2SF)’를 도입합니다. 이를 위해 기후에너지환경부 등 6개 수요기관 중심의 컨소시엄을 선정하여 데이터 기반의 유연한 보안 거버넌스 확립을 지원할 예정입니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 85%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 58</span>
+          <div class="meta"><span class="source">보안뉴스</span> · <span class="when">2026-06-17 14:52</span></div>
+        </div>
+        <h3 class="title"><a href="http://www.boannews.com/media/view.asp?idx=144156&amp;kind=&amp;sub_kind=" target="_blank" rel="noopener">‘MS 팀즈’ 악용해 랜섬웨어 숨긴 공격 수법 포착</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">랜섬웨어 조직 ‘드래곤포스’가 보안 탐지를 회피하기 위해 마이크로소프트 팀즈를 악용하여 신종 백도어 ‘백도어.턴’을 유포하는 공격 캠페인이 포착되었습니다. 공격자는 신뢰받는 협업 플랫폼을 무기화함으로써 기업 보안망을 우회하고 랜섬웨어를 은밀하게 배포하는 수법을 사용합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 85%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 58</span>
+          <div class="meta"><span class="source">보안뉴스</span> · <span class="when">2026-06-17 11:11</span></div>
+        </div>
+        <h3 class="title"><a href="http://www.boannews.com/media/view.asp?idx=144149&amp;kind=&amp;sub_kind=" target="_blank" rel="noopener">SKT-경찰청 “AI 보안 기술로 643명 금융사기 피해 예방”</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">SK텔레콤과 경찰청은 AI 보안 기술을 활용해 3개월간 피싱 범죄 서버 475개를 식별하고 643명의 금융 피해를 예방했습니다. AI 에이전트를 통한 악성 앱 분석 자동화로 수사 효율을 높인 이번 성과를 바탕으로 양 기관은 향후 협력 범위를 더욱 확대할 계획입니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 85%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 58</span>
+          <div class="meta"><span class="source">보안뉴스</span> · <span class="when">2026-06-17 11:00</span></div>
+        </div>
+        <h3 class="title"><a href="http://www.boannews.com/media/view.asp?idx=144148&amp;kind=&amp;sub_kind=" target="_blank" rel="noopener">AI안전연구소-오픈AI,  AI 안전 평가체계 마련 협력 MOU</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">AI안전연구소가 오픈AI와 업무협약을 맺고 최첨단 AI의 안전성 확보를 위한 평가 체계 마련에 협력하기로 했습니다. 한국은 미국, 영국, 일본에 이어 네 번째로 오픈AI와 AI 안전 협력 체계를 구축하게 되었으며, 양측은 관련 사례와 기술을 공유할 예정입니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 85%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 58</span>
+          <div class="meta"><span class="source">보안뉴스</span> · <span class="when">2026-06-17 10:45</span></div>
+        </div>
+        <h3 class="title"><a href="http://www.boannews.com/media/view.asp?idx=144141&amp;kind=&amp;sub_kind=" target="_blank" rel="noopener">AI가 공격하는 시대, 개인정보 이렇게 지켜라... PIS FAIR 2026, 22일 개막</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">&#x27;안전한 AI를 위한 약속&#x27;을 주제로 한 개인정보보호페어(PIS FAIR 2026)가 22일부터 이틀간 코엑스에서 개최됩니다. 이번 행사에서는 AI 시대의 개인정보 유출 규제 강화에 대응하기 위한 실무 지식 공유와 함께 최신 보안 솔루션 전시 및 포럼이 진행됩니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 85%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 58</span>
+          <div class="meta"><span class="source">보안뉴스</span> · <span class="when">2026-06-17 14:00</span></div>
+        </div>
+        <h3 class="title"><a href="http://www.boannews.com/media/view.asp?idx=144154&amp;kind=&amp;sub_kind=" target="_blank" rel="noopener">포티넷코리아, 서울아이티고등학교 재학생 대상 사이버보안 멘토링</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">포티넷코리아가 서울아이티고등학교 재학생을 대상으로 사이버 보안 멘토링을 진행하며 미래 보안 인재 육성에 나섰다. 학생들은 시뮬레이션 게임을 통해 사이버 공격 원리를 학습하고 보안 솔루션을 활용한 방어 기술을 실습했다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 85%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 58</span>
+          <div class="meta"><span class="source">보안뉴스</span> · <span class="when">2026-06-17 13:35</span></div>
+        </div>
+        <h3 class="title"><a href="http://www.boannews.com/media/view.asp?idx=144152&amp;kind=&amp;sub_kind=" target="_blank" rel="noopener">위고비 제조사 노보노디스크, 사내 AI 모델 정보도 털렸나</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">해커 그룹 풀크럼섹이 비만치료제 제조사 노보노디스크를 해킹해 환자 개인정보와 신약 데이터, 독자적인 AI 모델 정보를 탈취했다고 주장했습니다. 제약사의 핵심 자산인 AI 기술과 민감한 연구 데이터가 유출되었을 가능성이 제기되어 보안 업계의 우려가 커지고 있습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 85%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 58</span>
+          <div class="meta"><span class="source">보안뉴스</span> · <span class="when">2026-06-17 13:08</span></div>
+        </div>
+        <h3 class="title"><a href="http://www.boannews.com/media/view.asp?idx=144151&amp;kind=&amp;sub_kind=" target="_blank" rel="noopener">한국, 이미 세계 3위 사이버 위협국... 구글 클라우드 ‘보안 운영 플랫폼’ 서울 리전 출시</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">구글 클라우드가 국내 데이터 저장 요건을 충족하는 ‘보안 운영 플랫폼(SecOps)’을 서울 리전에 출시하며 금융 및 공공 분야 보안 시장 공략을 본격화합니다. 이 플랫폼은 생성형 AI ‘제미나이’를 활용한 에이전틱 AI를 적용해 위협 탐지 및 대응 시간을 기존 30분에서 1분으로 획기적으로 단축합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 85%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 55</span>
+          <div class="meta"><span class="source">이스트시큐리티 알약</span> · <span class="when">2026-06-17 11:07</span></div>
+        </div>
+        <h3 class="title"><a href="https://blog.alyac.co.kr/5767" target="_blank" rel="noopener">인스타그램 계정 해킹, 사람의 소행이 아니었다?</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">최근 메타의 인스타그램 계정 탈취 사건은 공격자가 위치 위장과 반복적인 요청을 통해 기업의 자동화된 계정 복구 시스템을 우회한 사례로 밝혀졌습니다. 이는 시스템의 사각지대를 악용해 고가치 계정을 탈취한 것으로, 자동화된 인증 프로세스의 보안 취약점에 대한 경각심을 높이고 있습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 80%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 55</span>
+          <div class="meta"><span class="source">데일리시큐</span> · <span class="when">2026-06-17 23:18</span></div>
+        </div>
+        <h3 class="title"><a href="https://www.dailysecu.com/news/articleView.html?idxno=207205" target="_blank" rel="noopener">포티넷코리아, 서울아이티고 학생 대상 사이버보안 멘토링 진행</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">포티넷코리아는 서울아이티고등학교 학생들을 초청해 실무 중심의 사이버보안 멘토링과 &#x27;ADM 챌린지&#x27; 실습 프로그램을 진행했습니다. 이번 행사는 미래 보안 인재 양성을 위한 산학 협력의 일환으로, 학생들에게 실질적인 보안 기술 습득과 진로 설계를 위한 구체적인 가이드를 제공하는 데 목적이 있습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 80%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 55</span>
+          <div class="meta"><span class="source">데일리시큐</span> · <span class="when">2026-06-17 23:10</span></div>
+        </div>
+        <h3 class="title"><a href="https://www.dailysecu.com/news/articleView.html?idxno=207204" target="_blank" rel="noopener">가트너, 6대 데이터·분석 트렌드 발표...“2030년까지 기업 10% AI 퍼스트 전환”</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">가트너는 2030년까지 기업의 10% 이상이 AI를 비즈니스 중심으로 삼는 &#x27;AI 퍼스트&#x27; 기업으로 전환할 것으로 전망하며, 이를 위한 핵심 동력으로 AI 에이전트와 시맨틱 기술 등을 제시했습니다. 또한, AI가 국가 경제와 안보의 핵심 자산으로 부상함에 따라 각국 정부가 자국 중심의 AI 역량을 강화하는 &#x27;소버린 AI&#x27;가 가속화될 것으로 분석했습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 80%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 55</span>
+          <div class="meta"><span class="source">데일리시큐</span> · <span class="when">2026-06-17 22:25</span></div>
+        </div>
+        <h3 class="title"><a href="https://www.dailysecu.com/news/articleView.html?idxno=207202" target="_blank" rel="noopener">구글 클라우드, 서울 리전에 ‘구글 보안 운영 플랫폼’ 출시...국내 데이터 주권 강화</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">구글 클라우드가 서울 리전에 &#x27;구글 보안 운영 플랫폼&#x27;을 출시하여 국내 기업들이 보안 로그와 분석 데이터를 국내 인프라 내에서 처리할 수 있게 되었다. 이를 통해 기업들은 데이터 주권 및 거버넌스 요건을 충족하는 동시에, 구글의 AI 기술과 위협 인텔리전스를 활용해 실시간 보안 대응 역량을 강화할 수 있다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 80%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 55</span>
+          <div class="meta"><span class="source">데일리시큐</span> · <span class="when">2026-06-17 21:02</span></div>
+        </div>
+        <h3 class="title"><a href="https://www.dailysecu.com/news/articleView.html?idxno=207201" target="_blank" rel="noopener">AI가 찾아낸 ‘HTTP/2 폭탄’…88만 개 웹사이트 흔든 인터넷 핵심 취약점</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">AI가 발견한 &#x27;HTTP/2 폭탄(CVE-2026-49975)&#x27; 취약점은 HTTP/2 프로토콜의 구조적 결함을 악용해 서버 메모리를 고갈시키는 서비스 거부(DoS) 공격 방식입니다. 공격자는 소량의 트래픽만으로도 대형 웹 서버를 수 초 내에 마비시킬 수 있어, 인터넷 인프라 보안에 심각한 위협이 되고 있습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 80%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 55</span>
+          <div class="meta"><span class="source">데일리시큐</span> · <span class="when">2026-06-17 18:44</span></div>
+        </div>
+        <h3 class="title"><a href="https://www.dailysecu.com/news/articleView.html?idxno=207199" target="_blank" rel="noopener">에스투더블유, 이파피루스와 맞손…AI 전자증빙 시장 공략 나서</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">에스투더블유(S2W)와 이파피루스가 전략적 파트너십을 맺고 AI 전자증빙 솔루션 ‘스트림닥스 AI’의 공동 사업을 추진합니다. S2W는 AI 기술 고도화와 운영을, 이파피루스는 조달 및 영업·마케팅을 전담하여 기업과 기관의 문서 자산 활용 시장을 공략할 계획입니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 80%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 55</span>
+          <div class="meta"><span class="source">데일리시큐</span> · <span class="when">2026-06-17 16:46</span></div>
+        </div>
+        <h3 class="title"><a href="https://www.dailysecu.com/news/articleView.html?idxno=207196" target="_blank" rel="noopener">지니언스, AV-Comparatives EDR 인증 획득…AI 기반 엔드포인트 보안 경쟁력 입증</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">지니언스가 글로벌 보안 평가 기관 AV-Comparatives의 ‘2026 EDR 탐지 검증 테스트’에서 최종 인증을 획득하며 자사 AI 기반 엔드포인트 보안 기술의 글로벌 경쟁력을 입증했다. 이번 평가는 14단계의 실제 해킹 시나리오를 통해 공격 탐지 가시성, 위협 분석 역량, 오탐 관리 능력 등을 종합적으로 검증했다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 80%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 55</span>
+          <div class="meta"><span class="source">데일리시큐</span> · <span class="when">2026-06-17 16:03</span></div>
+        </div>
+        <h3 class="title"><a href="https://www.dailysecu.com/news/articleView.html?idxno=207194" target="_blank" rel="noopener">217개 금융앱 노린 안드로이드 악성코드 ‘로카롤라’ 등장…금융정보 및 가상화폐 탈취</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">전 세계 217개 금융 및 가상화폐 앱을 표적으로 삼는 신종 안드로이드 악성코드 ‘로카롤라(Rokarolla)’가 발견되었습니다. 이 악성코드는 구글 플레이 프로텍트를 무력화하고 잠금 비밀번호, 인증번호, 금융 정보 등을 탈취하며 137개의 원격 명령을 수행할 수 있어 사용자 자산에 심각한 위협이 됩니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 80%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 55</span>
+          <div class="meta"><span class="source">데일리시큐</span> · <span class="when">2026-06-17 10:20</span></div>
+        </div>
+        <h3 class="title"><a href="https://www.dailysecu.com/news/articleView.html?idxno=207192" target="_blank" rel="noopener">드래곤포스 랜섬웨어 조직, 정상 팀즈 트래픽처럼 위장해 공격</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">랜섬웨어 조직 드래곤포스가 마이크로소프트 팀즈의 TURN 프로토콜을 악용해 악성 명령제어 트래픽을 정상 통신인 것처럼 위장하는 수법이 확인됐다. 공격자는 자체 제작한 백도어 &#x27;백도어.턴&#x27;을 통해 보안 탐지를 우회하며 기업 네트워크를 공격하고 있어 주의가 요구된다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 80%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 55</span>
+          <div class="meta"><span class="source">데일리시큐</span> · <span class="when">2026-06-17 09:55</span></div>
+        </div>
+        <h3 class="title"><a href="https://www.dailysecu.com/news/articleView.html?idxno=207191" target="_blank" rel="noopener">북한 해커, 깃허브·개발자 도구 악용해 악성코드 유포</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">북한 연계 해킹 조직이 채용 과제나 코드 리뷰를 위장해 깃허브, VS 코드 등 개발 도구 내 악성코드를 유포하는 공격을 감행했다. 해당 공격은 올해 4월부터 6주간 금융, 가상화폐 등 100여 개 조직을 대상으로 이루어졌으며, 개발자가 저장소를 내려받아 편집기로 여는 순간 악성코드가 실행되는 방식을 취했다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 80%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+    </section>
+    <section class="cat" id="cat-vuln">
+      <h2 class="cat-title">🐞 취약점(CVE) <span class="count">20</span></h2>
+      
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 62</span>
+          <div class="meta"><span class="source">CVE (NVD→cvedetails)</span> · <span class="when">2026-06-17 02:16</span></div>
+        </div>
+        <h3 class="title"><a href="https://www.cvedetails.com/cve/CVE-2026-53776/" target="_blank" rel="noopener">CVE-2026-53776 · 심각 9.3</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">Perry 0.5.1166 이전 버전의 JWT 검증 과정에서 `validate_exp` 설정이 강제로 비활성화되어, 만료된 토큰으로도 인증을 우회할 수 있는 취약점이 발견되었습니다. 공격자는 이 결함을 통해 기존에 발급받은 만료된 토큰을 사용하여 시스템에 지속적으로 접근할 수 있어 보안상 심각한 위험을 초래합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 95%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 62</span>
+          <div class="meta"><span class="source">CVE (NVD→cvedetails)</span> · <span class="when">2026-06-17 05:16</span></div>
+        </div>
+        <h3 class="title"><a href="https://www.cvedetails.com/cve/CVE-2026-48777/" target="_blank" rel="noopener">CVE-2026-48777 · 심각 9.3</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">FileBrowser Quantum 1.3.2-stable 이전 버전에서 사용자 입력값이 검증 전 경로 결합에 사용되어 경로 탐색(Path Traversal) 취약점이 발생합니다. 공격자는 이를 통해 시스템의 임의 파일에 접근할 수 있으며, CVSS 점수 9.3의 심각한 위험을 초래하므로 최신 버전으로의 업데이트가 필수적입니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 95%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 62</span>
+          <div class="meta"><span class="source">CVE (NVD→cvedetails)</span> · <span class="when">2026-06-17 00:16</span></div>
+        </div>
+        <h3 class="title"><a href="https://www.cvedetails.com/cve/CVE-2025-13036/" target="_blank" rel="noopener">CVE-2025-13036 · 심각 9.2</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">FactoryTalk Historian Site Edition에서 로그인 엔드포인트에 반복적인 요청을 보내 유효한 인증 토큰을 탈취할 수 있는 인증 우회 취약점이 발견되었습니다. 해당 취약점은 CVSS 점수 9.2로 심각도가 높으며, 공격자가 시스템 인증을 무력화할 수 있어 즉각적인 보안 조치가 필요합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 95%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 62</span>
+          <div class="meta"><span class="source">CVE (NVD→cvedetails)</span> · <span class="when">2026-06-17 05:16</span></div>
+        </div>
+        <h3 class="title"><a href="https://www.cvedetails.com/cve/CVE-2026-22313/" target="_blank" rel="noopener">CVE-2026-22313 · 심각 9.1</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">해당 장비의 웹 서버 REST API에서 OS 명령 주입(Command Injection) 취약점이 발견되어, 인증된 공격자가 관리자 권한으로 임의의 명령을 실행할 수 있습니다. 보안 점수 9.1의 심각한 취약점으로, 공격자가 장비의 제어권을 완전히 탈취할 수 있어 즉각적인 보안 패치가 필요합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 95%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 62</span>
+          <div class="meta"><span class="source">CVE (NVD→cvedetails)</span> · <span class="when">2026-06-17 02:16</span></div>
+        </div>
+        <h3 class="title"><a href="https://www.cvedetails.com/cve/CVE-2024-24909/" target="_blank" rel="noopener">CVE-2024-24909 · 높음 8.8</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">Dell OpenManage Integration with Microsoft Windows Admin Center의 게이트웨이 플러그인에서 원격 코드 실행(RCE) 취약점이 발견되었습니다. 인증된 원격 공격자가 이를 악용해 권한을 상승시키고 임의 코드를 실행할 수 있어, Dell은 보안을 위해 최신 버전으로의 즉각적인 업데이트를 권고합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 95%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 62</span>
+          <div class="meta"><span class="source">CVE (NVD→cvedetails)</span> · <span class="when">2026-06-17 00:16</span></div>
+        </div>
+        <h3 class="title"><a href="https://www.cvedetails.com/cve/CVE-2026-0647/" target="_blank" rel="noopener">CVE-2026-0647 · 높음 8.8</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">1794-AENTR 어댑터의 내장 웹 서버에서 인증 우회 취약점(CVE-2026-0647)이 발견되었습니다. 공격자는 인증 없이 조작된 HTTP GET 요청을 보내 관리자 비밀번호를 변경할 수 있으며, 이를 통해 기기에 대한 무단 접근 및 계정 탈취가 가능합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 95%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 62</span>
+          <div class="meta"><span class="source">CVE (NVD→cvedetails)</span> · <span class="when">2026-06-17 02:16</span></div>
+        </div>
+        <h3 class="title"><a href="https://www.cvedetails.com/cve/CVE-2026-44932/" target="_blank" rel="noopener">CVE-2026-44932 · 높음 8.8</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">wicked 0.6.79 이전 버전의 DHCP 클라이언트는 서버로부터 전달받은 검증되지 않은 문자열을 처리하는 과정에서 취약점이 발생합니다. 공격자가 악의적인 DHCP 서버를 운영할 경우, 이를 통해 로컬 시스템에서 임의 코드를 실행할 수 있어 주의가 필요합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 95%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 62</span>
+          <div class="meta"><span class="source">CVE (NVD→cvedetails)</span> · <span class="when">2026-06-17 04:17</span></div>
+        </div>
+        <h3 class="title"><a href="https://www.cvedetails.com/cve/CVE-2026-53843/" target="_blank" rel="noopener">CVE-2026-53843 · 높음 8.7</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">OpenClaw 2026.5.26 이전 버전에서 권한 취소 후에도 페어링된 기기가 노드 토큰 권한을 재획득할 수 있는 인증 우회 취약점이 발견되었습니다. 공격자는 승인 없이 WebSocket 노드 접근 권한을 유지할 수 있어, 보안 제어 체계가 무력화되고 비인가 접근이 장기화될 위험이 있습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 95%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 62</span>
+          <div class="meta"><span class="source">CVE (NVD→cvedetails)</span> · <span class="when">2026-06-17 00:16</span></div>
+        </div>
+        <h3 class="title"><a href="https://www.cvedetails.com/cve/CVE-2025-11694/" target="_blank" rel="noopener">CVE-2025-11694 · 높음 8.7</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">1769 CompactLogix 컨트롤러의 CIP 프로토콜에서 시퀀스 번호와 소스 IP 검증이 누락되어, 웹 인터페이스에 노출된 연결 ID를 악용한 서비스 거부(DoS) 공격이 가능합니다. 이 취약점은 시스템의 사소한 오류(minor fault)를 유발할 수 있어 보안상 주의가 필요합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 95%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 62</span>
+          <div class="meta"><span class="source">CVE (NVD→cvedetails)</span> · <span class="when">2026-06-17 00:16</span></div>
+        </div>
+        <h3 class="title"><a href="https://www.cvedetails.com/cve/CVE-2026-11317/" target="_blank" rel="noopener">CVE-2026-11317 · 높음 8.7</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">특정 제품에 조작된 CIP 메시지를 전송할 경우 서비스 거부(DoS)를 유발하는 보안 취약점(CVE-2026-11317)이 발견되었습니다. 메모리가 적은 장비에서 발생 가능성이 높으며, 치명적인 복구 불가능 오류(MNRF)를 일으켜 장비 복구를 위해 프로그램 재설치가 필요합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 95%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 62</span>
+          <div class="meta"><span class="source">CVE (NVD→cvedetails)</span> · <span class="when">2026-06-17 00:16</span></div>
+        </div>
+        <h3 class="title"><a href="https://www.cvedetails.com/cve/CVE-2026-0646/" target="_blank" rel="noopener">CVE-2026-0646 · 높음 8.7</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">1794-AENTR 어댑터의 CIP 프로토콜 요청 처리 과정에서 메모리 관리 오류로 인한 서비스 거부(DoS) 취약점이 발견되었습니다. 이 결함은 어댑터의 연결 중단 및 오작동을 유발하며, 복구를 위해 수동 재설정이 필요해 산업 제어 시스템의 가용성에 영향을 줄 수 있습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 95%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 62</span>
+          <div class="meta"><span class="source">CVE (NVD→cvedetails)</span> · <span class="when">2026-06-17 02:16</span></div>
+        </div>
+        <h3 class="title"><a href="https://www.cvedetails.com/cve/CVE-2026-42089/" target="_blank" rel="noopener">CVE-2026-42089 · 높음 8.6</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">Yeoman Environment 2.9.0부터 6.0.0 버전은 사용자 확인 없이 외부 패키지를 자동으로 설치하는 취약점이 존재합니다. 공격자가 제어 가능한 프로젝트 설정을 통해 임의의 패키지를 설치하도록 유도할 수 있어, 시스템 내 악성 코드 실행 및 권한 탈취 위험이 있습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 95%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 62</span>
+          <div class="meta"><span class="source">CVE (NVD→cvedetails)</span> · <span class="when">2026-06-17 02:16</span></div>
+        </div>
+        <h3 class="title"><a href="https://www.cvedetails.com/cve/CVE-2026-10649/" target="_blank" rel="noopener">CVE-2026-10649 · 높음 8.6</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">Pacemaker의 원격 메시지 압축 해제 과정에서 정수 오버플로우 취약점(CVE-2026-10649)이 발견되었습니다. 인증되지 않은 원격 공격자가 조작된 메시지를 전송하여 메모리 손상을 유발하고, CIB 원격 리스너의 서비스 거부(DoS) 및 서비스 중단을 일으킬 수 있습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 95%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 62</span>
+          <div class="meta"><span class="source">CVE (NVD→cvedetails)</span> · <span class="when">2026-06-17 04:17</span></div>
+        </div>
+        <h3 class="title"><a href="https://www.cvedetails.com/cve/CVE-2026-53849/" target="_blank" rel="noopener">CVE-2026-53849 · 높음 8.6</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">OpenClaw 2026.5.7 이전 버전의 &#x27;allowFrom&#x27; 기능은 Discord 계정 인증 시 고유 ID가 아닌 변경 가능한 표시 이름을 사용하여 권한 상승 취약점이 발생합니다. 공격자가 타인의 표시 이름으로 자신의 계정명을 변경할 경우, 해당 계정에 부여된 에이전트 권한을 무단으로 탈취할 수 있어 보안상 위험합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 95%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 62</span>
+          <div class="meta"><span class="source">CVE (NVD→cvedetails)</span> · <span class="when">2026-06-17 04:17</span></div>
+        </div>
+        <h3 class="title"><a href="https://www.cvedetails.com/cve/CVE-2026-53857/" target="_blank" rel="noopener">CVE-2026-53857 · 높음 8.6</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">OpenClaw 2026.5.3 이전 버전에는 변경 가능한 표시 이름을 악용해 정책 우회를 유도하는 취약점이 존재합니다. 공격자가 표시 이름을 변경하여 특정 Zalo 연락처의 허용 정책을 통과함으로써, 타인에게 전달되어야 할 에이전트 응답을 가로챌 수 있습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 95%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 62</span>
+          <div class="meta"><span class="source">CVE (NVD→cvedetails)</span> · <span class="when">2026-06-17 05:16</span></div>
+        </div>
+        <h3 class="title"><a href="https://www.cvedetails.com/cve/CVE-2026-22312/" target="_blank" rel="noopener">CVE-2026-22312 · 높음 8.6</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">해당 기기 웹 서버의 REST API가 고정된 인증 토큰을 사용하여, 인증 없이도 시스템 설정 변경 및 명령어 실행이 가능한 취약점이 발견되었습니다. 공격자가 이를 악용할 경우 시스템 재부팅 등 기기 제어권을 탈취할 수 있어 보안상 주의가 필요합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 95%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 62</span>
+          <div class="meta"><span class="source">CVE (NVD→cvedetails)</span> · <span class="when">2026-06-17 04:16</span></div>
+        </div>
+        <h3 class="title"><a href="https://www.cvedetails.com/cve/CVE-2026-10748/" target="_blank" rel="noopener">CVE-2026-10748 · 높음 8.6</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">Sonatype Nexus Repository 3.92.0 미만 버전에서 인증된 사용자가 조작된 라이선스 파일을 업로드하여 운영체제 명령어를 임의로 실행할 수 있는 취약점이 발견되었습니다. &#x27;nx-licensing-create&#x27; 권한을 가진 사용자가 Nexus 프로세스 권한으로 시스템을 제어할 수 있어 보안상 위험도가 높습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 95%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 62</span>
+          <div class="meta"><span class="source">CVE (NVD→cvedetails)</span> · <span class="when">2026-06-17 02:16</span></div>
+        </div>
+        <h3 class="title"><a href="https://www.cvedetails.com/cve/CVE-2025-71261/" target="_blank" rel="noopener">CVE-2025-71261 · 높음 8.6</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">SUSE Harvester 1.8.0 이전 버전에서 네트워크 접근 권한을 가진 공격자가 TLS 핸드셰이크를 방해하여 보안 제어 수단인 TLS를 우회할 수 있는 취약점(CVE-2025-71261)이 발견되었습니다. 이 취약점은 CVSS 점수 8.6으로 위험도가 높으며, SUSE Virtualization과 Rancher Manager 간의 통신 보안을 무력화할 수 있어 주의가 필요합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 95%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 62</span>
+          <div class="meta"><span class="source">CVE (NVD→cvedetails)</span> · <span class="when">2026-06-17 00:16</span></div>
+        </div>
+        <h3 class="title"><a href="https://www.cvedetails.com/cve/CVE-2025-14272/" target="_blank" rel="noopener">CVE-2025-14272 · 높음 8.3</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">Pavilion의 API 엔드포인트에서 부적절한 권한 검증으로 인해 CVE-2025-14272 취약점이 발견되었습니다. 이 결함은 인증되지 않은 공격자가 사용자 및 역할 관리 등 관리자 수준의 권한을 탈취하여 임의의 작업을 수행할 수 있게 하므로 주의가 필요합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 95%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 62</span>
+          <div class="meta"><span class="source">CVE (NVD→cvedetails)</span> · <span class="when">2026-06-17 00:16</span></div>
+        </div>
+        <h3 class="title"><a href="https://www.cvedetails.com/cve/CVE-2026-48780/" target="_blank" rel="noopener">CVE-2026-48780 · 높음 8.2</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">오픈소스 커뮤니티 플랫폼 Forem에서 악의적으로 조작된 이메일 주소를 이용해 도메인 허용 및 차단 목록을 우회하고 비공개 커뮤니티에 무단 접근할 수 있는 취약점(CVE-2026-48780)이 발견되었습니다. 해당 문제는 커밋 a2ab6d4를 통해 패치되었으며, 관리자는 최신 버전으로 업데이트하거나 SMTP 서버 설정을 통해 비정상적인 이메일 발송을 차단해야 합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 95%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+    </section>
+    <section class="cat" id="cat-ai">
+      <h2 class="cat-title">🤖 AI <span class="count">1</span></h2>
+      
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 60</span>
+          <div class="meta"><span class="source">Google DeepMind</span> · <span class="when">2026-06-17 06:29</span></div>
+        </div>
+        <h3 class="title"><a href="https://deepmind.google/blog/unlocking-uk-house-building-with-ai-accelerated-planning/" target="_blank" rel="noopener">Unlocking UK house-building with AI-accelerated planning</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">영국 정부가 구글 딥마인드와 협력하여 주택 건설 인허가 절차를 가속화하기 위한 AI 프로토타입을 개발합니다. 이 기술은 복잡한 주택 계획 결정을 효율화하여 주택 공급 문제를 해결하는 데 중요한 역할을 할 것으로 기대됩니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 90%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+    </section>
+    <section class="cat" id="cat-tech">
+      <h2 class="cat-title">🚀 신기술(Trending) <span class="count">20</span></h2>
+      
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 58</span>
+          <div class="meta"><span class="source">GitHub 신기술</span> · <span class="when">2026-06-12 09:52</span></div>
+        </div>
+        <h3 class="title"><a href="https://github.com/DietrichGebert/ponytail" target="_blank" rel="noopener">DietrichGebert/ponytail · ⭐26,725 · JavaScript</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">&#x27;ponytail&#x27;은 AI 에이전트가 최소한의 코드 작성으로 문제를 해결하도록 유도하여 &#x27;가장 게으른 시니어 개발자&#x27;처럼 사고하게 만드는 도구입니다. 불필요한 코드 생성을 억제하고 효율적인 해결책을 우선시함으로써 개발 생산성과 코드 품질을 최적화하는 데 목적이 있습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 85%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 58</span>
+          <div class="meta"><span class="source">GitHub 신기술</span> · <span class="when">2026-06-10 20:52</span></div>
+        </div>
+        <h3 class="title"><a href="https://github.com/XiaomiMiMo/MiMo-Code" target="_blank" rel="noopener">XiaomiMiMo/MiMo-Code · ⭐9,413 · TypeScript</a></h3>
+        
+        
+        <div class="chips"><span class="chip">출처 신뢰도 85%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 58</span>
+          <div class="meta"><span class="source">GitHub 신기술</span> · <span class="when">2026-06-10 20:06</span></div>
+        </div>
+        <h3 class="title"><a href="https://github.com/shadcn/improve" target="_blank" rel="noopener">shadcn/improve · ⭐5,034</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">이 도구는 가장 성능이 뛰어난 AI 모델을 활용해 코드베이스를 분석하고, 이를 바탕으로 비용 효율적인 모델이 수행할 수 있는 구체적인 작업 계획을 생성합니다. 고성능 모델의 추론 능력을 활용해 개발 효율성을 높이면서도 전체적인 API 비용을 절감할 수 있다는 점이 핵심입니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 85%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 58</span>
+          <div class="meta"><span class="source">GitHub 신기술</span> · <span class="when">2026-06-04 22:39</span></div>
+        </div>
+        <h3 class="title"><a href="https://github.com/diffusionstudio/lottie" target="_blank" rel="noopener">diffusionstudio/lottie · ⭐3,304 · TypeScript</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">Claude Code나 Codex를 활용해 실무 수준의 Lottie 애니메이션을 생성할 수 있는 오픈소스 도구입니다. 텍스트 기반 명령으로 복잡한 애니메이션을 자동화하여 개발 및 디자인 작업의 효율성을 높이는 데 유용합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 85%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 58</span>
+          <div class="meta"><span class="source">GitHub 신기술</span> · <span class="when">2026-06-11 21:18</span></div>
+        </div>
+        <h3 class="title"><a href="https://github.com/omnigent-ai/omnigent" target="_blank" rel="noopener">omnigent-ai/omnigent · ⭐2,974 · Python</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">Omnigent는 Claude Code, Codex 등 다양한 AI 에이전트를 통합 관리할 수 있는 메타 하네스(meta-harness) 플랫폼입니다. 에이전트 교체나 결합 시 코드 수정 없이 정책 설정과 샌드박스 환경을 제공하며, 여러 사용자가 동일한 세션에서 실시간으로 협업할 수 있도록 지원합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 85%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 58</span>
+          <div class="meta"><span class="source">GitHub 신기술</span> · <span class="when">2026-06-14 20:21</span></div>
+        </div>
+        <h3 class="title"><a href="https://github.com/tamnd/kage" target="_blank" rel="noopener">tamnd/kage · ⭐1,789 · Go</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">Kage는 웹사이트의 자바스크립트를 제거하고 오프라인에서 열람할 수 있도록 복제(Shadowing)하는 도구입니다. 실행 스크립트를 차단함으로써 보안 위협을 방지하고, 네트워크 연결 없이도 웹 콘텐츠를 안전하게 보존 및 확인할 수 있게 합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 85%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 58</span>
+          <div class="meta"><span class="source">GitHub 신기술</span> · <span class="when">2026-06-08 02:03</span></div>
+        </div>
+        <h3 class="title"><a href="https://github.com/NoopApp/noop" target="_blank" rel="noopener">NoopApp/noop · ⭐1,721 · Swift</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">NoopApp은 WHOOP 웨어러블 기기의 데이터를 클라우드 서버를 거치지 않고 블루투스를 통해 기기 내에서 직접 관리할 수 있게 해주는 오픈소스 앱입니다. 계정 생성이나 구독료 없이 모든 데이터를 로컬에 저장함으로써 사용자 개인정보 보호와 데이터 주권을 강화합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 85%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 58</span>
+          <div class="meta"><span class="source">GitHub 신기술</span> · <span class="when">2026-06-12 22:17</span></div>
+        </div>
+        <h3 class="title"><a href="https://github.com/lenucksi/aur-malware-check" target="_blank" rel="noopener">lenucksi/aur-malware-check · ⭐1,366 · Shell</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">이 도구는 2024년 6월 발생한 아치 리눅스(Arch Linux) AUR 공급망 공격인 &#x27;atomic-lockfile&#x27;을 탐지하기 위해 커뮤니티에서 공유된 스크립트들을 통합한 것입니다. 사용자는 이를 통해 시스템 내 악성 패키지 존재 여부를 확인하고 해당 공격으로부터 보안을 강화할 수 있습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 85%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 58</span>
+          <div class="meta"><span class="source">GitHub 신기술</span> · <span class="when">2026-06-10 22:23</span></div>
+        </div>
+        <h3 class="title"><a href="https://github.com/SkyBlue997/enableMacosAI" target="_blank" rel="noopener">SkyBlue997/enableMacosAI · ⭐1,346 · Shell</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">중국 내수용 macOS 기기에서 제한된 Apple Intelligence 기능을 원클릭으로 활성화해 온디바이스 AI와 Private Cloud Compute를 모두 사용할 수 있게 하는 도구입니다. Apple Silicon 기반의 macOS 15.1 이상 환경에서 지역 제한을 우회하여 전체 AI 기능을 활성화한다는 점에서 기술적 중요성이 있습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 85%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 58</span>
+          <div class="meta"><span class="source">GitHub 신기술</span> · <span class="when">2026-06-07 10:16</span></div>
+        </div>
+        <h3 class="title"><a href="https://github.com/JimLiu/baoyu-design" target="_blank" rel="noopener">JimLiu/baoyu-design · ⭐1,337 · JavaScript</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">&#x27;baoyu-design&#x27;은 Claude의 디자인 기능을 로컬 환경에서 에이전트 기술로 실행하여, claude.ai 웹사이트를 거치지 않고도 HTML 기반의 UI 목업, 프로토타입, 와이어프레임을 직접 생성할 수 있게 합니다. 이 도구는 Cursor나 Claude Code와 연동하여 개발 워크플로우 내에서 즉각적인 디자인 산출물을 얻을 수 있다는 점에서 효율적인 활용이 가능합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 85%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 58</span>
+          <div class="meta"><span class="source">GitHub 신기술</span> · <span class="when">2026-06-10 04:10</span></div>
+        </div>
+        <h3 class="title"><a href="https://github.com/MSNightmare/RoguePlanet" target="_blank" rel="noopener">MSNightmare/RoguePlanet · ⭐1,296 · C++</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">RoguePlanet은 윈도우 디펜더(Windows Defender)의 취약점을 악용하여 시스템 권한을 획득하는 보안 도구입니다. 이 취약점은 보안 솔루션의 탐지를 우회하거나 무력화할 수 있어 윈도우 시스템의 보안 체계에 심각한 위협이 될 수 있습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 85%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 58</span>
+          <div class="meta"><span class="source">GitHub 신기술</span> · <span class="when">2026-06-03 12:26</span></div>
+        </div>
+        <h3 class="title"><a href="https://github.com/nevertoday/zhongguo-traditional-colors" target="_blank" rel="noopener">nevertoday/zhongguo-traditional-colors · ⭐1,038 · HTML</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">이 프로젝트는 중국 전통 색상의 체계적인 분류와 시각적 정보를 제공하는 오픈소스 플랫폼입니다. 각 색상의 명칭과 데이터를 정리하여 전통 색채에 대한 이해를 돕고, 디자인 및 관련 연구를 위한 색상 참조 자료로 활용될 수 있습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 85%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 58</span>
+          <div class="meta"><span class="source">GitHub 신기술</span> · <span class="when">2026-06-08 13:32</span></div>
+        </div>
+        <h3 class="title"><a href="https://github.com/apple/coreai-models" target="_blank" rel="noopener">apple/coreai-models · ⭐1,028 · Swift</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">애플이 온디바이스 AI 구현을 위한 모델 내보내기 레시피, 파이썬 기반 기초 도구, 스위프트 런타임 유틸리티를 포함한 &#x27;coreai-models&#x27; 저장소를 공개했습니다. 이는 개발자가 애플 기기 환경에서 AI 모델을 효율적으로 최적화하고 실행할 수 있도록 지원하는 기술적 기반을 제공합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 85%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 58</span>
+          <div class="meta"><span class="source">GitHub 신기술</span> · <span class="when">2026-06-10 08:24</span></div>
+        </div>
+        <h3 class="title"><a href="https://github.com/plannotator/effective-html" target="_blank" rel="noopener">plannotator/effective-html · ⭐1,006 · HTML</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">plannotator/effective-html은 AI 에이전트가 HTML을 활용해 구조화된 계획서나 아키텍처 다이어그램 등을 간결하고 명확하게 생성할 수 있도록 돕는 도구입니다. 복잡한 정보를 시각적이고 체계적인 HTML 형식으로 변환함으로써 AI의 문서 작성 및 설계 능력을 향상시키는 데 유용합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 85%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 58</span>
+          <div class="meta"><span class="source">GitHub 신기술</span> · <span class="when">2026-06-08 01:20</span></div>
+        </div>
+        <h3 class="title"><a href="https://github.com/GordenSun/GordenSuperPPTSkills" target="_blank" rel="noopener">GordenSun/GordenSuperPPTSkills · ⭐988 · Python</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">GordenSuperPPTSkills는 GPT를 활용해 고품질 이미지가 포함된 PPT를 생성한 뒤, 이를 완전히 편집 가능한 PPTX 파일로 변환해 주는 도구입니다. AI를 통해 복잡한 PPT 제작 과정을 자동화하여 작업 효율성을 극대화한다는 점에서 의미가 있습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 85%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 58</span>
+          <div class="meta"><span class="source">GitHub 신기술</span> · <span class="when">2026-06-10 14:55</span></div>
+        </div>
+        <h3 class="title"><a href="https://github.com/levy-street/world-of-claudecraft" target="_blank" rel="noopener">levy-street/world-of-claudecraft · ⭐899 · TypeScript</a></h3>
+        
+        
+        <div class="chips"><span class="chip">출처 신뢰도 85%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 58</span>
+          <div class="meta"><span class="source">GitHub 신기술</span> · <span class="when">2026-06-13 17:32</span></div>
+        </div>
+        <h3 class="title"><a href="https://github.com/EEliberto/IPA-Download" target="_blank" rel="noopener">EEliberto/IPA-Download · ⭐877 · Swift</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">이 도구는 특정 앱의 이전 버전 IPA 파일을 다운로드하고 네트워크 데이터 패킷을 자동으로 캡처할 수 있게 해줍니다. 다운로드한 파일은 AirDrop을 통해 iOS 기기로 전송 및 설치가 가능하여, 앱의 과거 버전 분석이나 데이터 연구에 활용할 수 있습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 85%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 58</span>
+          <div class="meta"><span class="source">GitHub 신기술</span> · <span class="when">2026-06-11 15:05</span></div>
+        </div>
+        <h3 class="title"><a href="https://github.com/loc567/loc567" target="_blank" rel="noopener">loc567/loc567 · ⭐796 · C</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">loc567은 웹 기반으로 작동하는 오픈소스 iOS 위치 조작 도구입니다. 별도의 설치 없이 브라우저에서 즉시 사용할 수 있으며, iOS 기기의 GPS 위치를 가상으로 변경하는 기능을 제공합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 85%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 58</span>
+          <div class="meta"><span class="source">GitHub 신기술</span> · <span class="when">2026-06-07 01:59</span></div>
+        </div>
+        <h3 class="title"><a href="https://github.com/amElnagdy/guard-skills" target="_blank" rel="noopener">amElnagdy/guard-skills · ⭐792</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">&#x27;guard-skills&#x27;는 코딩 에이전트가 생성한 코드, 테스트, 문서에서 발생할 수 있는 오류를 사전에 탐지하는 품질 관리(Quality Gate) 도구입니다. AI가 작성한 결과물의 신뢰성을 검증함으로써 개발 과정에서 발생할 수 있는 잠재적 결함을 효과적으로 차단하는 역할을 합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 85%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 58</span>
+          <div class="meta"><span class="source">GitHub 신기술</span> · <span class="when">2026-06-13 06:45</span></div>
+        </div>
+        <h3 class="title"><a href="https://github.com/orange2ai/renwei-writing" target="_blank" rel="noopener">orange2ai/renwei-writing · ⭐735</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">&#x27;renwei-writing&#x27;은 AI가 글을 수정할 때 사용자의 고유한 문체와 개성을 유지하도록 설계된 AI 에이전트 기술입니다. 단순한 문법 교정을 넘어 작성자의 의도와 말투를 보존함으로써, AI의 도움을 받으면서도 개인의 정체성이 담긴 글쓰기를 가능하게 한다는 점에서 중요합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 85%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+    </section>
+    <section class="cat" id="cat-research">
+      <h2 class="cat-title">📄 연구(arXiv) <span class="count">20</span></h2>
+      
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 64</span>
+          <div class="meta"><span class="source">arXiv cs.CR (보안)</span> · <span class="when">2026-06-17 13:00</span></div>
+        </div>
+        <h3 class="title"><a href="https://arxiv.org/abs/2606.17092" target="_blank" rel="noopener">Securing Multi-Agent GIS Systems: Risk Evaluation and Prompt Hardening Optimization</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">본 연구는 다중 에이전트 기반 지리정보시스템(GIS)에서 발생하는 보안 위협을 식별·평가하고 이를 완화하기 위한 프레임워크를 제안합니다. 특히 에이전트 간 협업 과정에서 발생하는 취약점을 분석하고, 프롬프트 강화(Prompt Hardening) 최적화를 통해 시스템의 보안성을 확보하는 방안을 제시합니다.</p></details>
+        <div class="corrob">🔗 교차보도: arXiv cs.AI (인공지능)</div>
+        <div class="chips"><span class="chip">출처 신뢰도 75%</span><span class="chip">1개 타 매체 교차보도</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 64</span>
+          <div class="meta"><span class="source">arXiv cs.CR (보안)</span> · <span class="when">2026-06-17 13:00</span></div>
+        </div>
+        <h3 class="title"><a href="https://arxiv.org/abs/2606.17109" target="_blank" rel="noopener">Timestamp-Aware Spatio-Temporal Graph Contrastive Learning for Network Intrusion Detection</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">기존 그래프 신경망(GNN) 기반 네트워크 침입 탐지 시스템은 트래픽 흐름 간의 관계에만 집중하고 시간적 독립성을 가정하여 탐지 성능에 한계가 있었습니다. 본 논문은 시간 정보를 고려한 시공간 그래프 대조 학습(Spatio-Temporal Graph Contrastive Learning) 기법을 제안하여, 네트워크 트래픽의 관계적 구조와 시간적 변화를 동시에 효과적으로 학습함으로써 탐지 정확도를 개선했습니다.</p></details>
+        <div class="corrob">🔗 교차보도: arXiv cs.AI (인공지능)</div>
+        <div class="chips"><span class="chip">출처 신뢰도 75%</span><span class="chip">1개 타 매체 교차보도</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 64</span>
+          <div class="meta"><span class="source">arXiv cs.CR (보안)</span> · <span class="when">2026-06-17 13:00</span></div>
+        </div>
+        <h3 class="title"><a href="https://arxiv.org/abs/2606.17114" target="_blank" rel="noopener">An Evaluation of Data Leakage Risks in Tool-Using LLM Agents in Realistic Scenarios</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">이 연구는 이메일, 데이터베이스 등 외부 도구에 접근하는 LLM 에이전트가 실제 환경에서 민감 정보를 유출할 위험을 평가했습니다. 기존 연구가 프롬프트 주입 등 악의적인 공격에 집중했다면, 본 연구는 에이전트의 도구 활용 과정에서 발생하는 의도치 않은 데이터 노출 가능성을 분석하여 보안 취약점을 규명했습니다.</p></details>
+        <div class="corrob">🔗 교차보도: arXiv cs.AI (인공지능)</div>
+        <div class="chips"><span class="chip">출처 신뢰도 75%</span><span class="chip">1개 타 매체 교차보도</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 64</span>
+          <div class="meta"><span class="source">arXiv cs.CR (보안)</span> · <span class="when">2026-06-17 13:00</span></div>
+        </div>
+        <h3 class="title"><a href="https://arxiv.org/abs/2606.17119" target="_blank" rel="noopener">Graph neural networks at war: integrating cybersecurity and drone intelligence in the Israeli-Iranian conflict</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">이 연구는 이스라엘-이란 분쟁 사례를 바탕으로 사이버 침입과 무인 항공기(UAV)가 결합된 물리적 사이버 시스템에서 그래프 신경망(GNN)을 활용한 보안 및 관리 방안을 제시합니다. GNN을 통해 복잡한 시스템의 구조적 데이터를 분석함으로써 사이버 위협 탐지와 즉각적인 대응 능력을 향상시킬 수 있다는 점에서 중요성을 갖습니다.</p></details>
+        <div class="corrob">🔗 교차보도: arXiv cs.AI (인공지능)</div>
+        <div class="chips"><span class="chip">출처 신뢰도 75%</span><span class="chip">1개 타 매체 교차보도</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 64</span>
+          <div class="meta"><span class="source">arXiv cs.CR (보안)</span> · <span class="when">2026-06-17 13:00</span></div>
+        </div>
+        <h3 class="title"><a href="https://arxiv.org/abs/2606.17123" target="_blank" rel="noopener">LineageMark: Multi-user White-box Watermarking for Contribution Tracing in Model Derivation Chains</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">LineageMark는 오픈 소스 LLM의 다단계 파생 과정에서 각 개발자의 기여도를 추적하고 지식재산권을 보호하기 위한 다중 사용자 화이트박스 워터마킹 프레임워크입니다. 이 기술은 모델 파생 체인 내에서 개별 기여자의 워터마크를 독립적으로 삽입 및 검증함으로써, 복잡하게 얽힌 모델 계보의 출처를 명확히 규명할 수 있게 합니다.</p></details>
+        <div class="corrob">🔗 교차보도: arXiv cs.AI (인공지능)</div>
+        <div class="chips"><span class="chip">출처 신뢰도 75%</span><span class="chip">1개 타 매체 교차보도</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 64</span>
+          <div class="meta"><span class="source">arXiv cs.CR (보안)</span> · <span class="when">2026-06-17 13:00</span></div>
+        </div>
+        <h3 class="title"><a href="https://arxiv.org/abs/2606.17421" target="_blank" rel="noopener">Bifrost: Hybrid TEE-FHE Inference for Privacy-Preserving Transformer and LLM Serving</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">Bifrost는 클라우드 기반 LLM 추론 시 발생하는 데이터 유출 문제를 해결하기 위해 신뢰 실행 환경(TEE)과 완전 동형 암호(FHE)를 결합한 하이브리드 추론 프레임워크입니다. 이 기술은 TEE의 높은 성능과 FHE의 강력한 보안성을 상호 보완하여, 민감한 사용자 데이터를 보호하면서도 효율적인 대규모 언어 모델 서비스를 가능하게 합니다.</p></details>
+        <div class="corrob">🔗 교차보도: arXiv cs.AI (인공지능)</div>
+        <div class="chips"><span class="chip">출처 신뢰도 75%</span><span class="chip">1개 타 매체 교차보도</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 64</span>
+          <div class="meta"><span class="source">arXiv cs.CR (보안)</span> · <span class="when">2026-06-17 13:00</span></div>
+        </div>
+        <h3 class="title"><a href="https://arxiv.org/abs/2606.17467" target="_blank" rel="noopener">PARSE: Provenance-Aware Retrieval Sanitization for Professional Domain LLM Agents</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">기존의 프롬프트 인젝션 방어 기술은 실제 기업 문서의 복잡성과 맥락을 반영하지 못해 실무 환경에서 성능이 저하되는 한계가 있습니다. 본 논문은 5개 전문 분야의 실제 문서를 활용한 벤치마크를 통해 이러한 방어 공백을 입증하고, 데이터의 출처를 추적하여 검색 결과를 정화하는 &#x27;PARSE&#x27; 프레임워크를 제안합니다.</p></details>
+        <div class="corrob">🔗 교차보도: arXiv cs.AI (인공지능)</div>
+        <div class="chips"><span class="chip">출처 신뢰도 75%</span><span class="chip">1개 타 매체 교차보도</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 64</span>
+          <div class="meta"><span class="source">arXiv cs.CR (보안)</span> · <span class="when">2026-06-17 13:00</span></div>
+        </div>
+        <h3 class="title"><a href="https://arxiv.org/abs/2606.17555" target="_blank" rel="noopener">An AI Security Agent for Banking: Multi-Vector Fraud and AML Detection Across Retail and Corporate Accounts</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">이 논문은 기존의 정적 규칙 기반 시스템이 대응하기 어려운 카드 도용 등 단기적 사기(Fraud)와 자금 세탁 등 복합적인 행동 기반 금융 범죄(AML)를 동시에 탐지하는 AI 보안 에이전트를 제안합니다. 서로 다른 탐지 요구사항을 가진 두 위협 유형을 통합적으로 처리함으로써, 개인 및 기업 계좌 전반의 금융 보안 효율성을 높이는 데 기여합니다.</p></details>
+        <div class="corrob">🔗 교차보도: arXiv cs.AI (인공지능)</div>
+        <div class="chips"><span class="chip">출처 신뢰도 75%</span><span class="chip">1개 타 매체 교차보도</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 64</span>
+          <div class="meta"><span class="source">arXiv cs.CR (보안)</span> · <span class="when">2026-06-17 13:00</span></div>
+        </div>
+        <h3 class="title"><a href="https://arxiv.org/abs/2606.18120" target="_blank" rel="noopener">Structural Role Injection in Handlebars-Templated LLM Prompts: Triple-Brace Interpolation, Delimiter Family, and the Limits of HTML Auto-Escaping</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">마이크로소프트 시맨틱 커널 등에서 사용하는 Handlebars 템플릿 엔진의 삼중 중괄호(`{{{x}}}`) 구문이 원본 데이터를 그대로 삽입하여 구조적 역할 주입(Structural Role Injection) 취약점을 유발할 수 있음이 확인되었습니다. 이는 HTML 자동 이스케이프가 적용되는 이중 중괄호(`{{x}}`)와 달리, 공격자가 프롬프트 구조를 임의로 변경해 LLM의 출력을 조작할 수 있는 보안 위험을 내포합니다.</p></details>
+        <div class="corrob">🔗 교차보도: arXiv cs.AI (인공지능)</div>
+        <div class="chips"><span class="chip">출처 신뢰도 75%</span><span class="chip">1개 타 매체 교차보도</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 64</span>
+          <div class="meta"><span class="source">arXiv cs.CR (보안)</span> · <span class="when">2026-06-17 13:00</span></div>
+        </div>
+        <h3 class="title"><a href="https://arxiv.org/abs/2606.17573" target="_blank" rel="noopener">Cordon: Semantic Transactions for Tool-Using LLM Agents</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">LLM 에이전트가 도구를 사용할 때 기존의 개별 RPC 방식은 작업 단위의 실행 경계가 없어 오류 발생 시 복구와 상태 관리가 어렵다는 한계가 있습니다. 본 논문은 이를 해결하기 위해 작업 단위의 실행을 보장하는 &#x27;시맨틱 트랜잭션(Semantic Transactions)&#x27; 프레임워크인 &#x27;Cordon&#x27;을 제안합니다. 이는 에이전트의 도구 실행 과정에서 커밋, 롤백, 복구 기능을 제공하여 시스템의 안정성과 신뢰성을 높이는 데 기여합니다.</p></details>
+        <div class="corrob">🔗 교차보도: arXiv cs.AI (인공지능)</div>
+        <div class="chips"><span class="chip">출처 신뢰도 75%</span><span class="chip">1개 타 매체 교차보도</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 64</span>
+          <div class="meta"><span class="source">arXiv cs.CR (보안)</span> · <span class="when">2026-06-17 13:00</span></div>
+        </div>
+        <h3 class="title"><a href="https://arxiv.org/abs/2510.01359" target="_blank" rel="noopener">Breaking the Code: Security Assessment of AI Code Agents Through Systematic Jailbreaking Attacks</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">코드 실행 능력을 갖춘 AI 에이전트의 보안 취약점을 평가하기 위해, 악성 코드 생성 및 실행 가능성을 검증하는 &#x27;JAWS-Bench&#x27; 프레임워크가 제안되었습니다. 기존 연구가 텍스트 기반의 유해성 탐지에 그쳤던 것과 달리, 본 연구는 실제 소프트웨어 개발 환경에서 AI 에이전트가 악성 프로그램을 컴파일하고 실행할 수 있는 위험성을 체계적으로 입증했다는 점에서 중요합니다.</p></details>
+        <div class="corrob">🔗 교차보도: arXiv cs.AI (인공지능)</div>
+        <div class="chips"><span class="chip">출처 신뢰도 75%</span><span class="chip">1개 타 매체 교차보도</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 64</span>
+          <div class="meta"><span class="source">arXiv cs.AI (인공지능)</span> · <span class="when">2026-06-17 13:00</span></div>
+        </div>
+        <h3 class="title"><a href="https://arxiv.org/abs/2606.17269" target="_blank" rel="noopener">Skill-Constrained Model Predictive Control for Resilient Manufacturing Supply Chains</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">이 연구는 생산과 교육에 동일한 인적 자원을 투입해야 하는 제조 공급망에서, 숙련된 인력의 가용성과 자격 유지 기간을 고려한 &#x27;기술 제약 모델 예측 제어(Skill-Constrained MPC)&#x27; 기법을 제안합니다. 생산과 교육 간의 자원 배분을 최적화하여 인력 부족 상황에서도 공급망의 회복 탄력성을 유지하고 효율적인 생산 계획을 수립하는 데 중요한 의의가 있습니다.</p></details>
+        <div class="corrob">🔗 교차보도: arXiv cs.CR (보안)</div>
+        <div class="chips"><span class="chip">출처 신뢰도 75%</span><span class="chip">1개 타 매체 교차보도</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 64</span>
+          <div class="meta"><span class="source">arXiv cs.AI (인공지능)</span> · <span class="when">2026-06-17 13:00</span></div>
+        </div>
+        <h3 class="title"><a href="https://arxiv.org/abs/2606.17312" target="_blank" rel="noopener">Quantifying Consistency in LLM Logical Reasoning via Structural Uncertainty</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">대규모 언어 모델(LLM)은 다단계 추론 과정에서 결과는 같더라도 논리적 경로가 불안정하거나 모순되는 문제를 보입니다. 기존의 출력값 분산 측정 방식은 이러한 논리적 구조의 불확실성을 포착하지 못하는 한계가 있습니다. 본 연구는 LLM의 추론 경로 내 구조적 불확실성을 정량화하여 모델의 논리적 일관성을 보다 정확하게 평가하는 새로운 방법을 제시합니다.</p></details>
+        <div class="corrob">🔗 교차보도: arXiv cs.CR (보안)</div>
+        <div class="chips"><span class="chip">출처 신뢰도 75%</span><span class="chip">1개 타 매체 교차보도</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 64</span>
+          <div class="meta"><span class="source">arXiv cs.AI (인공지능)</span> · <span class="when">2026-06-17 13:00</span></div>
+        </div>
+        <h3 class="title"><a href="https://arxiv.org/abs/2606.17453" target="_blank" rel="noopener">MapSatisfyBench: Benchmarking Satisfaction-Aware Map Agents through Behavior-Grounded Implicit Decision Factors</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">MapSatisfyBench는 일상적인 지도 서비스 환경에서 사용자의 모호한 요청 속에 숨겨진 &#x27;암묵적 결정 요인&#x27;을 파악하고 만족도를 평가하기 위해 설계된 새로운 벤치마크입니다. 이 연구는 거대언어모델(LLM) 기반 지도 에이전트가 사용자의 명시되지 않은 의도까지 정확히 반영하여 실질적인 만족도를 높이는 능력을 측정하는 데 중점을 둡니다.</p></details>
+        <div class="corrob">🔗 교차보도: arXiv cs.CR (보안)</div>
+        <div class="chips"><span class="chip">출처 신뢰도 75%</span><span class="chip">1개 타 매체 교차보도</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 64</span>
+          <div class="meta"><span class="source">arXiv cs.AI (인공지능)</span> · <span class="when">2026-06-17 13:00</span></div>
+        </div>
+        <h3 class="title"><a href="https://arxiv.org/abs/2606.17459" target="_blank" rel="noopener">Can LLMs Be CEOs? Benchmarking Strategic Resource Reallocation with Multi-Role Agent Simulation</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">이 연구는 기존의 단편적인 인지 능력 평가를 넘어, 다중 역할 에이전트 시뮬레이션을 통해 LLM의 전략적 자원 재배분 능력을 평가하는 새로운 벤치마크를 제시합니다. 이는 LLM이 실제 기업 경영 환경에서 복합적인 의사결정을 수행할 수 있는지 검증함으로써, AI의 실질적인 경영 역량을 측정하는 중요한 지표가 될 것입니다.</p></details>
+        <div class="corrob">🔗 교차보도: arXiv cs.CR (보안)</div>
+        <div class="chips"><span class="chip">출처 신뢰도 75%</span><span class="chip">1개 타 매체 교차보도</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 64</span>
+          <div class="meta"><span class="source">arXiv cs.AI (인공지능)</span> · <span class="when">2026-06-17 13:00</span></div>
+        </div>
+        <h3 class="title"><a href="https://arxiv.org/abs/2606.17546" target="_blank" rel="noopener">SEAGym: An Evaluation Environment for Self-Evolving LLM Agents</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">SEAGym은 프롬프트, 메모리, 도구 사용 등 LLM 에이전트의 실행 환경(harness)을 스스로 개선하는 과정을 체계적으로 평가하기 위해 설계된 새로운 벤치마크 환경입니다. 기존의 단편적인 과제 점수 평가 방식에서 벗어나, 에이전트가 환경과의 상호작용을 통해 어떻게 진화하는지 그 구조적 변화와 성능 향상 과정을 정밀하게 분석할 수 있게 합니다.</p></details>
+        <div class="corrob">🔗 교차보도: arXiv cs.CR (보안)</div>
+        <div class="chips"><span class="chip">출처 신뢰도 75%</span><span class="chip">1개 타 매체 교차보도</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 64</span>
+          <div class="meta"><span class="source">arXiv cs.AI (인공지능)</span> · <span class="when">2026-06-17 13:00</span></div>
+        </div>
+        <h3 class="title"><a href="https://arxiv.org/abs/2606.17856" target="_blank" rel="noopener">FlowRAG: Synergizing Explicit Reasoning via Frequency-Aware Multi-Granularity Graph Flow</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">FlowRAG는 기존 GraphRAG가 엔티티 기반 그래프와 암시적 의미 전파에 의존하여 발생하는 정보 검색 누락 문제를 해결하기 위해 제안된 프레임워크입니다. 이 모델은 빈도 인식 다중 입도 그래프 흐름(Frequency-Aware Multi-Granularity Graph Flow)을 도입하여 추상적이고 의미가 희소한 질의에서도 명시적 추론을 강화함으로써 검색 및 생성 성능을 향상시킵니다.</p></details>
+        <div class="corrob">🔗 교차보도: arXiv cs.CR (보안)</div>
+        <div class="chips"><span class="chip">출처 신뢰도 75%</span><span class="chip">1개 타 매체 교차보도</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 64</span>
+          <div class="meta"><span class="source">arXiv cs.AI (인공지능)</span> · <span class="when">2026-06-17 13:00</span></div>
+        </div>
+        <h3 class="title"><a href="https://arxiv.org/abs/2606.17882" target="_blank" rel="noopener">Structural Preservation and the Logical Expressiveness of Graph Neural Networks</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">이 논문은 그래프 신경망(GNN)의 집계 및 활성화 함수 등 구조적 설계와 논리적 형식주의 간의 상관관계를 분석하여, GNN이 표현할 수 있는 논리적 범위의 한계를 규명했습니다. 특정 GNN 구조가 어떤 논리식을 표현할 수 있는지에 대한 엄밀한 대응 관계를 제시함으로써, GNN의 구조적 보존 능력과 논리적 표현력을 이론적으로 정립했습니다.</p></details>
+        <div class="corrob">🔗 교차보도: arXiv cs.CR (보안)</div>
+        <div class="chips"><span class="chip">출처 신뢰도 75%</span><span class="chip">1개 타 매체 교차보도</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 64</span>
+          <div class="meta"><span class="source">arXiv cs.AI (인공지능)</span> · <span class="when">2026-06-17 13:00</span></div>
+        </div>
+        <h3 class="title"><a href="https://arxiv.org/abs/2606.17930" target="_blank" rel="noopener">How Inference Compute Shapes Frontier LLM Evaluation</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">최근 AI 평가는 도구 사용과 반복적 문제 해결 등 복잡한 과제 중심으로 변화함에 따라, 추론 단계에서 투입되는 연산량(Inference Compute)이 모델 성능에 결정적인 영향을 미치고 있습니다. 그러나 기존 평가는 제한된 연산 환경에서의 결과만을 보고하고 있어, 모델의 실제 잠재력을 정확히 측정하는 데 한계가 있습니다. 따라서 향후 AI 평가 체계는 추론 시 가용 연산량을 고려한 다각적인 성능 분석 방식으로 개선되어야 합니다.</p></details>
+        <div class="corrob">🔗 교차보도: arXiv cs.CR (보안)</div>
+        <div class="chips"><span class="chip">출처 신뢰도 75%</span><span class="chip">1개 타 매체 교차보도</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 64</span>
+          <div class="meta"><span class="source">arXiv cs.CR (보안)</span> · <span class="when">2026-06-17 13:00</span></div>
+        </div>
+        <h3 class="title"><a href="https://arxiv.org/abs/2606.18166" target="_blank" rel="noopener">Evaluating Open-Source LLMs for Multi-Label ATT&amp;CK Technique Classification on CTI Reports</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">본 연구는 사이버 위협 인텔리전스(CTI) 보고서를 MITRE ATT&amp;CK 기법으로 자동 분류하기 위해 오픈소스 거대언어모델(LLM)의 성능을 평가했습니다. 기존 자동화 방식의 한계였던 복잡한 공격 패턴과 다중 레이블 분류 문제를 LLM이 얼마나 효과적으로 해결할 수 있는지 분석하여 보안 운영의 효율성을 높이는 데 기여합니다.</p></details>
+        <div class="corrob">🔗 교차보도: arXiv cs.AI (인공지능)</div>
+        <div class="chips"><span class="chip">출처 신뢰도 75%</span><span class="chip">1개 타 매체 교차보도</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+    </section>
+
+  <details class="sources">
+    <summary>📡 이번 수집 소스 현황 (20개)</summary>
+    <table class="status"><thead><tr><th>소스</th><th>신규</th><th>상태</th></tr></thead><tbody><tr class="ok"><td>The Hacker News</td><td class="num">2</td><td>정상</td></tr><tr class="ok"><td>BleepingComputer</td><td class="num">3</td><td>정상</td></tr><tr class="ok"><td>Krebs on Security</td><td class="num">0</td><td>정상</td></tr><tr class="ok"><td>Dark Reading</td><td class="num">5</td><td>정상</td></tr><tr class="ok"><td>SecurityWeek</td><td class="num">1</td><td>정상</td></tr><tr class="ok"><td>The Register · Security</td><td class="num">3</td><td>정상</td></tr><tr class="ok"><td>Schneier on Security</td><td class="num">0</td><td>정상</td></tr><tr class="ok"><td>CISA Advisories</td><td class="num">0</td><td>정상</td></tr><tr class="ok"><td>보안뉴스</td><td class="num">10</td><td>정상</td></tr><tr class="ok"><td>데일리시큐</td><td class="num">25</td><td>정상</td></tr><tr class="ok"><td>안랩 ASEC</td><td class="num">0</td><td>정상</td></tr><tr class="ok"><td>이스트시큐리티 알약</td><td class="num">1</td><td>정상</td></tr><tr class="ok"><td>CVE (NVD→cvedetails)</td><td class="num">80</td><td>정상</td></tr><tr class="ok"><td>OpenAI News</td><td class="num">0</td><td>정상</td></tr><tr class="ok"><td>Google DeepMind</td><td class="num">1</td><td>정상</td></tr><tr class="ok"><td>Hugging Face Blog</td><td class="num">0</td><td>정상</td></tr><tr class="ok"><td>MIT Tech Review · AI</td><td class="num">0</td><td>정상</td></tr><tr class="ok"><td>GitHub 신기술</td><td class="num">25</td><td>정상</td></tr><tr class="ok"><td>arXiv cs.CR (보안)</td><td class="num">40</td><td>정상</td></tr><tr class="ok"><td>arXiv cs.AI (인공지능)</td><td class="num">40</td><td>정상</td></tr></tbody></table>
+  </details>
+
+  <footer class="foot">
+    <p>본 보고서는 RSS/공식 피드를 자동 수집해 휴리스틱(교차출처·출처신뢰도) 방식으로 신뢰도를 추정합니다.
+       점수는 보조 지표이며 최종 판단 전 원문 확인을 권장합니다.</p>
+    <p class="gen">생성 시각: 2026-06-17 14:55:45 KST</p>
+  </footer>
+</div>
+</body>
+</html>
