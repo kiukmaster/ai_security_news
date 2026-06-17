@@ -80,13 +80,15 @@ def analyze(entries):
         e["_kw"] = _keywords(e.get("title", ""))
 
     for i, e in enumerate(entries):
-        corrob = set()
+        # dedup 단계에서 합쳐진 매체(교차보도 출처)를 보존
+        corrob = set(e.get("corroborators") or [])
         for j, other in enumerate(entries):
             if i == j or other["source"] == e["source"]:
                 continue
             # 의미 있는 키워드 2개 이상 공유 → 같은 사건으로 간주
             if len(e["_kw"] & other["_kw"]) >= 2:
                 corrob.add(other["source"])
+        corrob.discard(e["source"])
         e["corroborators"] = sorted(corrob)
         e["score"], e["reasons"], e["tier"] = _score(e)
 
@@ -157,33 +159,52 @@ def _norm_title(title):
     return re.sub(r"\s+", " ", t).strip()
 
 
-def _title_tokens(title):
-    return {w for w in _norm_title(title).split() if len(w) >= 2}
+# 내용 유사도(제목 키워드 자카드)가 이 값 이상이면 '같은 사건'으로 보고 합친다.
+SIM_THRESHOLD = 0.5
+
+# 제목이 고유(ID/제품명)하여 내용 유사 병합을 적용하면 안 되는 카테고리
+_STRUCTURED_CATS = {"vuln", "tech"}
 
 
-def _is_near_dup(tokens, kept_tokens):
-    """제목 토큰 집합이 이미 채택된 기사와 매우 유사하면 True."""
-    if not tokens:
+def _content_tokens(title):
+    """유사도 비교용 의미 키워드 집합(영문 불용어·순수 숫자 제거, 한글 포함)."""
+    toks = set()
+    for w in _norm_title(title).split():
+        if w.isdigit():                                   # 연도/번호 등 순수 숫자 제외
+            continue
+        if any("가" <= ch <= "힣" for ch in w):           # 한글 포함 단어
+            if len(w) >= 2:
+                toks.add(w)
+        elif len(w) >= 3 and w not in _STOP:              # 영문 의미 단어
+            toks.add(w)
+    return toks
+
+
+def _same_event(link, ntitle, tokens, rep, allow_content):
+    """이미 채택된 기사(rep)와 같은 기사/사건인지 판별."""
+    if link and link == rep["link"]:
+        return True
+    if ntitle and ntitle == rep["ntitle"]:
+        return True
+    if not allow_content or not rep["allow_content"]:
+        return False                                      # CVE·신기술은 정확히 같을 때만
+    a, b = tokens, rep["tokens"]
+    if not a or not b:
         return False
-    for kt in kept_tokens:
-        if not kt:
-            continue
-        inter = len(tokens & kt)
-        if not inter:
-            continue
-        union = len(tokens | kt)
-        jaccard = inter / union
-        contain = inter / min(len(tokens), len(kt))
-        if jaccard >= 0.82 or (inter >= 4 and contain >= 0.9):
-            return True
-    return False
+    inter = len(a & b)
+    if inter < 2:
+        return False
+    jaccard = inter / len(a | b)
+    contain = inter / min(len(a), len(b))
+    return jaccard >= SIM_THRESHOLD or (inter >= 4 and contain >= 0.9)
 
 
 def dedup(entries):
-    """같은 기사(이름만 다른 중복 포함)를 제거. 신뢰도 높은 1건만 남긴다.
+    """같은 기사·같은 사건(서로 다른 매체 포함)을 합쳐 1건만 남긴다.
 
-    판별: 같은 정규화 URL · 같은 정규화 제목 · 제목 유사도 매우 높음.
-    서로 다른 매체가 다른 제목/URL로 보도한 '교차보도'는 보존된다.
+    판별: 같은 URL · 같은 제목 · 제목 키워드 유사도(SIM_THRESHOLD↑).
+    합쳐진 다른 매체는 대표 기사의 '교차보도 출처'로 보존되어 신뢰도 신호는 유지된다.
+    대표는 신뢰도가 가장 높은 기사를 택한다.
     """
     ordered = sorted(
         entries,
@@ -191,23 +212,28 @@ def dedup(entries):
                        0 if e.get("link") else 1,
                        -len(e.get("summary") or "")),
     )
-    seen_links, seen_titles, kept_tokens, kept = set(), set(), [], []
+    reps = []
     for e in ordered:
         link = _norm_link(e.get("link"))
         ntitle = _norm_title(e.get("title"))
-        tokens = _title_tokens(e.get("title"))
-        if link and link in seen_links:
+        tokens = _content_tokens(e.get("title"))
+        allow = e.get("category") not in _STRUCTURED_CATS
+        match = next((r for r in reps if _same_event(link, ntitle, tokens, r, allow)), None)
+        if match:
+            match["sources"].add(e.get("source", ""))
             continue
-        if ntitle and ntitle in seen_titles:
-            continue
-        if _is_near_dup(tokens, kept_tokens):
-            continue
-        kept.append(e)
-        if link:
-            seen_links.add(link)
-        if ntitle:
-            seen_titles.add(ntitle)
-        kept_tokens.append(tokens)
+        reps.append({"entry": e, "link": link, "ntitle": ntitle, "tokens": tokens,
+                     "allow_content": allow, "sources": {e.get("source", "")}})
+
+    kept = []
+    for r in reps:
+        ent = r["entry"]
+        others = {s for s in r["sources"] if s and s != ent.get("source")}
+        if others:
+            merged = set(ent.get("corroborators") or []) | others
+            merged.discard(ent.get("source"))
+            ent["corroborators"] = sorted(merged)
+        kept.append(ent)
     return kept
 
 
