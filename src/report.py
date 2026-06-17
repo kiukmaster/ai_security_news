@@ -55,8 +55,19 @@ def _card(entry, rank_no=None, badge=None):
     head_badge = f'<span class="badge tier-{tier}">{tier_label} · {score}</span>'
     sum_label = "🤖 AI 요약 보기" if entry.get("ai_summary") else "📄 원문 발췌 보기"
 
+    # 정렬용 데이터: 최신순(data-ts) / 맞춤형(data-rank)
+    pub = entry.get("published")
+    try:
+        ts = pub.timestamp() if pub else 0
+    except (AttributeError, ValueError, OSError):
+        ts = 0
+    if entry.get("category") in ("vuln", "tech"):
+        rank_val = entry.get("rank") or 0          # CVSS 점수 / GitHub Star
+    else:
+        rank_val = entry.get("impact", 0)           # 중요도 점수
+
     return f"""
-      <article class="card tier-{tier}">
+      <article class="card tier-{tier}" data-ts="{ts:.0f}" data-rank="{rank_val}">
         <div class="card-head">
           {rank_html}{head_badge}
           <div class="meta">{meta_html}</div>
@@ -192,6 +203,12 @@ def generate(entries, stats, out_path, generated_at):
 
   {nav_html}
 
+  <div class="sortbar">
+    <span class="sortlabel">정렬</span>
+    <button class="sortbtn active" data-mode="custom" onclick="__applySort('custom')">⭐ 맞춤형</button>
+    <button class="sortbtn" data-mode="latest" onclick="__applySort('latest')">🕒 최신순</button>
+  </div>
+
   {sections}
 
   <details class="sources">
@@ -205,6 +222,7 @@ def generate(entries, stats, out_path, generated_at):
     <p class="gen">생성 시각: {generated_at.strftime('%Y-%m-%d %H:%M:%S %Z')}</p>
   </footer>
 </div>
+{_JS}
 </body>
 </html>"""
 
@@ -256,6 +274,11 @@ body{margin:0;background:var(--bg);color:var(--text);
   font-size:12px;font-weight:700;margin-right:2px;}
 .catbadge{background:var(--bg);border:1px solid var(--line);border-radius:6px;
   padding:1px 7px;font-size:11px;}
+.sortbar{display:flex;align-items:center;gap:8px;margin:6px 0 14px;flex-wrap:wrap;}
+.sortlabel{font-size:13px;color:var(--muted);margin-right:2px;}
+.sortbtn{cursor:pointer;font-size:13px;color:var(--text);background:var(--card);
+  border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-family:inherit;}
+.sortbtn.active{background:var(--accent);color:#fff;border-color:var(--accent);}
 .cat{margin:22px 0 8px;scroll-margin-top:60px;}
 .cat-title{font-size:17px;display:flex;align-items:center;gap:8px;
   border-bottom:2px solid var(--line);padding-bottom:6px;margin:0 0 12px;}
@@ -301,4 +324,33 @@ table.status tr.fail td{color:var(--low);}
 @media (max-width:520px){
   .top h1{font-size:19px;} .title{font-size:15px;} .wrap{padding:12px;}
 }
+"""
+
+
+# 정렬 토글: 맞춤형(data-rank, 중요도) / 최신순(data-ts, 발행시각). 순수 바닐라 JS.
+_JS = """
+<script>
+(function(){
+  function apply(mode){
+    var secs = document.querySelectorAll('section.cat');
+    for(var s=0;s<secs.length;s++){
+      var sec = secs[s];
+      var cards = Array.prototype.slice.call(sec.querySelectorAll('.card'));
+      cards.sort(function(a,b){
+        var key = (mode==='latest') ? 'data-ts' : 'data-rank';
+        var av = parseFloat(a.getAttribute(key)) || 0;
+        var bv = parseFloat(b.getAttribute(key)) || 0;
+        return bv - av;
+      });
+      for(var i=0;i<cards.length;i++){ sec.appendChild(cards[i]); }
+    }
+    var btns = document.querySelectorAll('.sortbtn');
+    for(var j=0;j<btns.length;j++){
+      btns[j].className = 'sortbtn' + (btns[j].getAttribute('data-mode')===mode ? ' active' : '');
+    }
+  }
+  window.__applySort = apply;
+  document.addEventListener('DOMContentLoaded', function(){ apply('custom'); });
+})();
+</script>
 """

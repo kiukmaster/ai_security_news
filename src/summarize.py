@@ -96,7 +96,7 @@ def _summarize_one(entry, key, log):
             raise
 
 
-def summarize_entries(entries, log=lambda m: None, max_items=300):
+def summarize_entries(entries, log=lambda m: None, max_items=1200):
     """entries 각 항목의 summary를 AI 요약으로 교체. 성공 건수 반환.
 
     실패/키 없음 시 해당 항목은 원문 발췌를 그대로 유지한다.

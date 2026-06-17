@@ -28,8 +28,8 @@ REPORTS_DIR = BASE_DIR / "data" / "reports"
 # (나머지 신규도 '이미 봄'으로 기록되어 다음날 중복 노출되지 않습니다.)
 MAX_NEW_PER_FEED = 40
 
-# 카테고리별 보고서에 싣고 AI 요약할 최대 기사 수(API 한도 보호)
-CATEGORY_LIMIT = 20
+# 카테고리별 보고서에 싣고 AI 요약할 최대 기사 수
+CATEGORY_LIMIT = 100
 
 # 헤드라인(꼭 읽어야 할 글) 개수
 HEADLINE_COUNT = 6

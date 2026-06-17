@@ -92,7 +92,9 @@ def analyze(entries):
         e["corroborators"] = sorted(corrob)
         e["score"], e["reasons"], e["tier"] = _score(e)
 
+    # 정렬용 '맞춤형(중요도)' 점수를 모든 항목에 저장(요약 전 제목 기준이라 안정적)
     for e in entries:
+        e["impact"] = round(_impact(e))
         e.pop("_kw", None)
     return entries
 
@@ -238,14 +240,13 @@ def dedup(entries):
 
 
 def pick_headlines(entries, k=6):
-    """중요도 상위 k건을 선별(같은 사건 중복은 제외)하여 반환."""
-    ranked = sorted(entries, key=lambda e: -_impact(e))
+    """중요도(impact) 상위 k건을 선별(같은 사건 중복은 제외)하여 반환."""
+    ranked = sorted(entries, key=lambda e: -e.get("impact", 0))
     chosen, chosen_kw = [], []
     for e in ranked:
         kw = _keywords(e.get("title", ""))
         if any(len(kw & ck) >= 3 for ck in chosen_kw):  # 이미 뽑은 헤드라인과 같은 사건이면 건너뜀
             continue
-        e["impact"] = round(_impact(e))
         e["is_headline"] = True
         chosen.append(e)
         chosen_kw.append(kw)

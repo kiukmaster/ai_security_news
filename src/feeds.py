@@ -40,6 +40,9 @@ DEFAULT_FEEDS = [
     {"name": "TechCrunch AI",         "url": "https://techcrunch.com/category/artificial-intelligence/feed/",       "category": "ai",       "trust": 0.80},
     {"name": "VentureBeat AI",        "url": "https://venturebeat.com/category/ai/feed/",                           "category": "ai",       "trust": 0.80},
     {"name": "The Decoder",           "url": "https://the-decoder.com/feed/",                                       "category": "ai",       "trust": 0.75},
+    # AI · 국내(Korea)
+    {"name": "AI타임스",              "url": "https://www.aitimes.com/rss/S1N1.xml",                                 "category": "ai",       "trust": 0.80},
+    {"name": "바이라인네트워크",      "url": "https://byline.network/feed/",                                         "category": "ai",       "trust": 0.75},
 
     # ---------------- 신기술 (Trending Tech / GitHub) ----------------
     # 최근 생성된 오픈소스 기술을 GitHub Star(인기) 순으로 수집. (kind="github" 전용 핸들러)
