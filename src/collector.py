@@ -135,7 +135,7 @@ def _hash_id(seed):
 
 
 def _parse_rss_item(item):
-    title = _text(_find(item, "title"))
+    title = _html.unescape(_text(_find(item, "title")))
     link_el = _find(item, "link")
     link = _text(link_el)
     if not link and link_el is not None:
@@ -155,7 +155,7 @@ def _parse_rss_item(item):
 
 
 def _parse_atom_entry(entry):
-    title = _text(_find(entry, "title"))
+    title = _html.unescape(_text(_find(entry, "title")))
     link = ""
     for child in entry:
         if _local(child.tag) == "link":
@@ -343,10 +343,27 @@ def _collect_github(feed):
     return _attach_meta(entries, feed), None
 
 
+def _collect_gnews(feed):
+    """Google 뉴스 RSS(한국어·한국 지역) 검색 결과를 수집.
+
+    feed["url"]에 검색어(query)를 그대로 넣으면 한국(gl=KR, ko) 결과로 조회한다.
+    대회·해커톤처럼 RSS가 없는 주제를 한국 한정으로 모을 때 사용.
+    """
+    import urllib.parse
+    query = urllib.parse.quote(feed["url"])
+    url = f"https://news.google.com/rss/search?q={query}&hl=ko&gl=KR&ceid=KR:ko"
+    try:
+        content = fetch(url)
+        entries = parse_feed(content)
+    except FeedError as e:
+        return [], str(e)
+    return _attach_meta(entries, feed), None
+
+
 def collect(feed):
     """피드 하나를 수집. (entries, error_or_None) 반환.
 
-    feed["kind"]가 "nvd"면 NVD(CVE) 전용 핸들러를, 그 외에는 RSS/Atom 파서를 사용.
+    feed["kind"]: "nvd"=CVE, "github"=신기술, "gnews"=Google뉴스(한국) 검색, 그 외=RSS/Atom.
     각 entry에는 source / category / trust / feed_url 메타데이터가 부착됩니다.
     """
     kind = feed.get("kind")
@@ -354,6 +371,8 @@ def collect(feed):
         return _collect_nvd(feed)
     if kind == "github":
         return _collect_github(feed)
+    if kind == "gnews":
+        return _collect_gnews(feed)
 
     try:
         content = fetch(feed["url"])

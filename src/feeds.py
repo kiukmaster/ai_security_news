@@ -49,13 +49,18 @@ DEFAULT_FEEDS = [
     # dated=False → 날짜 창 대신 '처음 보는 항목'만 누적(인기순 소스라 14일 생성 창 사용).
     {"name": "GitHub 신기술",         "url": "https://api.github.com/search/repositories",                           "category": "tech",     "trust": 0.85, "kind": "github", "dated": False, "max_new": 25},
 
+    # ---------------- 대회·해커톤 (국내, Google 뉴스 검색) ----------------
+    # kind="gnews": url에 검색어를 넣으면 한국(gl=KR) 뉴스 RSS로 조회. dated=False로 누적 노출.
+    {"name": "AI 대회·해커톤",        "url": "(AI OR 인공지능) (해커톤 OR 공모전 OR 경진대회 OR 챌린지) when:45d",          "category": "contest",  "trust": 0.65, "kind": "gnews", "dated": False, "max_new": 25},
+    {"name": "보안 대회·해커톤",      "url": "(보안 OR 해킹 OR 정보보호 OR CTF) (해커톤 OR 공모전 OR 경진대회 OR 대회) when:45d", "category": "contest",  "trust": 0.65, "kind": "gnews", "dated": False, "max_new": 25},
+
     # ---------------- 연구 (Research / arXiv) ----------------
     {"name": "arXiv cs.CR (보안)",     "url": "http://export.arxiv.org/rss/cs.CR",                                   "category": "research", "trust": 0.75},
     {"name": "arXiv cs.AI (인공지능)", "url": "http://export.arxiv.org/rss/cs.AI",                                   "category": "research", "trust": 0.75},
 ]
 
 # 보고서/요약에서 카테고리를 표시할 때 쓰는 라벨과 정렬 순서
-CATEGORY_ORDER = ["security", "security_kr", "vuln", "ai", "tech", "research"]
+CATEGORY_ORDER = ["security", "security_kr", "vuln", "ai", "tech", "contest", "research"]
 CATEGORY_LABELS = {
     "headline": "📌 헤드라인 (꼭 읽어볼 것)",
     "security": "🛡️ 보안(해외)",
@@ -63,5 +68,6 @@ CATEGORY_LABELS = {
     "vuln": "🐞 취약점(CVE)",
     "ai": "🤖 AI",
     "tech": "🚀 신기술(Trending)",
+    "contest": "🏆 대회·해커톤(국내)",
     "research": "📄 연구(arXiv)",
 }
