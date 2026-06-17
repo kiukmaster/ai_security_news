@@ -103,7 +103,8 @@ new_data/
    #  또는 프로젝트 루트에 .env 파일:  GEMINI_API_KEY=발급키
    ```
 
-- 모델 변경: 환경변수 `GEMINI_MODEL`(기본 `gemini-2.5-flash-lite`).
+- 모델 변경(코드 수정 불필요): 저장소 **Settings → Secrets and variables → Actions → Variables**
+  에서 `GEMINI_MODEL` 변수를 만들면 그 값으로 바뀝니다(기본값 `gemini-3.1-flash-lite`).
 - 요약은 **병렬(기본 동시 8건)** 로 처리해 한 번에 빠르게 끝납니다. 동시 수는 `SUMMARY_CONCURRENCY`로 조절.
 - `.env`, `*.key`, `secret*` 등은 `.gitignore`로 커밋이 차단됩니다.
 

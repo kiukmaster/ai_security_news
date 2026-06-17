@@ -18,7 +18,8 @@ import urllib.error
 import urllib.request
 
 API_ENV = "GEMINI_API_KEY"
-MODEL = os.environ.get("GEMINI_MODEL", "gemini-2.5-flash-lite")
+# 환경변수 GEMINI_MODEL 로 덮어쓸 수 있음(빈 값이면 아래 기본값 사용)
+MODEL = os.environ.get("GEMINI_MODEL") or "gemini-3.1-flash-lite"
 ENDPOINT = "https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
 
 # 유료 티어 기준 병렬 처리. 동시 요청 수(무료 티어면 1~2로 낮추세요).

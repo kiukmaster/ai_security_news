@@ -24,6 +24,9 @@ jobs:
       # AI 요약용 Gemini 키. 저장소 Settings → Secrets → Actions 에 GEMINI_API_KEY 등록.
       # (미등록 시 요약은 건너뛰고 원문 발췌로 동작)
       GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      # 모델 변경: Settings → Secrets and variables → Actions → Variables 에
+      # GEMINI_MODEL 변수를 만들면 코드 수정 없이 바꿀 수 있음(비우면 코드 기본값 사용).
+      GEMINI_MODEL: ${{ vars.GEMINI_MODEL }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
