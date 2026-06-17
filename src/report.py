@@ -53,6 +53,7 @@ def _card(entry, rank_no=None, badge=None):
 
     rank_html = f'<span class="rankno">{rank_no}</span>' if rank_no else ""
     head_badge = f'<span class="badge tier-{tier}">{tier_label} · {score}</span>'
+    sum_label = "🤖 AI 요약 보기" if entry.get("ai_summary") else "📄 원문 발췌 보기"
 
     return f"""
       <article class="card tier-{tier}">
@@ -61,7 +62,7 @@ def _card(entry, rank_no=None, badge=None):
           <div class="meta">{meta_html}</div>
         </div>
         <h3 class="title">{title_html}</h3>
-        {f'<details class="sumbox"><summary class="sumtoggle">📝 요약 보기</summary><p class="summary">{summary}</p></details>' if summary else ''}
+        {f'<details class="sumbox"><summary class="sumtoggle">{sum_label}</summary><p class="summary">{summary}</p></details>' if summary else ''}
         {corrob_html}
         <div class="chips">{chips}</div>
       </article>"""

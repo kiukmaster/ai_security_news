@@ -19,6 +19,7 @@ import factcheck
 import feeds as feeds_mod
 import report as report_mod
 import state as state_mod
+import summarize
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 REPORTS_DIR = BASE_DIR / "data" / "reports"
@@ -27,8 +28,27 @@ REPORTS_DIR = BASE_DIR / "data" / "reports"
 # (나머지 신규도 '이미 봄'으로 기록되어 다음날 중복 노출되지 않습니다.)
 MAX_NEW_PER_FEED = 40
 
+# 카테고리별 보고서에 싣고 AI 요약할 최대 기사 수(API 한도 보호)
+CATEGORY_LIMIT = 20
+
 # 헤드라인(꼭 읽어야 할 글) 개수
 HEADLINE_COUNT = 6
+
+
+def _cap_per_category(entries):
+    """카테고리별 상위 CATEGORY_LIMIT건만 남긴다(신기술·취약점은 rank순, 그 외 점수순)."""
+    from collections import defaultdict
+    groups = defaultdict(list)
+    for e in entries:
+        groups[e.get("category", "etc")].append(e)
+    kept = []
+    for cat, items in groups.items():
+        if cat in ("vuln", "tech"):
+            items.sort(key=lambda e: -(e.get("rank") if e.get("rank") is not None else -1))
+        else:
+            items.sort(key=lambda e: -e.get("score", 0))
+        kept.extend(items[:CATEGORY_LIMIT])
+    return kept
 
 
 def _newest_first(entries):
@@ -146,6 +166,11 @@ def run(progress_cb=None, log_cb=None):
         log(f"중복 기사 {removed}건 제거 → {len(new_entries)}건 남음.")
     log(f"수집 완료 — 신규 항목 {len(new_entries)}건. 팩트체크 분석 중…")
     factcheck.analyze(new_entries)
+
+    new_entries = _cap_per_category(new_entries)
+    log(f"카테고리별 상위 {CATEGORY_LIMIT}건으로 제한 → 총 {len(new_entries)}건.")
+
+    summarize.summarize_entries(new_entries, log)
 
     headlines = factcheck.pick_headlines(new_entries, HEADLINE_COUNT)
     log(f"헤드라인(꼭 읽어야 할 글) {len(headlines)}건 선별 완료.")

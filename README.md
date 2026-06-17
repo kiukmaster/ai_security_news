@@ -67,7 +67,9 @@ new_data/
 ├─ src/
 │  ├─ feeds.py        수집 소스 목록 + 출처 신뢰도  ← 소스 추가/수정은 여기
 │  ├─ collector.py    RSS/Atom/RDF·NVD(CVE)·GitHub(신기술) 수집·파싱
-│  ├─ factcheck.py    휴리스틱 팩트체크(교차출처·신뢰도)
+│  ├─ factcheck.py    휴리스틱 팩트체크(교차출처·신뢰도) + 중복 제거
+│  ├─ daterange.py    '대상일 하루' 시간창 계산
+│  ├─ summarize.py    Gemini API 기사별 AI 요약(키 없으면 폴백)
 │  ├─ report.py       반응형 HTML 생성
 │  ├─ state.py        latest.md 증분 상태 관리
 │  ├─ pipeline.py     전체 흐름 오케스트레이션
@@ -80,6 +82,30 @@ new_data/
    ├─ latest.md       마지막 수집 지점 기록(증분 상태, 저장소에 추적)
    └─ reports/        로컬 보고서(저장소에서는 무시)
 ```
+
+## 🤖 AI 요약 (Gemini) + API 키 안전 보관
+
+각 기사를 **Gemini API**(무료 티어)로 한국어 2~3문장 요약합니다. 보고서의 기사마다
+**🤖 AI 요약 보기** 버튼을 누르면 요약을 볼 수 있습니다. API 한도 보호를 위해
+**카테고리별 최대 20건**만 요약·게재합니다.
+
+> 키가 없으면 요약을 건너뛰고 원문 발췌(📄)를 표시하므로, 키 없이도 정상 동작합니다.
+
+**API 키는 코드에 하드코딩하지 않습니다.** 환경변수 `GEMINI_API_KEY`로만 읽습니다.
+
+1. **키 발급**: [Google AI Studio](https://aistudio.google.com/apikey)에서 무료 API 키 생성.
+2. **GitHub(클라우드)**: 저장소 **Settings → Secrets and variables → Actions → New repository secret**
+   - Name: `GEMINI_API_KEY` / Secret: 발급받은 키 → Save
+   - 워크플로가 `${{ secrets.GEMINI_API_KEY }}`로 안전하게 주입합니다(코드·로그에 노출 안 됨).
+3. **로컬(선택)**: 키를 환경변수로 두거나 `.env` 파일(자동 `.gitignore`)에 저장.
+   ```powershell
+   $env:GEMINI_API_KEY = "발급키"      # 현재 세션만
+   #  또는 프로젝트 루트에 .env 파일:  GEMINI_API_KEY=발급키
+   ```
+
+- 모델 변경: 환경변수 `GEMINI_MODEL`(기본 `gemini-2.0-flash`).
+- 무료 티어는 분당 요청 제한이 있어, 요약은 호출 간격을 두고 처리됩니다(신규 기사 수에 따라 수 분 소요 가능).
+- `.env`, `*.key`, `secret*` 등은 `.gitignore`로 커밋이 차단됩니다.
 
 ## 팩트체크 방식 (휴리스틱)
 
