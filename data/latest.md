@@ -3,7 +3,7 @@
 > 이 파일은 프로그램이 **자동으로 관리**합니다. 직접 수정하지 마세요.
 > 다음 실행 시 아래 기록된 지점 **이후의 새 정보만** 수집합니다.
 
-- 🕒 마지막 실행: `2026-06-17T13:39:27`
+- 🕒 마지막 실행: `2026-06-17T13:52:11`
 - 📄 마지막 보고서: `data/reports/report_2026-06-17.html`
 
 ## 소스별 마지막 확인 지점
@@ -18,7 +18,7 @@
 | The Register · Security | security | 3 | Cyberattack sees crops kept in the ground | 정상 |
 | Schneier on Security | security | 0 | Flock Cameras Are Being Used for Stalking | 정상 |
 | CISA Advisories | security | 0 | Rockwell Automation Logix 5370 & 5570 Controllers Vulnerable… | 정상 |
-| 보안뉴스 | security_kr | 10 | 위고비 제조사 노보노디스크, 사내 AI 모델 정보도 털렸나 | 정상 |
+| 보안뉴스 | security_kr | 10 | 포티넷코리아, 서울아이티고등학교 재학생 대상 사이버보안 멘토링 | 정상 |
 | 데일리시큐 | security_kr | 22 | 한싹, N2SF 체계 대응 차세대 망연계 솔루션 ‘시큐어게이트 V4.0’ 출시 | 정상 |
 | 안랩 ASEC | security_kr | 0 | 2026년 5월 APT 그룹 동향 보고서 | 정상 |
 | 이스트시큐리티 알약 | security_kr | 1 | 인스타그램 계정 해킹, 사람의 소행이 아니었다? | 정상 |
@@ -27,7 +27,7 @@
 | Google DeepMind | ai | 1 | Unlocking UK house-building with AI-accelerated planning | 정상 |
 | Hugging Face Blog | ai | 0 | olmo-eval: An evaluation workbench for the model development… | 정상 |
 | MIT Tech Review · AI | ai | 0 | Want to get a data center online quickly? Give it some flex. | 정상 |
-| GitHub 신기술 | tech | 25 | DietrichGebert/ponytail · ⭐26,321 · JavaScript | 정상 |
+| GitHub 신기술 | tech | 25 | DietrichGebert/ponytail · ⭐26,382 · JavaScript | 정상 |
 | arXiv cs.CR (보안) | research | 40 | Security and Human-Centered Assessment of BACnet-Controlled … | 정상 |
 | arXiv cs.AI (인공지능) | research | 40 | Beyond Parallel Sampling: Diverse Query Initialization for A… | 정상 |
 
@@ -36,7 +36,7 @@
 <!-- STATE_JSON_START -->
 ```json
 {
-  "last_run": "2026-06-17T13:39:27",
+  "last_run": "2026-06-17T13:52:11",
   "last_report": "data/reports/report_2026-06-17.html",
   "feeds": {
     "https://feeds.feedburner.com/TheHackersNews": {
@@ -92,7 +92,7 @@
         "c706c02d39b6f21c92e0cc14bcb27e13895ff854",
         "02c4490a9341cc3aead808d661cf3f5b670465c3"
       ],
-      "last_seen": "2026-06-17T13:39:15",
+      "last_seen": "2026-06-17T13:51:59",
       "last_max_date": "2026-06-17T00:35:41+05:30"
     },
     "https://www.bleepingcomputer.com/feed/": {
@@ -113,7 +113,7 @@
         "31d2c62eeb9005a777e422cb3a5f81f671137fe6",
         "8116241225e1b45a9936188699b25f1a4b786036"
       ],
-      "last_seen": "2026-06-17T13:39:16",
+      "last_seen": "2026-06-17T13:51:59",
       "last_max_date": "2026-06-16T17:54:50-04:00"
     },
     "https://krebsonsecurity.com/feed/": {
@@ -129,7 +129,7 @@
         "7440dc31a5ad03ea24e0a0b95a034503a1056304",
         "85675c691fb9ef0697a7ae515a3ba87e5b703a18"
       ],
-      "last_seen": "2026-06-17T13:39:16",
+      "last_seen": "2026-06-17T13:52:01",
       "last_max_date": "2026-06-10T14:03:44+00:00"
     },
     "https://www.darkreading.com/rss.xml": {
@@ -185,7 +185,7 @@
         "f68d8c2a170cea85dfa5731ca2359f3420840c71",
         "5614e11053a64fca74d41d601dfde6a3135a639e"
       ],
-      "last_seen": "2026-06-17T13:39:17",
+      "last_seen": "2026-06-17T13:52:02",
       "last_max_date": "2026-06-16T22:26:34+00:00"
     },
     "https://www.securityweek.com/feed/": {
@@ -201,7 +201,7 @@
         "045f84e93f59f9228ae5e13237131757802e4c0e",
         "659a0983358229b2a9762d54256c79e0e8d89811"
       ],
-      "last_seen": "2026-06-17T13:39:17",
+      "last_seen": "2026-06-17T13:52:02",
       "last_max_date": "2026-06-16T15:06:24+00:00"
     },
     "https://www.theregister.com/security/headlines.atom": {
@@ -257,7 +257,7 @@
         "e831bee08b34da291acbea758ae4ccf78aa19f56",
         "d2310a28a780d950797646165cb81994d53139a2"
       ],
-      "last_seen": "2026-06-17T13:39:19",
+      "last_seen": "2026-06-17T13:52:03",
       "last_max_date": "2026-06-17T04:16:00+02:00"
     },
     "https://www.schneier.com/feed/atom/": {
@@ -273,7 +273,7 @@
         "fea6454a1a1cca8f38a497120bd17876913b0ace",
         "327886a2d2f681c1144ac48b9b9b7cf4fb53a497"
       ],
-      "last_seen": "2026-06-17T13:39:19",
+      "last_seen": "2026-06-17T13:52:04",
       "last_max_date": "2026-06-16T11:03:32+00:00"
     },
     "https://www.cisa.gov/cybersecurity-advisories/all.xml": {
@@ -309,11 +309,13 @@
         "f9cdd5b3d5bf03a453dfe5123c03ebcddf602276",
         "e1fdba14443c815d39f6329092953bc9d01db0be"
       ],
-      "last_seen": "2026-06-17T13:39:19",
+      "last_seen": "2026-06-17T13:52:04",
       "last_max_date": "2026-06-16T12:00:00+00:00"
     },
     "https://www.boannews.com/media/news_rss.xml": {
       "ids": [
+        "90c85be9ce8ab5d9b277780a28383b2cabe875cc",
+        "ad805400d07657de7325ad1e227e7c8a9a59a933",
         "5b670c0dec7cd5baefbe6f72f4947cff8e365be4",
         "92b70f1b6924990a92d3458321cb01cd3d837f91",
         "3d0664b5fea28acb4b4674e42b8484584e9d4d75",
@@ -321,12 +323,10 @@
         "48c396d6fef5120af4089a089239cabec3b848f4",
         "0826d8255cf705a848d0036a6eb9ace0dbac474b",
         "fcefa416c139934998f266ca9236c08d058ab009",
-        "5136420154cbcc7ceb71c8de36a6951865fa6f8e",
-        "ea3ebf096578949ae6098e09c10c057d1c23001f",
-        "7692f4e7098fa187455835d0d8617ad7ebcdeb45"
+        "5136420154cbcc7ceb71c8de36a6951865fa6f8e"
       ],
-      "last_seen": "2026-06-17T13:39:20",
-      "last_max_date": "2026-06-17T13:35:00+09:00"
+      "last_seen": "2026-06-17T13:52:04",
+      "last_max_date": "2026-06-17T13:42:00+09:00"
     },
     "https://www.dailysecu.com/rss/allArticle.xml": {
       "ids": [
@@ -381,7 +381,7 @@
         "b46ac216d457c8f796e567189ad9b0aa61d2af68",
         "ec0490345607806cc3408b555ad19eb3390de875"
       ],
-      "last_seen": "2026-06-17T13:39:20",
+      "last_seen": "2026-06-17T13:52:04",
       "last_max_date": "2026-06-17T13:34:49+00:00"
     },
     "https://asec.ahnlab.com/ko/feed/": {
@@ -417,7 +417,7 @@
         "6a2d4d6bf6eaf901f860fc28da6e3ee7c143f5fe",
         "deb0f54ca18677b689b5e4362e4735c4fb3e65cd"
       ],
-      "last_seen": "2026-06-17T13:39:20",
+      "last_seen": "2026-06-17T13:52:04",
       "last_max_date": "2026-06-15T15:00:00+00:00"
     },
     "https://blog.alyac.co.kr/rss": {
@@ -473,7 +473,7 @@
         "946113ac3d9e20ec804017655fea33acea04668b",
         "4dea82b4ee5f96c7f9cc8a2be265bbc90707affe"
       ],
-      "last_seen": "2026-06-17T13:39:21",
+      "last_seen": "2026-06-17T13:52:06",
       "last_max_date": "2026-06-17T11:07:21+09:00"
     },
     "https://services.nvd.nist.gov/rest/json/cves/2.0": {
@@ -599,7 +599,7 @@
         "b2dacd1fcdf9b55d2bdf321429a53541b865c2ce",
         "d9392cbf79c1c5d5bef9d43b65cd4019ece7456a"
       ],
-      "last_seen": "2026-06-17T13:39:23",
+      "last_seen": "2026-06-17T13:52:07",
       "last_max_date": "2026-06-16T20:16:46.583000+00:00"
     },
     "https://openai.com/news/rss.xml": {
@@ -905,7 +905,7 @@
         "b796c43e7637c8bbdb397af54a4a4665a30b623a",
         "eef0a375a4236a70927734e7e84889a26081795a"
       ],
-      "last_seen": "2026-06-17T13:39:24",
+      "last_seen": "2026-06-17T13:52:07",
       "last_max_date": "2026-06-16T00:00:00+00:00"
     },
     "https://deepmind.google/blog/rss.xml": {
@@ -1011,7 +1011,7 @@
         "9f6bdc5d4dfb5b71414f5e5694811fe9cce972fb",
         "c529fac0c8ec27917423c33d5715af291bdcfe9a"
       ],
-      "last_seen": "2026-06-17T13:39:24",
+      "last_seen": "2026-06-17T13:52:08",
       "last_max_date": "2026-06-16T21:29:50+00:00"
     },
     "https://huggingface.co/blog/feed.xml": {
@@ -1317,7 +1317,7 @@
         "9ac97f3c8f3e5a899cd64aec2d0ef7a81f3e1213",
         "c984986f56804d0be30fd9fe6e81d1407ae2bd9b"
       ],
-      "last_seen": "2026-06-17T13:39:25",
+      "last_seen": "2026-06-17T13:52:09",
       "last_max_date": "2026-06-12T15:56:10+00:00"
     },
     "https://www.technologyreview.com/topic/artificial-intelligence/feed/": {
@@ -1333,7 +1333,7 @@
         "e1076b3ae8414dd23be58c724174f0d0d54bc142",
         "0be4ee2c82f9753c243285b9216453905e9d24b7"
       ],
-      "last_seen": "2026-06-17T13:39:25",
+      "last_seen": "2026-06-17T13:52:09",
       "last_max_date": "2026-06-16T09:00:00+00:00"
     },
     "https://api.github.com/search/repositories": {
@@ -1368,8 +1368,8 @@
         "c148c71ae4ca0680936dda39978a20b46de4914c",
         "94c24f910d4de951f877956e3cf8258a1723727f",
         "143506d88c2202b5a8cd2bef5a2788610fe7666e",
-        "b3f1f70688e929d5f721e1d38b0a4c14e2e69701",
         "254b97f08b4fcc799ddfa4818f8fcc92eefd03f2",
+        "b3f1f70688e929d5f721e1d38b0a4c14e2e69701",
         "cc5fa87fe45c189dd98da339c1223a8973c5f35e",
         "effc193ec0691847f9da69d55f9056ff6d66f902",
         "08a835f186796317fb80ade0f4337ea2b35502c0",
@@ -1389,7 +1389,7 @@
         "083484c730a6d6e15aa7e681ad812f4d1cf88171",
         "655973858bf66c1afc8094032d285939c577b71a"
       ],
-      "last_seen": "2026-06-17T13:39:27"
+      "last_seen": "2026-06-17T13:52:10"
     },
     "http://export.arxiv.org/rss/cs.CR": {
       "ids": [
@@ -1459,7 +1459,7 @@
         "7b0bfa6891dc8139d16b314e033eab99bf858ad1",
         "82c56e4982535e8e6a33b929f1cfd418bef79302"
       ],
-      "last_seen": "2026-06-17T13:39:27",
+      "last_seen": "2026-06-17T13:52:11",
       "last_max_date": "2026-06-17T00:00:00-04:00"
     },
     "http://export.arxiv.org/rss/cs.AI": {
@@ -1765,7 +1765,7 @@
         "7dcdc8f6399c4325ba07ad99bd1392fbaaead9b9",
         "08451e8c0c6ee4fd51c5874120678e9afb5add9d"
       ],
-      "last_seen": "2026-06-17T13:39:27",
+      "last_seen": "2026-06-17T13:52:11",
       "last_max_date": "2026-06-17T00:00:00-04:00"
     }
   }

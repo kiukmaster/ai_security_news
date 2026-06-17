@@ -16,10 +16,12 @@ import urllib.error
 import urllib.request
 
 API_ENV = "GEMINI_API_KEY"
-MODEL = os.environ.get("GEMINI_MODEL", "gemini-2.0-flash")
+MODEL = os.environ.get("GEMINI_MODEL", "gemini-2.5-flash-lite")
 ENDPOINT = "https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
 
-MIN_INTERVAL = 4.2   # 요청 간 최소 간격(초) ≈ 14 RPM (무료 티어 15 RPM 보호)
+# 무료 티어 한도(분당 15요청) 대응: 15건 처리 후 70초 대기 → 다시 15건 …
+BATCH_SIZE = 15
+BATCH_PAUSE = 70     # 초
 TIMEOUT = 30
 MAX_RETRY = 2
 
@@ -102,17 +104,18 @@ def summarize_entries(entries, log=lambda m: None, max_items=300):
         log("GEMINI_API_KEY 미설정 — AI 요약 건너뜀(원문 발췌 표시).")
         return 0
 
-    log(f"AI 요약 시작 ({MODEL}) — 대상 {min(len(entries), max_items)}건…")
+    targets = [e for e in entries if e.get("summary")][:max_items]
+    total = len(targets)
+    log(f"AI 요약 시작 ({MODEL}) — 대상 {total}건. "
+        f"분당 {BATCH_SIZE}건씩 처리(한도 도달 시 {BATCH_PAUSE}초 대기).")
+
     done = 0
-    last = 0.0
-    for i, e in enumerate(entries):
-        if done >= max_items:
-            break
-        if not e.get("summary"):
-            continue
-        wait = MIN_INTERVAL - (time.monotonic() - last)
-        if wait > 0:
-            time.sleep(wait)
+    for i, e in enumerate(targets):
+        # 직전 배치(15건)를 채웠으면 다음 요청 전에 한도 회복까지 대기
+        if i > 0 and i % BATCH_SIZE == 0:
+            log(f"    분당 한도({BATCH_SIZE}건) 도달 — {BATCH_PAUSE}초 대기 후 계속… "
+                f"({i}/{total})")
+            time.sleep(BATCH_PAUSE)
         try:
             summary = _summarize_one(e, key, log)
             if summary:
@@ -121,9 +124,6 @@ def summarize_entries(entries, log=lambda m: None, max_items=300):
                 done += 1
         except Exception as ex:  # noqa: BLE001 — 한 건 실패가 전체를 막지 않도록
             log(f"    요약 실패({e.get('title', '')[:28]}…): {ex}")
-        last = time.monotonic()
-        if (i + 1) % 10 == 0:
-            log(f"    AI 요약 진행 {i + 1}/{len(entries)}…")
 
-    log(f"AI 요약 완료: {done}건.")
+    log(f"AI 요약 완료: {done}/{total}건.")
     return done
