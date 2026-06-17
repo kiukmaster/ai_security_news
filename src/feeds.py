@@ -34,8 +34,12 @@ DEFAULT_FEEDS = [
     # ---------------- AI ----------------
     {"name": "OpenAI News",           "url": "https://openai.com/news/rss.xml",                                     "category": "ai",       "trust": 0.90},
     {"name": "Google DeepMind",       "url": "https://deepmind.google/blog/rss.xml",                                "category": "ai",       "trust": 0.90},
+    {"name": "Google AI 블로그",      "url": "https://blog.google/technology/ai/rss/",                               "category": "ai",       "trust": 0.90},
     {"name": "Hugging Face Blog",     "url": "https://huggingface.co/blog/feed.xml",                                "category": "ai",       "trust": 0.80},
     {"name": "MIT Tech Review · AI",  "url": "https://www.technologyreview.com/topic/artificial-intelligence/feed/","category": "ai",      "trust": 0.85},
+    {"name": "TechCrunch AI",         "url": "https://techcrunch.com/category/artificial-intelligence/feed/",       "category": "ai",       "trust": 0.80},
+    {"name": "VentureBeat AI",        "url": "https://venturebeat.com/category/ai/feed/",                           "category": "ai",       "trust": 0.80},
+    {"name": "The Decoder",           "url": "https://the-decoder.com/feed/",                                       "category": "ai",       "trust": 0.75},
 
     # ---------------- 신기술 (Trending Tech / GitHub) ----------------
     # 최근 생성된 오픈소스 기술을 GitHub Star(인기) 순으로 수집. (kind="github" 전용 핸들러)
