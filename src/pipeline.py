@@ -139,6 +139,11 @@ def run(progress_cb=None, log_cb=None):
         })
 
     progress(total, total)
+    before = len(new_entries)
+    new_entries = factcheck.dedup(new_entries)
+    removed = before - len(new_entries)
+    if removed:
+        log(f"중복 기사 {removed}건 제거 → {len(new_entries)}건 남음.")
     log(f"수집 완료 — 신규 항목 {len(new_entries)}건. 팩트체크 분석 중…")
     factcheck.analyze(new_entries)
 

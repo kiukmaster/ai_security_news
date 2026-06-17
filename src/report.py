@@ -61,7 +61,7 @@ def _card(entry, rank_no=None, badge=None):
           <div class="meta">{meta_html}</div>
         </div>
         <h3 class="title">{title_html}</h3>
-        {f'<p class="summary">{summary}</p>' if summary else ''}
+        {f'<details class="sumbox"><summary class="sumtoggle">📝 요약 보기</summary><p class="summary">{summary}</p></details>' if summary else ''}
         {corrob_html}
         <div class="chips">{chips}</div>
       </article>"""
@@ -275,7 +275,14 @@ body{margin:0;background:var(--bg);color:var(--text);
 .title{font-size:16px;margin:8px 0 6px;line-height:1.4;}
 .title a{color:var(--text);text-decoration:none;}
 .title a:hover{color:var(--accent);text-decoration:underline;}
-.summary{font-size:14px;color:var(--muted);margin:0 0 8px;}
+.sumbox{margin:2px 0 8px;}
+.sumtoggle{cursor:pointer;display:inline-block;font-size:12px;color:var(--accent);
+  background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:3px 10px;
+  list-style:none;user-select:none;}
+.sumtoggle::-webkit-details-marker{display:none;}
+.sumtoggle::marker{content:"";}
+.sumbox[open] .sumtoggle{margin-bottom:6px;border-color:var(--accent);}
+.summary{font-size:14px;color:var(--muted);margin:0 0 4px;}
 .corrob{font-size:12px;color:var(--accent);margin:0 0 8px;}
 .chips{display:flex;flex-wrap:wrap;gap:6px;}
 .chip{font-size:11px;color:var(--muted);background:var(--bg);border:1px solid var(--line);

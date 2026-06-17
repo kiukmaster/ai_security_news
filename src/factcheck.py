@@ -11,6 +11,7 @@ LLM/외부 API 없이 다음 신호로 각 항목의 신뢰도 점수(0~100)를 
 """
 
 import re
+from urllib.parse import urlsplit, parse_qsl, urlencode
 
 _WORD_RE = re.compile(r"[A-Za-z0-9]+")
 
@@ -124,6 +125,90 @@ def _impact(entry):
         elif rank >= 7.5:
             s += 22
     return s
+
+
+# --------------------------------------------------------------------------- #
+# 중복 기사 제거
+# --------------------------------------------------------------------------- #
+_TRACK_PREFIX = ("utm_", "fbclid", "gclid", "mc_", "ref")
+_TITLE_CLEAN_RE = re.compile(r"[^\w가-힣]+")
+
+
+def _norm_link(url):
+    """추적 파라미터/끝슬래시/www 제거한 정규화 URL(같은 기사 판별용)."""
+    if not url:
+        return ""
+    try:
+        s = urlsplit(url.strip())
+    except ValueError:
+        return url.strip().lower()
+    host = s.netloc.lower()
+    if host.startswith("www."):
+        host = host[4:]
+    path = s.path.rstrip("/")
+    q = [(k, v) for k, v in parse_qsl(s.query)
+         if not any(k.lower().startswith(p) for p in _TRACK_PREFIX)]
+    qs = urlencode(sorted(q))
+    return f"{host}{path}?{qs}" if qs else f"{host}{path}"
+
+
+def _norm_title(title):
+    t = _TITLE_CLEAN_RE.sub(" ", (title or "").lower())
+    return re.sub(r"\s+", " ", t).strip()
+
+
+def _title_tokens(title):
+    return {w for w in _norm_title(title).split() if len(w) >= 2}
+
+
+def _is_near_dup(tokens, kept_tokens):
+    """제목 토큰 집합이 이미 채택된 기사와 매우 유사하면 True."""
+    if not tokens:
+        return False
+    for kt in kept_tokens:
+        if not kt:
+            continue
+        inter = len(tokens & kt)
+        if not inter:
+            continue
+        union = len(tokens | kt)
+        jaccard = inter / union
+        contain = inter / min(len(tokens), len(kt))
+        if jaccard >= 0.82 or (inter >= 4 and contain >= 0.9):
+            return True
+    return False
+
+
+def dedup(entries):
+    """같은 기사(이름만 다른 중복 포함)를 제거. 신뢰도 높은 1건만 남긴다.
+
+    판별: 같은 정규화 URL · 같은 정규화 제목 · 제목 유사도 매우 높음.
+    서로 다른 매체가 다른 제목/URL로 보도한 '교차보도'는 보존된다.
+    """
+    ordered = sorted(
+        entries,
+        key=lambda e: (-float(e.get("trust", 0)),
+                       0 if e.get("link") else 1,
+                       -len(e.get("summary") or "")),
+    )
+    seen_links, seen_titles, kept_tokens, kept = set(), set(), [], []
+    for e in ordered:
+        link = _norm_link(e.get("link"))
+        ntitle = _norm_title(e.get("title"))
+        tokens = _title_tokens(e.get("title"))
+        if link and link in seen_links:
+            continue
+        if ntitle and ntitle in seen_titles:
+            continue
+        if _is_near_dup(tokens, kept_tokens):
+            continue
+        kept.append(e)
+        if link:
+            seen_links.add(link)
+        if ntitle:
+            seen_titles.add(ntitle)
+        kept_tokens.append(tokens)
+    return kept
 
 
 def pick_headlines(entries, k=6):
