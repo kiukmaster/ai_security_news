@@ -5,7 +5,7 @@ name: Daily Briefing
 # 시각을 바꾸려면 아래 cron의 분/시(UTC 기준)를 조정하세요.
 on:
   schedule:
-    - cron: "59 14 * * *"
+    - cron: "50 14 * * *"
   workflow_dispatch: {}      # GitHub 앱/웹에서 'Run workflow'로 수동 실행(딸깍)도 가능
 
 permissions:
