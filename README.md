@@ -166,16 +166,16 @@ new_data/
   The Register, Schneier, CISA
 - **국내 보안**: 보안뉴스, 데일리시큐, 안랩 ASEC, 이스트시큐리티 알약
 - **취약점(CVE)**: 보고서에 별도 `🐞 취약점(CVE)` 카테고리로 분리(상단 칩 클릭 시 이동).
-  **어제 발행된 CVE만** CVSS 심각도 높은 순으로 표시하며, 각 항목은 cvedetails.com 페이지로 연결됩니다.
+  최신 취약점을 CVSS 심각도 높은 순으로 표시하며, 각 항목은 GitHub 권고 페이지로 연결됩니다.
 - **AI**: OpenAI, DeepMind, Google AI, Hugging Face, MIT Tech Review, TechCrunch/VentureBeat/The Decoder,
   국내(AI타임스, 바이라인네트워크)
 - **신기술(Trending)**: GitHub 최근 생성 저장소를 Star 인기순으로
 - **대회·해커톤(국내)**: Google 뉴스(한국, `gl=KR`) 검색으로 AI·보안 **대회/해커톤/공모전/CTF** 최신 소식만 수집
 - **연구**: arXiv(cs.CR/cs.AI)
 
-> CVE 데이터는 **NVD(미국 국가취약점DB)** 에서 정확한 날짜로 수집합니다.
-> cvedetails.com은 자동 접근을 차단(HTTP 403)하므로 직접 크롤링하지 않고,
-> 동일 원본인 NVD에서 받아 **링크만 cvedetails.com**으로 연결하는 방식입니다.
+> CVE 데이터는 **GitHub Advisory Database**에서 수집합니다(보통 1초 이내 응답).
+> NVD는 느리고 타임아웃이 잦아 교체했습니다. (cvedetails.com은 봇 접근을 차단해 사용 불가)
+> GitHub API는 Actions 토큰으로 인증해 시간당 호출 한도를 넉넉히 확보합니다.
 
 ## 참고
 

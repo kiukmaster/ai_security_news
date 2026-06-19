@@ -27,9 +27,9 @@ DEFAULT_FEEDS = [
     {"name": "이스트시큐리티 알약",   "url": "https://blog.alyac.co.kr/rss",                                         "category": "security_kr", "trust": 0.80},
 
     # ---------------- 취약점(CVE) ----------------
-    # cvedetails.com은 자동 접근이 차단(HTTP 403)되어, 동일 원본인 NVD에서 '어제 발행' CVE를
-    # 가져오고 각 항목 링크는 cvedetails.com 페이지로 연결합니다. (kind="nvd" 전용 핸들러)
-    {"name": "CVE (NVD→cvedetails)",  "url": "https://services.nvd.nist.gov/rest/json/cves/2.0",                     "category": "vuln",     "trust": 0.95, "kind": "nvd", "max_new": 80},
+    # NVD는 느리고 타임아웃이 잦아, 빠르고 안정적인 GitHub Advisory DB로 최신 취약점을 수집.
+    # (kind="ghsa", 키 불필요, 보통 1초 이내 응답)
+    {"name": "CVE (GitHub Advisory)", "url": "https://api.github.com/advisories",                                   "category": "vuln",     "trust": 0.90, "kind": "ghsa", "max_new": 100},
 
     # ---------------- AI ----------------
     {"name": "OpenAI News",           "url": "https://openai.com/news/rss.xml",                                     "category": "ai",       "trust": 0.90},

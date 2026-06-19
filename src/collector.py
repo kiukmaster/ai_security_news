@@ -8,6 +8,7 @@
 import hashlib
 import html as _html
 import json
+import os
 import re
 import socket
 import ssl
@@ -299,6 +300,56 @@ def _collect_nvd(feed):
     return _attach_meta(entries, feed), None
 
 
+# 심각도 → 정렬용 점수(CVSS 점수가 없을 때 폴백)
+_SEV_SCORE = {"critical": 9.5, "high": 8.0, "medium": 5.0, "low": 2.0}
+
+
+def _gh_headers():
+    """GitHub API 헤더. 토큰(GH_API_TOKEN/GITHUB_TOKEN)이 있으면 인증해 한도를 크게 늘림."""
+    headers = {"User-Agent": USER_AGENT, "Accept": "application/vnd.github+json"}
+    token = os.environ.get("GH_API_TOKEN") or os.environ.get("GITHUB_TOKEN")
+    if token:
+        headers["Authorization"] = f"Bearer {token}"
+    return headers
+
+
+def _collect_ghsa(feed):
+    """GitHub Advisory Database에서 최신 취약점을 수집(빠르고 안정적, 키 불필요).
+
+    NVD가 느리고 타임아웃이 잦아 대체. 최근 권고를 발행순으로 가져오고,
+    '대상일' 필터는 pipeline이 published 기준으로 처리한다. 링크는 GitHub 권고 페이지.
+    """
+    url = f"{feed['url']}?per_page=100&sort=published&direction=desc&type=reviewed"
+    req = urllib.request.Request(url, headers=_gh_headers())
+    try:
+        with urllib.request.urlopen(req, timeout=TIMEOUT) as resp:
+            data = json.loads(resp.read())
+    except (urllib.error.URLError, urllib.error.HTTPError, socket.timeout,
+            ConnectionError, OSError, ValueError, json.JSONDecodeError) as e:
+        return [], str(getattr(e, "reason", e))
+
+    entries = []
+    for adv in data:
+        cid = adv.get("cve_id") or adv.get("ghsa_id")
+        if not cid:
+            continue
+        sev = (adv.get("severity") or "").lower()
+        score = (adv.get("cvss") or {}).get("score")
+        if score is None:
+            score = _SEV_SCORE.get(sev)
+        sev_ko = _SEV_KO.get(sev.upper(), "등급미정")
+        title = f"{cid} · {sev_ko}" + (f" {score}" if score is not None else "")
+        entries.append({
+            "id": _hash_id(cid),
+            "title": title,
+            "link": adv.get("html_url", ""),
+            "summary": _clean(adv.get("summary") or adv.get("description") or ""),
+            "published": _parse_date(adv.get("published_at")),
+            "rank": score if score is not None else -1,
+        })
+    return _attach_meta(entries, feed), None
+
+
 # GitHub '신기술' 수집 파라미터
 GITHUB_CREATED_DAYS = 14   # 최근 며칠 내 생성된 저장소를 대상으로
 GITHUB_MIN_STARS = 10      # 최소 Star 수(노이즈 제거)
@@ -314,9 +365,7 @@ def _collect_github(feed):
     since = (datetime.now() - timedelta(days=GITHUB_CREATED_DAYS)).strftime("%Y-%m-%d")
     q = urllib.parse.quote(f"created:>={since} stars:>={GITHUB_MIN_STARS}")
     url = f"{feed['url']}?q={q}&sort=stars&order=desc&per_page=50"
-    req = urllib.request.Request(
-        url, headers={"User-Agent": USER_AGENT, "Accept": "application/vnd.github+json"}
-    )
+    req = urllib.request.Request(url, headers=_gh_headers())
     try:
         with urllib.request.urlopen(req, timeout=TIMEOUT) as resp:
             data = json.loads(resp.read())
@@ -369,6 +418,8 @@ def collect(feed):
     kind = feed.get("kind")
     if kind == "nvd":
         return _collect_nvd(feed)
+    if kind == "ghsa":
+        return _collect_ghsa(feed)
     if kind == "github":
         return _collect_github(feed)
     if kind == "gnews":

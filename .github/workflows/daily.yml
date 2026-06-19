@@ -27,6 +27,8 @@ jobs:
       # 모델 변경: Settings → Secrets and variables → Actions → Variables 에
       # GEMINI_MODEL 변수를 만들면 코드 수정 없이 바꿀 수 있음(비우면 코드 기본값 사용).
       GEMINI_MODEL: ${{ vars.GEMINI_MODEL }}
+      # GitHub API(취약점·신기술) 인증용 — 무인증 60회/시 한도를 5000회/시로 상향
+      GH_API_TOKEN: ${{ github.token }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
