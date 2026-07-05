@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>보안·AI 데일리 브리핑 — 2026년 07월 06일 (00:52)</title>
+<style>
+
+:root{
+  --bg:#f5f6f8; --card:#ffffff; --text:#1b1f24; --muted:#5b6470; --line:#e4e7eb;
+  --accent:#3b66f5; --high:#137333; --high-bg:#e6f4ea; --medium:#9a6700;
+  --medium-bg:#fff4d6; --low:#b3261e; --low-bg:#fce8e6;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0f1318; --card:#171c23; --text:#e7ebf0; --muted:#9aa4b1; --line:#262d36;
+    --accent:#6f8cff; --high:#6cd58a; --high-bg:#10301d; --medium:#e8c46a;
+    --medium-bg:#332a10; --low:#f08a82; --low-bg:#3a1614;
+  }
+}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Malgun Gothic",Roboto,sans-serif;
+  line-height:1.5;-webkit-text-size-adjust:100%;}
+.wrap{max-width:860px;margin:0 auto;padding:16px;}
+.top{padding:14px 4px 6px;}
+.top h1{font-size:22px;margin:0 0 4px;}
+.date{color:var(--muted);margin:0 0 12px;font-size:14px;}
+.stats{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px;}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:999px;
+  padding:4px 12px;font-size:13px;color:var(--muted);}
+.stat b{color:var(--text);font-size:14px;}
+.stat.high b{color:var(--high);} .stat.medium b{color:var(--medium);} .stat.low b{color:var(--low);}
+.catnav{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;gap:8px;
+  padding:10px 4px;margin:0 -4px 4px;background:var(--bg);
+  border-bottom:1px solid var(--line);}
+.nav-chip{text-decoration:none;font-size:13px;color:var(--text);background:var(--card);
+  border:1px solid var(--line);border-radius:999px;padding:6px 13px;white-space:nowrap;}
+.nav-chip:hover{border-color:var(--accent);color:var(--accent);}
+.nav-chip b{color:var(--accent);}
+.nav-chip.cat-vuln{border-color:var(--low);}
+.nav-chip.cat-vuln b{color:var(--low);}
+.nav-chip.cat-headline{border-color:var(--accent);background:rgba(59,102,245,.12);}
+.cat.headline .cat-title{border-bottom-color:var(--accent);}
+.cat-note{font-size:12px;color:var(--muted);margin:-6px 0 12px;}
+.cat.headline .card{border-left-color:var(--accent);}
+.rankno{display:inline-flex;align-items:center;justify-content:center;
+  width:22px;height:22px;border-radius:50%;background:var(--accent);color:#fff;
+  font-size:12px;font-weight:700;margin-right:2px;}
+.catbadge{background:var(--bg);border:1px solid var(--line);border-radius:6px;
+  padding:1px 7px;font-size:11px;}
+.sortbar{display:flex;align-items:center;gap:8px;margin:6px 0 14px;flex-wrap:wrap;}
+.sortlabel{font-size:13px;color:var(--muted);margin-right:2px;}
+.sortbtn{cursor:pointer;font-size:13px;color:var(--text);background:var(--card);
+  border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-family:inherit;}
+.sortbtn.active{background:var(--accent);color:#fff;border-color:var(--accent);}
+.cat{margin:22px 0 8px;scroll-margin-top:60px;}
+.cat-title{font-size:17px;display:flex;align-items:center;gap:8px;
+  border-bottom:2px solid var(--line);padding-bottom:6px;margin:0 0 12px;}
+.count{font-size:13px;color:#fff;background:var(--accent);border-radius:999px;
+  padding:1px 9px;font-weight:600;}
+.card{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--line);
+  border-radius:12px;padding:14px 16px;margin-bottom:12px;}
+.card.tier-high{border-left-color:var(--high);}
+.card.tier-medium{border-left-color:var(--medium);}
+.card.tier-low{border-left-color:var(--low);}
+.card-head{display:flex;flex-wrap:wrap;align-items:center;gap:8px;justify-content:space-between;}
+.badge{font-size:12px;font-weight:700;border-radius:6px;padding:2px 8px;white-space:nowrap;}
+.badge.tier-high{color:var(--high);background:var(--high-bg);}
+.badge.tier-medium{color:var(--medium);background:var(--medium-bg);}
+.badge.tier-low{color:var(--low);background:var(--low-bg);}
+.meta{font-size:12px;color:var(--muted);}
+.meta .source{font-weight:600;color:var(--text);}
+.title{font-size:16px;margin:8px 0 6px;line-height:1.4;}
+.title a{color:var(--text);text-decoration:none;}
+.title a:hover{color:var(--accent);text-decoration:underline;}
+.sumbox{margin:2px 0 8px;}
+.sumtoggle{cursor:pointer;display:inline-block;font-size:12px;color:var(--accent);
+  background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:3px 10px;
+  list-style:none;user-select:none;}
+.sumtoggle::-webkit-details-marker{display:none;}
+.sumtoggle::marker{content:"";}
+.sumbox[open] .sumtoggle{margin-bottom:6px;border-color:var(--accent);}
+.summary{font-size:14px;color:var(--muted);margin:0 0 4px;}
+.corrob{font-size:12px;color:var(--accent);margin:0 0 8px;}
+.chips{display:flex;flex-wrap:wrap;gap:6px;}
+.chip{font-size:11px;color:var(--muted);background:var(--bg);border:1px solid var(--line);
+  border-radius:6px;padding:2px 7px;}
+.empty{color:var(--muted);text-align:center;padding:30px 0;}
+.sources{margin:24px 0;background:var(--card);border:1px solid var(--line);border-radius:12px;
+  padding:10px 14px;}
+.sources summary{cursor:pointer;font-weight:600;font-size:14px;}
+table.status{width:100%;border-collapse:collapse;margin-top:10px;font-size:13px;}
+table.status th,table.status td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line);}
+table.status td.num,table.status th:nth-child(2){text-align:right;}
+table.status tr.fail td{color:var(--low);}
+.foot{color:var(--muted);font-size:12px;margin:24px 0 40px;text-align:center;}
+.foot .gen{opacity:.7;margin-top:6px;}
+@media (max-width:520px){
+  .top h1{font-size:19px;} .title{font-size:15px;} .wrap{padding:12px;}
+}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <h1>🛰️ 보안 · AI 데일리 브리핑</h1>
+    <p class="date">📅 2026-07-05 하루 동안 · 신규 43건 · 생성 2026년 07월 06일 (00:52)</p>
+    <div class="stats"><span class="stat"><b>1</b> 🛡️ 보안(해외)</span><span class="stat"><b>7</b> 🇰🇷 보안(국내)</span><span class="stat"><b>0</b> 🐞 취약점(CVE)</span><span class="stat"><b>10</b> 🤖 AI</span><span class="stat"><b>6</b> 🚀 신기술(Trending)</span><span class="stat"><b>19</b> 🏆 대회·해커톤(국내)</span><span class="stat"><b>0</b> 📄 연구(arXiv)</span></div>
+    <div class="stats tiers"><span class="stat high"><b>0</b> 높음</span><span class="stat medium"><b>20</b> 보통</span><span class="stat low"><b>23</b> 주의</span></div>
+  </header>
+
+  <nav class="catnav"><a class="nav-chip cat-headline" href="#cat-headline">📌 헤드라인 (꼭 읽어볼 것) <b>6</b></a><a class="nav-chip cat-security" href="#cat-security">🛡️ 보안(해외) <b>1</b></a><a class="nav-chip cat-security_kr" href="#cat-security_kr">🇰🇷 보안(국내) <b>7</b></a><a class="nav-chip cat-ai" href="#cat-ai">🤖 AI <b>10</b></a><a class="nav-chip cat-tech" href="#cat-tech">🚀 신기술(Trending) <b>6</b></a><a class="nav-chip cat-contest" href="#cat-contest">🏆 대회·해커톤(국내) <b>19</b></a></nav>
+
+  <div class="sortbar">
+    <span class="sortlabel">정렬</span>
+    <button class="sortbtn active" data-mode="custom" onclick="__applySort('custom')">⭐ 맞춤형</button>
+    <button class="sortbtn" data-mode="latest" onclick="__applySort('latest')">🕒 최신순</button>
+  </div>
+
+  
+    <section class="cat headline" id="cat-headline">
+      <h2 class="cat-title">📌 헤드라인 (꼭 읽어볼 것) <span class="count">6</span></h2>
+      <p class="cat-note">오늘 하루 중 중요도(교차보도·고위험 키워드·취약점 심각도 등)를 기준으로 자동 선별했습니다.</p>
+      
+      <article class="card tier-medium" data-ts="1783188693" data-rank="66">
+        <div class="card-head">
+          <span class="rankno">1</span><span class="badge tier-medium">신뢰도 보통 · 64</span>
+          <div class="meta"><span class="catbadge">🤖 AI</span> · <span class="source">The Decoder</span> · <span class="when">2026-07-05 03:11</span></div>
+        </div>
+        <h3 class="title"><a href="https://the-decoder.com/open-source-tool-pxpipe-hides-text-in-pngs-to-cut-claude-code-and-fable-5-token-costs-up-to-70/" target="_blank" rel="noopener">Open-source tool pxpipe hides text in PNGs to cut Claude Code and Fable 5 token costs up to 70%</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">오픈소스 도구 &#x27;pxpipe&#x27;는 텍스트 프롬프트를 PNG 이미지로 변환하여 앤스로픽의 이미지 토큰 과금 체계를 활용함으로써 Claude Code 및 Fable 5의 사용 비용을 최대 70%까지 절감합니다. 다만, 이 방식은 텍스트를 이미지화하는 과정에서 처리 속도가 느려지고 모델의 응답 정확도가 떨어질 수 있다는 한계가 있습니다.</p></details>
+        <div class="corrob">🔗 교차보도: TechCrunch AI</div>
+        <div class="chips"><span class="chip">출처 신뢰도 75%</span><span class="chip">1개 타 매체 교차보도</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1783188005" data-rank="43">
+        <div class="card-head">
+          <span class="rankno">2</span><span class="badge tier-medium">신뢰도 보통 · 67</span>
+          <div class="meta"><span class="catbadge">🤖 AI</span> · <span class="source">TechCrunch AI</span> · <span class="when">2026-07-05 03:00</span></div>
+        </div>
+        <h3 class="title"><a href="https://techcrunch.com/2026/07/04/midjourney-wants-hollywood-studios-to-reveal-the-details-of-their-ai-usage/" target="_blank" rel="noopener">Midjourney wants Hollywood studios to reveal the details of their AI usage</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">미드저니(Midjourney)가 할리우드 스튜디오들과 진행 중인 법적 분쟁 과정에서, 해당 스튜디오들이 자체적으로 AI를 어떻게 활용하고 있는지 상세 정보를 공개하라고 요구했습니다. 이는 저작권 침해 소송의 대응 차원으로, 상대 측의 AI 사용 실태를 파악해 법적 공방의 근거로 삼으려는 전략으로 풀이됩니다.</p></details>
+        <div class="corrob">🔗 교차보도: The Decoder</div>
+        <div class="chips"><span class="chip">출처 신뢰도 80%</span><span class="chip">1개 타 매체 교차보도</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1783182728" data-rank="43">
+        <div class="card-head">
+          <span class="rankno">3</span><span class="badge tier-medium">신뢰도 보통 · 67</span>
+          <div class="meta"><span class="catbadge">🤖 AI</span> · <span class="source">TechCrunch AI</span> · <span class="when">2026-07-05 01:32</span></div>
+        </div>
+        <h3 class="title"><a href="https://techcrunch.com/2026/07/04/alibaba-reportedly-bans-employees-from-using-claude-code/" target="_blank" rel="noopener">Alibaba reportedly bans employees from using Claude Code</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">알리바바가 자사 직원들의 &#x27;클로드 코드(Claude Code)&#x27; 사용을 금지하고 해당 소프트웨어를 고위험군으로 분류했습니다. 이는 기업 내부 데이터 보안 및 코드 유출을 방지하기 위한 선제적 조치로 풀이됩니다.</p></details>
+        <div class="corrob">🔗 교차보도: The Decoder</div>
+        <div class="chips"><span class="chip">출처 신뢰도 80%</span><span class="chip">1개 타 매체 교차보도</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1783242156" data-rank="42">
+        <div class="card-head">
+          <span class="rankno">4</span><span class="badge tier-medium">신뢰도 보통 · 64</span>
+          <div class="meta"><span class="catbadge">🤖 AI</span> · <span class="source">The Decoder</span> · <span class="when">2026-07-05 18:02</span></div>
+        </div>
+        <h3 class="title"><a href="https://the-decoder.com/hollywood-wants-seedance-banned-and-reportedly-also-wants-to-keep-using-it/" target="_blank" rel="noopener">Hollywood wants Seedance banned and reportedly also wants to keep using it</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">바이트댄스의 AI 영상 도구 &#x27;시댄스(Seedance)&#x27;가 유명 배우의 딥페이크 영상을 생성해 할리우드 영화협회로부터 최초의 중단 명령을 받았습니다. 그러나 실제 할리우드 스튜디오들은 공식적인 반대 입장과 달리, 내부적으로는 해당 도구를 비밀리에 활용하고 있어 업계 내 모순적인 상황이 발생하고 있습니다.</p></details>
+        <div class="corrob">🔗 교차보도: TechCrunch AI</div>
+        <div class="chips"><span class="chip">출처 신뢰도 75%</span><span class="chip">1개 타 매체 교차보도</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1783180292" data-rank="40">
+        <div class="card-head">
+          <span class="rankno">5</span><span class="badge tier-medium">신뢰도 보통 · 55</span>
+          <div class="meta"><span class="catbadge">🤖 AI</span> · <span class="source">TechCrunch AI</span> · <span class="when">2026-07-05 00:51</span></div>
+        </div>
+        <h3 class="title"><a href="https://techcrunch.com/2026/07/04/what-is-mistral-ai-everything-to-know-about-the-openai-competitor/" target="_blank" rel="noopener">What is Mistral AI? Everything to know about the OpenAI competitor</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">2023년 설립된 미스트랄 AI는 오픈 소스 AI 모델을 제공하며, 누구나 최첨단 AI 기술을 활용할 수 있도록 하는 것을 목표로 대규모 투자를 유치했습니다. 이 기업은 오픈 소스 전략을 바탕으로 오픈AI의 강력한 경쟁자로 부상하고 있습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 80%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-low" data-ts="1783237937" data-rank="39">
+        <div class="card-head">
+          <span class="rankno">6</span><span class="badge tier-low">주의 필요 · 52</span>
+          <div class="meta"><span class="catbadge">🤖 AI</span> · <span class="source">The Decoder</span> · <span class="when">2026-07-05 16:52</span></div>
+        </div>
+        <h3 class="title"><a href="https://the-decoder.com/ai-search-agents-dont-fail-at-searching-they-fail-at-asking-the-right-questions-when-queries-get-ambiguous/" target="_blank" rel="noopener">AI search agents don&#x27;t fail at searching, they fail at asking the right questions when queries get ambiguous</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">AI 검색 에이전트는 검색 기술 자체보다는 모호한 질문에 대해 사용자에게 추가 확인을 거치지 않는 문제로 인해 성능이 저하됩니다. 새로운 벤치마크인 DiscoBench에 따르면, 불확실한 상황에서 질문 없이 반복적으로 검색만 수행하는 모델은 오히려 성능이 떨어지는 것으로 나타났습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 75%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+    </section>
+    <section class="cat" id="cat-security">
+      <h2 class="cat-title">🛡️ 보안(해외) <span class="count">1</span></h2>
+      
+      <article class="card tier-medium" data-ts="1783260892" data-rank="36">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 60</span>
+          <div class="meta"><span class="source">BleepingComputer</span> · <span class="when">2026-07-05 23:14</span></div>
+        </div>
+        <h3 class="title"><a href="https://www.bleepingcomputer.com/news/security/flipper-zero-firmware-development-continues-with-community-help/" target="_blank" rel="noopener">Flipper Zero firmware development continues with community help</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">Flipper Devices는 내부 개발팀 규모를 축소하는 대신 커뮤니티 기여를 확대하는 방식으로 Flipper Zero 펌웨어 개발을 지속하기로 했습니다. 이는 기업의 직접적인 개발 역량은 줄어들지만, 오픈소스 커뮤니티를 통해 제품의 유지보수와 기능 업데이트를 이어가겠다는 전략적 변화를 의미합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 90%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+    </section>
+    <section class="cat" id="cat-security_kr">
+      <h2 class="cat-title">🇰🇷 보안(국내) <span class="count">7</span></h2>
+      
+      <article class="card tier-medium" data-ts="1783237080" data-rank="35">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 58</span>
+          <div class="meta"><span class="source">보안뉴스</span> · <span class="when">2026-07-05 16:38</span></div>
+        </div>
+        <h3 class="title"><a href="http://www.boannews.com/media/view.asp?idx=143641&amp;kind=&amp;sub_kind=" target="_blank" rel="noopener">[속담으로 배우는 100가지 보안 습관 54] 세 살 버릇 여든까지 간다(4)-같은 비밀번호 쓰면 털리는 구조</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">보안 사고의 90%는 기술적 결함보다 사용자의 실수에서 비롯되므로 올바른 보안 습관을 갖추는 것이 중요합니다. 특히 계정 탈취를 방지하기 위해 사이트마다 서로 다른 비밀번호를 사용하는 습관을 실천해야 합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 85%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1783236840" data-rank="35">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 58</span>
+          <div class="meta"><span class="source">보안뉴스</span> · <span class="when">2026-07-05 16:34</span></div>
+        </div>
+        <h3 class="title"><a href="http://www.boannews.com/media/view.asp?idx=143840&amp;kind=&amp;sub_kind=" target="_blank" rel="noopener">“주차관제에서 로봇·무인화, AI 안전까지” 아마노코리아 쇼룸에서 ‘공간 자동화’의 미래를 읽다</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">아마노코리아는 AI 관제, 로봇, 무인화 기술을 결합한 통합 운영 플랫폼을 통해 주차관제 및 공간 자동화 솔루션을 선보였습니다. 단순 하드웨어 공급을 넘어 데이터 기반의 운영 자동화 기업으로 전환하며, 24시간 무인 로봇 카페와 원격 통합관제 등 기술 집약적 미래 모델을 제시하고 있습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 85%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1783218300" data-rank="35">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 58</span>
+          <div class="meta"><span class="source">보안뉴스</span> · <span class="when">2026-07-05 11:25</span></div>
+        </div>
+        <h3 class="title"><a href="http://www.boannews.com/media/view.asp?idx=144499&amp;kind=&amp;sub_kind=" target="_blank" rel="noopener">공급망 보안, 해법은 ‘자동화된 길목 통제’... OWASP 세미나</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">OWASP 세미나에서 당근과 토스는 공급망 보안을 위해 외부 패키지 유입을 제어하는 자동화된 방어 체계를 공유했습니다. 당근은 &#x27;레지스트리 프록시&#x27;를 통한 쿨다운 정책으로 신규 패키지 유입을 제한하고, 토스는 아티팩트 방화벽을 운영해 직렬화 포맷을 악용한 머신러닝 위협을 차단하고 있습니다. 이는 급증하는 오픈소스 패키지 위협에 대응하기 위해 보안 인프라의 자동화된 통제가 필수적임을 시사합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 85%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1783218060" data-rank="35">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 58</span>
+          <div class="meta"><span class="source">보안뉴스</span> · <span class="when">2026-07-05 11:21</span></div>
+        </div>
+        <h3 class="title"><a href="http://www.boannews.com/media/view.asp?idx=144496&amp;kind=&amp;sub_kind=" target="_blank" rel="noopener">[ISEC 2026 미리보기] 텍스트 넘어 지문·서명까지... 엘세븐시큐리티 비정형 데이터 마스킹</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">엘세븐시큐리티는 딥러닝 기반 OCR 기술을 활용해 신분증, 계좌번호 등 이미지 내 개인정보를 실시간으로 식별하고 마스킹하는 솔루션을 선보입니다. 특히 기존 텍스트 위주의 보안을 넘어 인장 및 수기 서명까지 자동 마스킹 범위를 확대하여 비정형 데이터 보안을 강화한 점이 핵심입니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 85%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1783217640" data-rank="35">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 58</span>
+          <div class="meta"><span class="source">보안뉴스</span> · <span class="when">2026-07-05 11:14</span></div>
+        </div>
+        <h3 class="title"><a href="http://www.boannews.com/media/view.asp?idx=144497&amp;kind=&amp;sub_kind=" target="_blank" rel="noopener">[ISEC 2026 미리보기] 개인정보 통제권 잃은 기업들... ‘캐치시큐’가 해답 제시한다</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">오내피플은 ISEC 2026에서 개인정보 수집부터 파기까지 전 과정을 AI로 자동화하는 ‘캐치시큐’ 솔루션을 선보입니다. 이 솔루션은 강화되는 개인정보보호법과 ISMS-P 의무화에 대응하여, 기존 14일이 소요되던 관리 업무를 30분으로 단축해 기업의 컴플라이언스 효율성을 높입니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 85%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1783217820" data-rank="35">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 58</span>
+          <div class="meta"><span class="source">보안뉴스</span> · <span class="when">2026-07-05 11:17</span></div>
+        </div>
+        <h3 class="title"><a href="http://www.boannews.com/media/view.asp?idx=144371&amp;kind=&amp;sub_kind=" target="_blank" rel="noopener">[Global Security TOP 100] 김상석 웹게이트 대표이사 “영상보안의 다음 역할을 끊임없이 고민해야”</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">영상보안 기술이 단순 기록을 넘어 AI 기반의 화재·재난·산업재해 예방 중심으로 진화하고 있습니다. 웹게이트는 국산 AI SoC 기반의 엣지 영상분석과 불꽃감지 카메라를 통해 산업안전 및 국가중요시설 시장에서의 현장 대응력을 강화하고 있습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 85%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1783217460" data-rank="35">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 58</span>
+          <div class="meta"><span class="source">보안뉴스</span> · <span class="when">2026-07-05 11:11</span></div>
+        </div>
+        <h3 class="title"><a href="http://www.boannews.com/media/view.asp?idx=144491&amp;kind=&amp;sub_kind=" target="_blank" rel="noopener">[2026 개인정보보호 우수사례-2] 경기도 광주시, 전국 지자체 유일 S 등급 달성 쾌거</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">경기도 광주시가 개인정보 보호 전문관 임용과 전담 부서 개편을 통해 체계적인 보호 시스템을 구축하며, 전국 지자체 중 유일하게 개인정보 보호수준 평가에서 최우수 등급인 S 등급을 획득했습니다. 이는 디지털 행정 서비스 확대에 발맞춰 시민 신뢰를 최우선으로 하는 보안 역량을 입증한 사례로 평가받습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 85%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+    </section>
+    <section class="cat" id="cat-ai">
+      <h2 class="cat-title">🤖 AI <span class="count">10</span></h2>
+      
+      <article class="card tier-medium" data-ts="1783188005" data-rank="43">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 67</span>
+          <div class="meta"><span class="source">TechCrunch AI</span> · <span class="when">2026-07-05 03:00</span></div>
+        </div>
+        <h3 class="title"><a href="https://techcrunch.com/2026/07/04/midjourney-wants-hollywood-studios-to-reveal-the-details-of-their-ai-usage/" target="_blank" rel="noopener">Midjourney wants Hollywood studios to reveal the details of their AI usage</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">미드저니(Midjourney)가 할리우드 스튜디오들과 진행 중인 법적 분쟁 과정에서, 해당 스튜디오들이 자체적으로 AI를 어떻게 활용하고 있는지 상세 정보를 공개하라고 요구했습니다. 이는 저작권 침해 소송의 대응 차원으로, 상대 측의 AI 사용 실태를 파악해 법적 공방의 근거로 삼으려는 전략으로 풀이됩니다.</p></details>
+        <div class="corrob">🔗 교차보도: The Decoder</div>
+        <div class="chips"><span class="chip">출처 신뢰도 80%</span><span class="chip">1개 타 매체 교차보도</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1783182728" data-rank="43">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 67</span>
+          <div class="meta"><span class="source">TechCrunch AI</span> · <span class="when">2026-07-05 01:32</span></div>
+        </div>
+        <h3 class="title"><a href="https://techcrunch.com/2026/07/04/alibaba-reportedly-bans-employees-from-using-claude-code/" target="_blank" rel="noopener">Alibaba reportedly bans employees from using Claude Code</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">알리바바가 자사 직원들의 &#x27;클로드 코드(Claude Code)&#x27; 사용을 금지하고 해당 소프트웨어를 고위험군으로 분류했습니다. 이는 기업 내부 데이터 보안 및 코드 유출을 방지하기 위한 선제적 조치로 풀이됩니다.</p></details>
+        <div class="corrob">🔗 교차보도: The Decoder</div>
+        <div class="chips"><span class="chip">출처 신뢰도 80%</span><span class="chip">1개 타 매체 교차보도</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1783242156" data-rank="42">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 64</span>
+          <div class="meta"><span class="source">The Decoder</span> · <span class="when">2026-07-05 18:02</span></div>
+        </div>
+        <h3 class="title"><a href="https://the-decoder.com/hollywood-wants-seedance-banned-and-reportedly-also-wants-to-keep-using-it/" target="_blank" rel="noopener">Hollywood wants Seedance banned and reportedly also wants to keep using it</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">바이트댄스의 AI 영상 도구 &#x27;시댄스(Seedance)&#x27;가 유명 배우의 딥페이크 영상을 생성해 할리우드 영화협회로부터 최초의 중단 명령을 받았습니다. 그러나 실제 할리우드 스튜디오들은 공식적인 반대 입장과 달리, 내부적으로는 해당 도구를 비밀리에 활용하고 있어 업계 내 모순적인 상황이 발생하고 있습니다.</p></details>
+        <div class="corrob">🔗 교차보도: TechCrunch AI</div>
+        <div class="chips"><span class="chip">출처 신뢰도 75%</span><span class="chip">1개 타 매체 교차보도</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1783188693" data-rank="66">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 64</span>
+          <div class="meta"><span class="source">The Decoder</span> · <span class="when">2026-07-05 03:11</span></div>
+        </div>
+        <h3 class="title"><a href="https://the-decoder.com/open-source-tool-pxpipe-hides-text-in-pngs-to-cut-claude-code-and-fable-5-token-costs-up-to-70/" target="_blank" rel="noopener">Open-source tool pxpipe hides text in PNGs to cut Claude Code and Fable 5 token costs up to 70%</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">오픈소스 도구 &#x27;pxpipe&#x27;는 텍스트 프롬프트를 PNG 이미지로 변환하여 앤스로픽의 이미지 토큰 과금 체계를 활용함으로써 Claude Code 및 Fable 5의 사용 비용을 최대 70%까지 절감합니다. 다만, 이 방식은 텍스트를 이미지화하는 과정에서 처리 속도가 느려지고 모델의 응답 정확도가 떨어질 수 있다는 한계가 있습니다.</p></details>
+        <div class="corrob">🔗 교차보도: TechCrunch AI</div>
+        <div class="chips"><span class="chip">출처 신뢰도 75%</span><span class="chip">1개 타 매체 교차보도</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1783180292" data-rank="40">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 55</span>
+          <div class="meta"><span class="source">TechCrunch AI</span> · <span class="when">2026-07-05 00:51</span></div>
+        </div>
+        <h3 class="title"><a href="https://techcrunch.com/2026/07/04/what-is-mistral-ai-everything-to-know-about-the-openai-competitor/" target="_blank" rel="noopener">What is Mistral AI? Everything to know about the OpenAI competitor</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">2023년 설립된 미스트랄 AI는 오픈 소스 AI 모델을 제공하며, 누구나 최첨단 AI 기술을 활용할 수 있도록 하는 것을 목표로 대규모 투자를 유치했습니다. 이 기업은 오픈 소스 전략을 바탕으로 오픈AI의 강력한 경쟁자로 부상하고 있습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 80%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1783198525" data-rank="28">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 55</span>
+          <div class="meta"><span class="source">TechCrunch AI</span> · <span class="when">2026-07-05 05:55</span></div>
+        </div>
+        <h3 class="title"><a href="https://techcrunch.com/2026/07/04/new-google-commercial-imagines-a-declaration-of-independence-written-with-help-from-ai/" target="_blank" rel="noopener">New Google commercial imagines a Declaration of Independence written with help from AI</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">구글이 미국 독립선언서 작성에 구글 워크스페이스(AI 도구)를 활용했다면 어땠을지 가정하는 광고를 공개했습니다. 이는 생성형 AI가 복잡한 문서 작성과 협업 과정을 어떻게 보조할 수 있는지 보여주며, AI 도구의 일상적 활용 가능성을 강조합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 80%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-low" data-ts="1783246926" data-rank="27">
+        <div class="card-head">
+          <span class="badge tier-low">주의 필요 · 52</span>
+          <div class="meta"><span class="source">The Decoder</span> · <span class="when">2026-07-05 19:22</span></div>
+        </div>
+        <h3 class="title"><a href="https://the-decoder.com/mistral-ceo-mensch-says-proprietary-ai-models-give-labs-a-front-row-seat-to-your-business-processes/" target="_blank" rel="noopener">Mistral CEO Mensch says proprietary AI models give labs a front-row seat to your business processes</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">미스트랄 AI의 CEO 아서 멘쉬는 폐쇄형 AI 모델을 사용하는 기업들이 자사 데이터를 AI 기업에 노출함으로써 향후 해당 기업이 경쟁자로 돌변할 위험이 있다고 경고했습니다. 미스트랄은 이러한 보안 우려를 바탕으로 데이터 주권과 유럽 내 자율성을 강조하며 오픈 모델 전략을 통해 차별화를 꾀하고 있습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 75%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-low" data-ts="1783237937" data-rank="39">
+        <div class="card-head">
+          <span class="badge tier-low">주의 필요 · 52</span>
+          <div class="meta"><span class="source">The Decoder</span> · <span class="when">2026-07-05 16:52</span></div>
+        </div>
+        <h3 class="title"><a href="https://the-decoder.com/ai-search-agents-dont-fail-at-searching-they-fail-at-asking-the-right-questions-when-queries-get-ambiguous/" target="_blank" rel="noopener">AI search agents don&#x27;t fail at searching, they fail at asking the right questions when queries get ambiguous</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">AI 검색 에이전트는 검색 기술 자체보다는 모호한 질문에 대해 사용자에게 추가 확인을 거치지 않는 문제로 인해 성능이 저하됩니다. 새로운 벤치마크인 DiscoBench에 따르면, 불확실한 상황에서 질문 없이 반복적으로 검색만 수행하는 모델은 오히려 성능이 떨어지는 것으로 나타났습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 75%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-low" data-ts="1783248346" data-rank="27">
+        <div class="card-head">
+          <span class="badge tier-low">주의 필요 · 52</span>
+          <div class="meta"><span class="source">The Decoder</span> · <span class="when">2026-07-05 19:45</span></div>
+        </div>
+        <h3 class="title"><a href="https://the-decoder.com/ai-private-schools-sell-wealthy-us-families-on-personalized-learning-over-traditional-education/" target="_blank" rel="noopener">AI private schools sell wealthy US families on personalized learning over traditional education</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">미국 부유층을 중심으로 연간 7만 5천 달러에 달하는 고가의 AI 사립학교가 확산하며 전통적 교육과의 격차가 심화하고 있습니다. AI 기반 맞춤형 학습이 교육의 질을 높일 수 있으나, 적절한 활용 역량 없이 도입될 경우 오히려 교육 불평등을 가속화할 위험이 제기됩니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 75%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-low" data-ts="1783226531" data-rank="27">
+        <div class="card-head">
+          <span class="badge tier-low">주의 필요 · 52</span>
+          <div class="meta"><span class="source">바이라인네트워크</span> · <span class="when">2026-07-05 13:42</span></div>
+        </div>
+        <h3 class="title"><a href="https://byline.network/2026/07/3-427/" target="_blank" rel="noopener">제논 “생성형 AI 2.0 시대, 업무 프로세스와 AI 통합 필수적”</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">제논(GenON)이 기업용 AI 플랫폼 &#x27;제노스(GenOS) 2.0&#x27;을 공개하며 생성형 AI 2.0 시대의 핵심으로 업무 프로세스와 AI의 긴밀한 통합을 강조했다. 이번 플랫폼은 기업 환경에 최적화된 AI 도입을 지원하여 실질적인 업무 효율성을 높이는 데 중점을 둔다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 75%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+    </section>
+    <section class="cat" id="cat-tech">
+      <h2 class="cat-title">🚀 신기술(Trending) <span class="count">6</span></h2>
+      
+      <article class="card tier-medium" data-ts="1783014835" data-rank="1149">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 58</span>
+          <div class="meta"><span class="source">GitHub 신기술</span> · <span class="when">2026-07-03 02:53</span></div>
+        </div>
+        <h3 class="title"><a href="https://github.com/elder-plinius/T3MP3ST" target="_blank" rel="noopener">elder-plinius/T3MP3ST · ⭐1,149 · TypeScript</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">T3MP3ST는 다중 에이전트 시스템을 활용해 공격 보안 테스트를 자동화하는 레드팀 플랫폼입니다. 여러 AI 에이전트가 협력하여 보안 취약점을 탐색하고 공격 시나리오를 수행함으로써, 보안 평가의 효율성과 자율성을 높이는 데 중점을 둡니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 85%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1783133979" data-rank="625">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 58</span>
+          <div class="meta"><span class="source">GitHub 신기술</span> · <span class="when">2026-07-04 11:59</span></div>
+        </div>
+        <h3 class="title"><a href="https://github.com/ammaarreshi/Generals-Mac-iOS-iPad" target="_blank" rel="noopener">ammaarreshi/Generals-Mac-iOS-iPad · ⭐625 · C++</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">EA의 오픈소스 엔진을 활용한 &#x27;커맨드 앤 컨커 제너럴: 제로 아워&#x27;의 macOS 및 iOS/iPadOS 네이티브 이식 프로젝트가 공개되었습니다. DXVK와 MoltenVK 렌더러를 통해 애플 기기에서 구동되며, 터치 인터페이스를 지원하여 모바일 환경에서의 실시간 전략 게임 플레이가 가능해졌습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 85%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1783092004" data-rank="564">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 58</span>
+          <div class="meta"><span class="source">GitHub 신기술</span> · <span class="when">2026-07-04 00:20</span></div>
+        </div>
+        <h3 class="title"><a href="https://github.com/Kulaxyz/token-diet" target="_blank" rel="noopener">Kulaxyz/token-diet · ⭐564 · Shell</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">&#x27;token-diet&#x27;은 Claude Code, Cursor 등 코딩 에이전트의 토큰 사용량을 최적화하여 정확도 손실 없이 평균 31%의 비용을 절감하는 기술입니다. 코딩 에이전트의 상시 운영 비용을 효율적으로 낮출 수 있다는 점에서 실질적인 경제적 이점을 제공합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 85%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1782970605" data-rank="476">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 58</span>
+          <div class="meta"><span class="source">GitHub 신기술</span> · <span class="when">2026-07-02 14:36</span></div>
+        </div>
+        <h3 class="title"><a href="https://github.com/LinXiaoTao/FuckClaude" target="_blank" rel="noopener">LinXiaoTao/FuckClaude · ⭐476 · TypeScript</a></h3>
+        
+        
+        <div class="chips"><span class="chip">출처 신뢰도 85%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1782964054" data-rank="441">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 58</span>
+          <div class="meta"><span class="source">GitHub 신기술</span> · <span class="when">2026-07-02 12:47</span></div>
+        </div>
+        <h3 class="title"><a href="https://github.com/asz798838958/FrciblyK12" target="_blank" rel="noopener">asz798838958/FrciblyK12 · ⭐441 · Python</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">해당 프로젝트는 다중 스레드를 활용해 K12 교육 플랫폼의 계정을 자동으로 대량 생성하는 파이썬 기반 도구입니다. 보안 측면에서 서비스의 가입 로직을 우회하여 무단 계정 생성 및 악용 가능성을 높인다는 점에서 주의가 필요합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 85%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1782251225" data-rank="403">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 58</span>
+          <div class="meta"><span class="source">GitHub 신기술</span> · <span class="when">2026-06-24 06:47</span></div>
+        </div>
+        <h3 class="title"><a href="https://github.com/joaogfc/ZeroDelay" target="_blank" rel="noopener">joaogfc/ZeroDelay · ⭐403 · JavaScript</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">&#x27;ZeroDelay&#x27;는 유튜브 라이브 방송의 지연 시간을 줄여주는 Manifest V3 기반의 크롬 확장 프로그램입니다. 이 도구는 재생 속도를 미세하게 가속하여 사용자가 실시간 방송 시점과 동기화된 상태로 시청할 수 있도록 돕습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 85%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+    </section>
+    <section class="cat" id="cat-contest">
+      <h2 class="cat-title">🏆 대회·해커톤(국내) <span class="count">19</span></h2>
+      
+      <article class="card tier-low" data-ts="1783200813" data-rank="19">
+        <div class="card-head">
+          <span class="badge tier-low">주의 필요 · 48</span>
+          <div class="meta"><span class="source">AI 대회·해커톤</span> · <span class="when">2026-07-05 06:33</span></div>
+        </div>
+        <h3 class="title"><a href="https://news.google.com/rss/articles/CBMibEFVX3lxTE5XSDlBV3VvcXUyS2I2SlRmSWhhc210ZnlwQkZkdlZMeWJqTFp5a1FUS1VmNFViTW9RNHNVdjVMZ3d0MTdMQ0VfRjBEeGk2YS05bks2THlDVW9McUZwX1BheENyOW9zQWJmRVh5TQ?oc=5" target="_blank" rel="noopener">[제약·바이오 트렌드] 광동제약, 사내 AI 해커톤 ‘광동 플레이그라운드’ 개최 外 - 베이비뉴스</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">광동제약이 임직원의 디지털 역량 강화와 업무 효율화를 위해 사내 AI 해커톤 ‘광동 플레이그라운드’를 개최했습니다. 이번 행사는 생성형 AI 등 최신 기술을 활용해 실무 현장의 문제를 해결하고 사내 디지털 전환을 가속화하는 데 목적이 있습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 65%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-low" data-ts="1783215868" data-rank="19">
+        <div class="card-head">
+          <span class="badge tier-low">주의 필요 · 48</span>
+          <div class="meta"><span class="source">보안 대회·해커톤</span> · <span class="when">2026-07-05 10:44</span></div>
+        </div>
+        <h3 class="title"><a href="https://news.google.com/rss/articles/CBMibkFVX3lxTE9EQ1R1dXdJUDFlQU9pWjFNQkZZRHdDV0o3bjRPSEw1MEljYzJONUhoLTdJbnc0bTM0ZHhGcjl4X3dRa0hZN01oaDl4UWxvYlctMm5aaEhoSG1ldEROb1k3N3ZRNk84ZEt6VkJ6emVR?oc=5" target="_blank" rel="noopener">AI 시대 사이버보안 해법 제시…&#x27;핵테온 세종 2026&#x27; 9일 개막 - 뉴스홈(newshome)</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">AI 기술 발전으로 고도화되는 사이버 위협에 대응하기 위해 &#x27;핵테온 세종 2026&#x27;이 9일 개막합니다. 이번 행사는 AI 시대의 보안 전략과 최신 기술 해법을 논의하며 사이버 보안 역량을 강화하는 장으로 마련되었습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 65%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-low" data-ts="1783218000" data-rank="19">
+        <div class="card-head">
+          <span class="badge tier-low">주의 필요 · 48</span>
+          <div class="meta"><span class="source">AI 대회·해커톤</span> · <span class="when">2026-07-05 11:20</span></div>
+        </div>
+        <h3 class="title"><a href="https://news.google.com/rss/articles/CBMiTkFVX3lxTE1nNFphcGxyeUttZmE3R0NlS25mV05kWWZRUVF0SFMzVk50U096NXQ3LWRMaERidkxXRktObHhVblpzLTdvNU9XQmJCM180UQ?oc=5" target="_blank" rel="noopener">기후부 AX 경진대회 대상 &#x27;에코콩&#x27;…“AI로 물관리 최적 시나리오 제시” - 전자신문</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">기상청 주관 &#x27;기후부문 AX 경진대회&#x27;에서 AI 기반 물관리 최적 시나리오를 제시한 &#x27;에코콩&#x27; 팀이 대상을 수상했다. 이 기술은 AI를 활용해 효율적인 수자원 관리 방안을 도출함으로써 기후 위기 대응과 물 관리 최적화에 기여할 것으로 기대된다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 65%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-low" data-ts="1782702122" data-rank="19">
+        <div class="card-head">
+          <span class="badge tier-low">주의 필요 · 48</span>
+          <div class="meta"><span class="source">AI 대회·해커톤</span> · <span class="when">2026-06-29 12:02</span></div>
+        </div>
+        <h3 class="title"><a href="https://news.google.com/rss/articles/CBMiVEFVX3lxTE5UUWQ1eEY4NGFieDEteVJJeGN5Sm9YMnlCbjFMWFI1QVYzXzBDaUgwWXdVTERwa2FQbVpWVmQtbmV3bnlNMkw0WUJVNEZRcVd4bkwtUg?oc=5" target="_blank" rel="noopener">전국민 AI 경진대회, 개막 3개월 만에 참가자 100만명 돌파 - v.daum.net</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">전국민 AI 경진대회가 개최 3개월 만에 참가자 100만 명을 돌파하며 높은 대중적 관심을 입증했습니다. 이는 AI 기술에 대한 국민적 수요가 급증하고 있음을 보여주며, 향후 국내 AI 인재 발굴 및 기술 저변 확대에 중요한 지표가 될 것으로 보입니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 65%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-low" data-ts="1783216260" data-rank="19">
+        <div class="card-head">
+          <span class="badge tier-low">주의 필요 · 48</span>
+          <div class="meta"><span class="source">보안 대회·해커톤</span> · <span class="when">2026-07-05 10:51</span></div>
+        </div>
+        <h3 class="title"><a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTE1mNG1IUFh3U25fUFpwZW8yQjNRbE5WcVhiakJqWjgteUpfNnY3SFZjMWZUMEtBS0xXdlZrM1hsSHRfQmctSG05TzZOZEpKRFRGdlI0bzd5TlZpQndmWGVN0gFfQVVfeXFMTWY0bUhQWHdTbl9QWnBlbzJCM1FsTlZxWGJqQmpaOC15Sl82djdIVmMxZlQwS0FLTFd2VmszWGxIdF9CZy1IbTlPNk5kSkpEVEZ2UjRvN3lOVmlCd2ZYZU0?oc=5" target="_blank" rel="noopener">세종서 AI·사이버보안 콘퍼런스 열린다···9~10일 ‘핵테온 세종’ 개최 - 경향신문</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">세종시에서 오는 9일부터 10일까지 인공지능(AI)과 사이버보안 기술을 주제로 한 콘퍼런스 ‘핵테온 세종’이 개최됩니다. 이번 행사는 최신 보안 기술 트렌드를 공유하고 관련 분야의 전문가들이 모여 사이버 보안 역량을 강화하는 장으로 마련됩니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 65%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-low" data-ts="1783246955" data-rank="19">
+        <div class="card-head">
+          <span class="badge tier-low">주의 필요 · 48</span>
+          <div class="meta"><span class="source">보안 대회·해커톤</span> · <span class="when">2026-07-05 19:22</span></div>
+        </div>
+        <h3 class="title"><a href="https://news.google.com/rss/articles/CBMibEFVX3lxTE1ncWJKS2FPbTJwdlVjVmNVZnN0MGxPWlJzTW1MV1NuMDUwVkpYY2NRY1k2RmtxYURNS003UkRrUGxUVzRfdWRlem5aTS1ocVFlMlNqTlFUX2lqRXFlRzJoeW1ZclVLenpTbTRUX9IBbEFVX3lxTE1ncWJKS2FPbTJwdlVjVmNVZnN0MGxPWlJzTW1MV1NuMDUwVkpYY2NRY1k2RmtxYURNS003UkRrUGxUVzRfdWRlem5aTS1ocVFlMlNqTlFUX2lqRXFlRzJoeW1ZclVLenpTbTRUXw?oc=5" target="_blank" rel="noopener">미토스 시대, 사이버보안 답을 찾는다…&#x27;핵테온 세종&#x27; 9~10일 개최 - 하이테크정보</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">사이버보안 행사인 &#x27;핵테온 세종&#x27;이 9일부터 10일까지 개최되어 최신 보안 기술과 대응 전략을 논의합니다. 이번 행사는 급변하는 디지털 환경 속에서 사이버 위협에 대응하기 위한 실질적인 보안 솔루션과 미래 발전 방향을 모색하는 데 중점을 둡니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 65%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-low" data-ts="1782974108" data-rank="19">
+        <div class="card-head">
+          <span class="badge tier-low">주의 필요 · 48</span>
+          <div class="meta"><span class="source">AI 대회·해커톤</span> · <span class="when">2026-07-02 15:35</span></div>
+        </div>
+        <h3 class="title"><a href="https://news.google.com/rss/articles/CBMiS0FVX3lxTFBtRmd4bDR5MzBDTmJ5V01pSHdoeTBzUU9yY0JyRzNfbG94OWxicmRFLVltX2Q4OEdlXzg0Q29mcVJNQnR2ZXRSaTZkNA?oc=5" target="_blank" rel="noopener">광동제약, AI 경진대회 행사 개최… ‘디지털 전환’ 가속도 - v.daum.net</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">광동제약이 사내 디지털 전환을 가속화하기 위해 인공지능(AI) 경진대회를 개최했습니다. 이번 행사는 데이터 활용 역량을 강화하고 실무에 적용 가능한 AI 모델을 발굴하여 업무 효율성을 높이는 데 목적이 있습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 65%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-low" data-ts="1782863023" data-rank="19">
+        <div class="card-head">
+          <span class="badge tier-low">주의 필요 · 48</span>
+          <div class="meta"><span class="source">AI 대회·해커톤</span> · <span class="when">2026-07-01 08:43</span></div>
+        </div>
+        <h3 class="title"><a href="https://news.google.com/rss/articles/CBMickFVX3lxTE1vV19URFdHTGtZdFBINVpHTTB3NF9nNDM1U1hUdC1IV0RLdjE1UlRKZHA0djIySkQxTFlBOFpLNFlFVVJTaG9uUHBkaHBCcl9GcWJaZVpGMGhkZGdmaHhraXhzck92LVdQVFc0eGVoNms0Zw?oc=5" target="_blank" rel="noopener">&quot;AI는 선택지 넓히는 도구…최종 선택과 책임은 인간 법률가 몫&quot; - 로스쿨타임즈</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">AI는 법률 업무에서 다양한 선택지를 제시하는 보조 도구로 활용될 수 있으나, 최종적인 의사결정과 그에 따른 법적 책임은 여전히 인간 법률가의 영역입니다. 따라서 AI 기술 도입 과정에서 인간의 주도적인 판단과 책임 의식을 유지하는 것이 중요합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 65%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-low" data-ts="1783219727" data-rank="19">
+        <div class="card-head">
+          <span class="badge tier-low">주의 필요 · 48</span>
+          <div class="meta"><span class="source">보안 대회·해커톤</span> · <span class="when">2026-07-05 11:48</span></div>
+        </div>
+        <h3 class="title"><a href="https://news.google.com/rss/articles/CBMickFVX3lxTFBQQTBEWHk4aFkwSGM3MFlSLUlHaGVKRmoxek90MXNlNU1XWW1mcGlsN1UyR1lGcnREdnhNdFZsLUhpNjJkSnVfT1RpM0hPUWFjU3pzS1FPSVh1N3ZvZFc0SnF3T280c1hreWtud3V3TjNsQQ?oc=5" target="_blank" rel="noopener">세종시, AI·사이버보안 국제무대 연다…‘핵테온 세종’ 9일 개막 - 투데이충남</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">세종시가 주최하는 AI 및 사이버보안 국제 행사인 ‘핵테온 세종’이 오는 9일 개최됩니다. 이번 행사는 AI와 사이버보안 분야의 기술 교류를 촉진하고 관련 산업의 국제적 입지를 강화하는 장으로 활용될 예정입니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 65%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-low" data-ts="1783225723" data-rank="19">
+        <div class="card-head">
+          <span class="badge tier-low">주의 필요 · 48</span>
+          <div class="meta"><span class="source">AI 대회·해커톤</span> · <span class="when">2026-07-05 13:28</span></div>
+        </div>
+        <h3 class="title"><a href="https://news.google.com/rss/articles/CBMiVkFVX3lxTFBYSldrRUpCN0VYREVOb1hmd0ZkeFpFcjJoWWNibERnNENGMklkVThDY1hMQWozSU5hMUh4dnNhWnpQbmkxNnE3X1FnQ1hFXzlwUURFQTF3?oc=5" target="_blank" rel="noopener">AI로 지진 행동요령 알린다…행안부, 국민 영상 공모전 개최 - 지디넷코리아</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">행정안전부가 AI 기술을 활용해 지진 행동요령을 효과적으로 알리기 위한 국민 영상 공모전을 개최합니다. 이번 공모전은 AI를 접목한 창의적인 콘텐츠를 통해 재난 대응 정보를 대중에게 쉽고 정확하게 전달하는 것을 목적으로 합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 65%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-low" data-ts="1783233961" data-rank="19">
+        <div class="card-head">
+          <span class="badge tier-low">주의 필요 · 48</span>
+          <div class="meta"><span class="source">보안 대회·해커톤</span> · <span class="when">2026-07-05 15:46</span></div>
+        </div>
+        <h3 class="title"><a href="https://news.google.com/rss/articles/CBMibEFVX3lxTE1sa0JlYTJEX0FFVXlyUEt1U2N0VFRGbFU4UHdvRl9DWlpqY0t3dm5pa2NjMUJYSjVlNDFSSWRHQ1pMU1dQSkJFT1U2MkQ1TUdtS28ybVBjay16R0gyaDNMaE14NGMtcGR1N3QwMQ?oc=5" target="_blank" rel="noopener">AI 시대, 디지틀 사이버보안 국내외 인재들 세종에 다 모인다 - 이세종경제</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">세종시가 AI 및 디지털 사이버보안 분야의 국내외 전문 인재를 유치하여 관련 산업 생태계를 조성하고 있습니다. 이를 통해 세종시는 디지털 보안 기술의 핵심 거점으로 도약하며 국가적 보안 역량을 강화할 계획입니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 65%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-low" data-ts="1783042888" data-rank="19">
+        <div class="card-head">
+          <span class="badge tier-low">주의 필요 · 48</span>
+          <div class="meta"><span class="source">보안 대회·해커톤</span> · <span class="when">2026-07-03 10:41</span></div>
+        </div>
+        <h3 class="title"><a href="https://news.google.com/rss/articles/CBMiVEFVX3lxTE1uYnlIWjdBV2Y0MEVTcFVNRkZaSjM2NmxFdXd2UXJFcVV6b0ZrT0lDNUhZSE9lZVpoS0FMVnRQTV9HUElIVjVvQ3ZzeGVjaWFNZlZUR9IBWEFVX3lxTFBZMnJJV3NlcWV5czZJWGhkYzRXUzdpYXJITFRQNUFTNmh1dlU4QzBmbmF6YXdDY2hfUzlqQTB6dEhySTVXYlhwTVR1SmJWMjk5YVVXSkhLOG8?oc=5" target="_blank" rel="noopener">성신여대, 한국융합보안학회 하계학술대회 우수논문상 4편 수상 - 미디어펜</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">성신여자대학교 연구진이 한국융합보안학회 하계학술대회에서 융합보안 분야의 연구 성과를 인정받아 우수논문상 4편을 수상했습니다. 이번 수상은 성신여대의 보안 기술 연구 역량과 학문적 기여도를 입증한 결과로 평가됩니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 65%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-low" data-ts="1782886024" data-rank="19">
+        <div class="card-head">
+          <span class="badge tier-low">주의 필요 · 48</span>
+          <div class="meta"><span class="source">AI 대회·해커톤</span> · <span class="when">2026-07-01 15:07</span></div>
+        </div>
+        <h3 class="title"><a href="https://news.google.com/rss/articles/CBMiT0FVX3lxTFBrY1p1dXJtSzdldHhERFk5U0JoT3dqaVNsX2F5Z09KckVMUVQtdjF6MlNSRW5LRUR1dE5Ya0tIZFFHM1E3X1BtM0JQY2hnTDQ?oc=5" target="_blank" rel="noopener">영남이공대, AI 활용 교육·행정 우수사례 시상 - v.daum.net</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">영남이공대학교가 대학 내 교육 및 행정 분야에서 인공지능(AI) 기술을 효과적으로 활용한 우수 사례를 선정해 시상했다. 이번 시상은 대학 운영 전반에 AI 도입을 장려하고, 디지털 전환을 통한 교육 혁신과 업무 효율성 향상을 도모하기 위해 마련되었다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 65%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-low" data-ts="1782881120" data-rank="19">
+        <div class="card-head">
+          <span class="badge tier-low">주의 필요 · 48</span>
+          <div class="meta"><span class="source">AI 대회·해커톤</span> · <span class="when">2026-07-01 13:45</span></div>
+        </div>
+        <h3 class="title"><a href="https://news.google.com/rss/articles/CBMibEFVX3lxTE9BMUNkRWJXdUxMSUN0ZUdLZzdNd3VKQmVFTjFLb3ZVcGxyTUJUQlVoa1ZUeG5GaE10eWRteFktWE93TVpVOUZBSXZJc3Iyd2tWTnlTanJGWnVBMTVjMGJPdzJJWTRCT0lkQlFhSg?oc=5" target="_blank" rel="noopener">고려대 의대, 제4회 &#x27;AI 신약개발 경진대회&#x27; 개최 - 서울동북신문</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">고려대학교 의과대학이 인공지능 기술을 활용한 신약 개발 역량을 강화하기 위해 제4회 &#x27;AI 신약개발 경진대회&#x27;를 개최했습니다. 이번 대회는 AI 기술을 신약 연구에 접목해 관련 분야의 인재를 발굴하고 혁신적인 신약 개발 솔루션을 모색하는 데 목적이 있습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 65%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-low" data-ts="1783227222" data-rank="19">
+        <div class="card-head">
+          <span class="badge tier-low">주의 필요 · 48</span>
+          <div class="meta"><span class="source">보안 대회·해커톤</span> · <span class="when">2026-07-05 13:53</span></div>
+        </div>
+        <h3 class="title"><a href="https://news.google.com/rss/articles/CBMiZ0FVX3lxTFB3b1A2NTFjNS10SEZwUXQxOWY4MjdZSGR1Y2FSaDZCTXlyT2NwaDRGMXVpVEdMblBUTkJqY0VKTU11dU8zUVZnMHpIMml1SDZ5SzBNMHJwcG9DMVFjSXFVdmZ4T1dsQzQ?oc=5" target="_blank" rel="noopener">상금 3800만원… AI 정보보안 해답 세종에서 찾아요 - 세종의소리</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">세종특별자치시가 AI 기술을 활용한 정보보안 솔루션을 발굴하기 위해 총상금 3,800만 원 규모의 아이디어 공모전을 개최합니다. 이번 공모전은 AI 기반의 보안 기술을 통해 도시의 정보보안 체계를 강화하고 관련 분야의 혁신적인 해답을 찾기 위해 마련되었습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 65%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-low" data-ts="1783210803" data-rank="19">
+        <div class="card-head">
+          <span class="badge tier-low">주의 필요 · 48</span>
+          <div class="meta"><span class="source">보안 대회·해커톤</span> · <span class="when">2026-07-05 09:20</span></div>
+        </div>
+        <h3 class="title"><a href="https://news.google.com/rss/articles/CBMiakFVX3lxTE1PN0pFYmFRRFl6SU0yWFQyQXg3VHVOMlpEOElubWpPZDNsMXBEZzBoMFdpcG5uM3hRd04ySFFZcHNjcW96OTJycmRmMFR4RVZPMzJSbDY2Rkl2RDN6SFJ0cjk4Q1VmdGpIcnc?oc=5" target="_blank" rel="noopener">&#x27;2026 핵테온 세종 AI·사이버보안 콘퍼런스&#x27; 개막 - 세종포스트</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">&#x27;2026 핵테온 세종 AI·사이버보안 콘퍼런스&#x27;가 세종시에서 개막했습니다. 이번 행사는 인공지능 기술과 사이버 보안 분야의 최신 동향을 공유하고 관련 산업의 발전 방안을 논의하기 위해 마련되었습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 65%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-low" data-ts="1782882780" data-rank="19">
+        <div class="card-head">
+          <span class="badge tier-low">주의 필요 · 48</span>
+          <div class="meta"><span class="source">AI 대회·해커톤</span> · <span class="when">2026-07-01 14:13</span></div>
+        </div>
+        <h3 class="title"><a href="https://news.google.com/rss/articles/CBMihgJBVV95cUxQVTJCUzZGNERHZFJVN2lRV2lxbnlfX1VsYjZSdkt0VXVucThOWjFnOFFlZW53TGg5NGVpUmRqV2NfcV9TNVBuWDU5YVlNOWpRcl9kbnlUME5QZFBjcFhkR1VqRkdFV3JvSnRYd0NUZVNVT1Z5OFpVdlVGUkJjakJhS1lpcTREMUJfVVBxZGFldkVIUkg1bkhSRUc0N21UYUdXM1Jwb3IzQmVaeHlHV1R2NFhOS2FnMUotSjBpLUNPaDBfeEY4ZTVjQmQ4RFRjckpWeTRxbmkyV3VGS1FDN29zLXd6QU52OXY3SGV4WW5pbVdfTGE1c1hodENzVllLMjVaVXlEdGxn0gGGAkFVX3lxTFBVMkJTNkY0REdkUlU3aVFXaXFueV9fVWxiNlJ2S3RVdW5xOE5aMWc4UWVlbndMaDk0ZWlSZGpXY19xX1M1UG5YNTlhWU05alFyX2RueVQwTlBkUGNwWGRHVWpGR0VXcm9KdFh3Q1RlU1VPVnk4WlV2VUZSQmNqQmFLWWlxNEQxQl9VUHFkYWV2RUhSSDVuSFJFRzQ3bVRhR1czUnBvcjNCZVp4eUdXVHY0WE5LYWcxSi1KMGktQ09oMF94RjhlNWNCZDhEVGNySlZ5NHFuaTJXdUZLUUM3b3Mtd3pBTnY5djdIZXhZbmltV19MYTVzWGh0Q3NWWUsyNVpVeUR0bGc?oc=5" target="_blank" rel="noopener">과기정통부 ‘2026 자율주행 인공지능 챌린지’ 개최 - 데일리안</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">과학기술정보통신부가 자율주행 기술 경쟁력 확보를 위해 ‘2026 자율주행 인공지능 챌린지’를 개최합니다. 이번 대회는 자율주행 분야의 AI 기술 고도화를 촉진하고 관련 인재를 발굴하여 차세대 모빌리티 산업의 기술적 기반을 강화하는 데 목적이 있습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 65%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-low" data-ts="1783231477" data-rank="19">
+        <div class="card-head">
+          <span class="badge tier-low">주의 필요 · 48</span>
+          <div class="meta"><span class="source">보안 대회·해커톤</span> · <span class="when">2026-07-05 15:04</span></div>
+        </div>
+        <h3 class="title"><a href="https://news.google.com/rss/articles/CBMiYkFVX3lxTE9vTkFyd3gtemRUdXZBdXRhU0dVc25pZzMxODZ6TC1ObHA0SDZrTExmU3EzaDFQa3hEc2hLY2F0UzVzX3NNNXFuNExzNGllNC1zVXZxVGd1dTZpOWRQOC12MHhn?oc=5" target="_blank" rel="noopener">전세계 사이버보안 인재들 세종서 정보보안 답 찾는다 - 충북일보</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">세종시에서 전 세계 사이버 보안 인재들이 모여 정보보안 현안과 대응 방안을 논의하는 행사가 개최됩니다. 이번 행사는 글로벌 보안 전문가들이 모여 최신 보안 기술과 전략을 공유함으로써 사이버 위협에 대한 실질적인 해결책을 모색하는 자리가 될 전망입니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 65%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-low" data-ts="1783255209" data-rank="19">
+        <div class="card-head">
+          <span class="badge tier-low">주의 필요 · 48</span>
+          <div class="meta"><span class="source">보안 대회·해커톤</span> · <span class="when">2026-07-05 21:40</span></div>
+        </div>
+        <h3 class="title"><a href="https://news.google.com/rss/articles/CBMia0FVX3lxTE5kZVM3YlF0WHY4aV9VbTU5bklSMElralg5ZmpHelhORl9mY2tvU0tZTkN3T0hIbWI3cDB6VHhId0t4cXd3TEU0cmhsb2dBRl9ZYU5xMnFOUUVfNG51M2JpX3VXc3IxLVUzYW44?oc=5" target="_blank" rel="noopener">인공지능 대전환 시대, 정보보안의 답을 찾다 - 충청메시지</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">인공지능 기술의 급격한 확산에 따라 기존 정보보안 체계의 변화와 대응 전략 마련이 시급해지고 있습니다. AI를 활용한 보안 위협에 대비하고 안전한 디지털 환경을 구축하기 위한 새로운 보안 패러다임 정립이 중요한 과제로 제시되었습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 65%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+    </section>
+
+  <details class="sources">
+    <summary>📡 이번 수집 소스 현황 (28개)</summary>
+    <table class="status"><thead><tr><th>소스</th><th>신규</th><th>상태</th></tr></thead><tbody><tr class="ok"><td>The Hacker News</td><td class="num">0</td><td>정상</td></tr><tr class="ok"><td>BleepingComputer</td><td class="num">1</td><td>정상</td></tr><tr class="ok"><td>Krebs on Security</td><td class="num">0</td><td>정상</td></tr><tr class="ok"><td>Dark Reading</td><td class="num">0</td><td>정상</td></tr><tr class="ok"><td>SecurityWeek</td><td class="num">0</td><td>정상</td></tr><tr class="ok"><td>The Register · Security</td><td class="num">0</td><td>정상</td></tr><tr class="ok"><td>Schneier on Security</td><td class="num">0</td><td>정상</td></tr><tr class="fail"><td>CISA Advisories</td><td class="num">0</td><td>실패: HTTP 403</td></tr><tr class="ok"><td>보안뉴스</td><td class="num">7</td><td>정상</td></tr><tr class="ok"><td>데일리시큐</td><td class="num">0</td><td>정상</td></tr><tr class="ok"><td>안랩 ASEC</td><td class="num">0</td><td>정상</td></tr><tr class="ok"><td>이스트시큐리티 알약</td><td class="num">0</td><td>정상</td></tr><tr class="ok"><td>CVE (GitHub Advisory)</td><td class="num">0</td><td>정상</td></tr><tr class="ok"><td>OpenAI News</td><td class="num">0</td><td>정상</td></tr><tr class="ok"><td>Google DeepMind</td><td class="num">0</td><td>정상</td></tr><tr class="ok"><td>Google AI 블로그</td><td class="num">0</td><td>정상</td></tr><tr class="ok"><td>Hugging Face Blog</td><td class="num">0</td><td>정상</td></tr><tr class="ok"><td>MIT Tech Review · AI</td><td class="num">0</td><td>정상</td></tr><tr class="ok"><td>TechCrunch AI</td><td class="num">4</td><td>정상</td></tr><tr class="ok"><td>VentureBeat AI</td><td class="num">0</td><td>정상</td></tr><tr class="ok"><td>The Decoder</td><td class="num">5</td><td>정상</td></tr><tr class="ok"><td>AI타임스</td><td class="num">0</td><td>정상</td></tr><tr class="ok"><td>바이라인네트워크</td><td class="num">1</td><td>정상</td></tr><tr class="ok"><td>GitHub 신기술</td><td class="num">6</td><td>정상</td></tr><tr class="ok"><td>AI 대회·해커톤</td><td class="num">11</td><td>정상</td></tr><tr class="ok"><td>보안 대회·해커톤</td><td class="num">11</td><td>정상</td></tr><tr class="ok"><td>arXiv cs.CR (보안)</td><td class="num">0</td><td>정상</td></tr><tr class="ok"><td>arXiv cs.AI (인공지능)</td><td class="num">0</td><td>정상</td></tr></tbody></table>
+  </details>
+
+  <footer class="foot">
+    <p>본 보고서는 RSS/공식 피드를 자동 수집해 휴리스틱(교차출처·출처신뢰도) 방식으로 신뢰도를 추정합니다.
+       점수는 보조 지표이며 최종 판단 전 원문 확인을 권장합니다.</p>
+    <p class="gen">생성 시각: 2026-07-06 00:52:50 KST</p>
+  </footer>
+</div>
+
+<script>
+(function(){
+  function apply(mode){
+    var secs = document.querySelectorAll('section.cat');
+    for(var s=0;s<secs.length;s++){
+      var sec = secs[s];
+      var cards = Array.prototype.slice.call(sec.querySelectorAll('.card'));
+      cards.sort(function(a,b){
+        var key = (mode==='latest') ? 'data-ts' : 'data-rank';
+        var av = parseFloat(a.getAttribute(key)) || 0;
+        var bv = parseFloat(b.getAttribute(key)) || 0;
+        return bv - av;
+      });
+      for(var i=0;i<cards.length;i++){ sec.appendChild(cards[i]); }
+    }
+    var btns = document.querySelectorAll('.sortbtn');
+    for(var j=0;j<btns.length;j++){
+      btns[j].className = 'sortbtn' + (btns[j].getAttribute('data-mode')===mode ? ' active' : '');
+    }
+  }
+  window.__applySort = apply;
+  document.addEventListener('DOMContentLoaded', function(){ apply('custom'); });
+})();
+</script>
+
+</body>
+</html>
