@@ -3,52 +3,56 @@
 > 이 파일은 프로그램이 **자동으로 관리**합니다. 직접 수정하지 마세요.
 > 다음 실행 시 아래 기록된 지점 **이후의 새 정보만** 수집합니다.
 
-- 🕒 마지막 실행: `2026-07-11T01:48:28`
-- 📄 마지막 보고서: `data/reports/report_2026-07-10.html`
+- 🕒 마지막 실행: `2026-07-12T00:38:00`
+- 📄 마지막 보고서: `data/reports/report_2026-07-11.html`
 
 ## 소스별 마지막 확인 지점
 
 | 소스 | 카테고리 | 이번 신규 | 마지막 확인 기사 | 상태 |
 | --- | --- | ---: | --- | --- |
-| The Hacker News | security | 12 | Laser Attack Resets Tangem Wallet Passwords on Cards That Ca… | 정상 |
-| BleepingComputer | security | 6 | Police suspects Dutch hackers were involved in Odido breach | 정상 |
+| The Hacker News | security | 4 | Critical Zimbra Flaw Could Let Crafted Emails Run Malicious … | 정상 |
+| BleepingComputer | security | 4 | Australia warns of global campaign targeting vulnerable CMS … | 정상 |
 | Krebs on Security | security | 0 | Felons, Fraudsters Flog Offensive Cybersecurity Startup | 정상 |
-| Dark Reading | security | 0 | Fresh ATM Crypto Software Bugs: Jackpot or Bust? | 정상 |
-| SecurityWeek | security | 6 | In Other News: DHS Database Hacked, Adobe Boosts Patch Caden… | 정상 |
-| The Register · Security | security | 5 | Fashion mart Miinto unzips breach details, warns shoppers to… | 정상 |
-| Schneier on Security | security | 1 | AI Surveillance and Social Progress | 정상 |
+| Dark Reading | security | 0 | Jen Ellis: Connecting Cyber Community With Political Machine… | 정상 |
+| SecurityWeek | security | 0 | In Other News: DHS Database Hacked, Adobe Boosts Patch Caden… | 정상 |
+| The Register · Security | security | 1 | Destructive Windows backdoor stuffs multiple wipers and rans… | 정상 |
+| Schneier on Security | security | 1 | Friday Squid Blogging: “Squidbleed” Vulnerability | 정상 |
 | CISA Advisories | security | 0 | - | 실패: HTTP 403 |
-| 보안뉴스 | security_kr | 10 | [2026 개인정보보호 우수사례-4] 한수원, 개인정보 보호수준 평가 100점 만점... 1442개 기관 중… | 정상 |
-| 데일리시큐 | security_kr | 8 | 한국사회보장정보원-한국생명존중희망재단, 보건·복지 데이터 연계로 자살예방 협력 | 정상 |
-| 안랩 ASEC | security_kr | 3 | 2026년 6월 다크웹 위협 행위자 동향 보고서 | 정상 |
+| 보안뉴스 | security_kr | 9 | [ISEC 2026 미리보기] 스플래시탑, 제로트러스트로 강화하는 보안 운영 주목 | 정상 |
+| 데일리시큐 | security_kr | 0 | ‘일 블룸’ 취약점 실제 공격에 악용...가상화폐 지갑 431개서 500만달러 탈취 | 정상 |
+| 안랩 ASEC | security_kr | 0 | 2026년 6월 다크웹 위협 행위자 동향 보고서 | 정상 |
 | 이스트시큐리티 알약 | security_kr | 0 | 인스타그램 계정 해킹, 사람의 소행이 아니었다? | 정상 |
-| CVE (GitHub Advisory) | vuln | 38 | CVE-2026-49977 · 중간 4.3 | 정상 |
-| OpenAI News | ai | 1 | How Deutsche Telekom is rewiring telecommunications with AI | 정상 |
+| CVE (GitHub Advisory) | vuln | 26 | GHSA-g936-7jqj-mwv8 · 심각 9.0 | 정상 |
+| OpenAI News | ai | 0 | How Deutsche Telekom is rewiring telecommunications with AI | 정상 |
 | Google DeepMind | ai | 0 | Google DeepMind and A24 announce first-of-its-kind research … | 정상 |
 | Google AI 블로그 | ai | 0 | Expanding Managed Agents in Gemini API:  background tasks, r… | 정상 |
-| Hugging Face Blog | ai | 1 | Profiling in PyTorch (Part 3): Attention is all you profile | 정상 |
-| MIT Tech Review · AI | ai | 1 | Anthropic found a hidden space where Claude puzzles over con… | 정상 |
-| TechCrunch AI | ai | 14 | OpenAI says GPT 5.6 is the ‘preferred model’ for Microsoft C… | 정상 |
+| Hugging Face Blog | ai | 0 | Profiling in PyTorch (Part 3): Attention is all you profile | 정상 |
+| MIT Tech Review · AI | ai | 0 | Anthropic found a hidden space where Claude puzzles over con… | 정상 |
+| TechCrunch AI | ai | 5 | OpenAI bets on families as ChatGPT goes deeper into househol… | 정상 |
 | VentureBeat AI | ai | 0 | Google just redesigned the search box for the first time in … | 정상 |
-| The Decoder | ai | 5 | OpenAI kills its Atlas browser after just eight months and f… | 정상 |
+| The Decoder | ai | 7 | China's Orca world model matches specialized robotics system… | 정상 |
 | AI타임스 | ai | 0 | 육사, 국제학술지 논문 등 AI 연구 성과 잇따라..."국방 AI 보안 선도" | 정상 |
-| 바이라인네트워크 | ai | 14 | 국내 스타트업 갈라파고스, 규제와 제도가 만든다 | 정상 |
-| GitHub 신기술 | tech | 5 | elder-plinius/T3MP3ST · ⭐4,291 · TypeScript | 정상 |
-| AI 대회·해커톤 | contest | 21 | 제1회 로스쿨 AI 챌린지 본선 '열기 후끈'…"AI로 복합 법리 쟁점 푼다" - 로스쿨타임즈 | 정상 |
-| 보안 대회·해커톤 | contest | 19 | 네이버클라우드, 글로벌 해킹대회 상위 1%…보안 경쟁력 입증 - 전자신문 | 정상 |
-| arXiv cs.CR (보안) | research | 40 | Controllability-Aware Adversarial Examples Against LLM-Based… | 정상 |
-| arXiv cs.AI (인공지능) | research | 40 | Context Graphs for Proactive Enterprise Agents | 정상 |
+| 바이라인네트워크 | ai | 0 | 국내 스타트업 갈라파고스, 규제와 제도가 만든다 | 정상 |
+| GitHub 신기술 | tech | 1 | elder-plinius/T3MP3ST · ⭐4,394 · TypeScript | 정상 |
+| AI 대회·해커톤 | contest | 13 | 제1회 로스쿨 AI 챌린지 본선 '열기 후끈'…"AI로 복합 법리 쟁점 푼다" - 로스쿨타임즈 | 정상 |
+| 보안 대회·해커톤 | contest | 3 | 네이버클라우드, 글로벌 해킹대회 상위 1%…보안 경쟁력 입증 - 전자신문 | 정상 |
+| arXiv cs.CR (보안) | research | 0 | - | 정상 |
+| arXiv cs.AI (인공지능) | research | 0 | - | 정상 |
 
 ---
 
 <!-- STATE_JSON_START -->
 ```json
 {
-  "last_run": "2026-07-11T01:48:28",
-  "last_report": "data/reports/report_2026-07-10.html",
+  "last_run": "2026-07-12T00:38:00",
+  "last_report": "data/reports/report_2026-07-11.html",
   "feeds": {
     "https://feeds.feedburner.com/TheHackersNews": {
       "ids": [
+        "bb9511f0204ee143d275a26657fb3e78b14d3b3c",
+        "e449797afea6f6b29db3780229335423a9fe13e2",
+        "283dd1e1a3ed94ff1912bc030f7a68b8be892c9e",
+        "5f6c7f2d8eb2eba38710eb3142dfbade64be04ed",
         "daf3bdaf00dabafc77a338dcdf993f6950097966",
         "0a2c3e9bef381190cd4dd5d76249a7fc5bdfbb1c",
         "e4b38fb48af10e8767d98065d7866d9ca7794ae1",
@@ -278,11 +282,15 @@
         "eb8aea97b26ff270ea24539e6f94527f4b79a96f",
         "c706c02d39b6f21c92e0cc14bcb27e13895ff854"
       ],
-      "last_seen": "2026-07-11T01:47:47",
-      "last_max_date": "2026-07-10T20:21:49+05:30"
+      "last_seen": "2026-07-12T00:37:36",
+      "last_max_date": "2026-07-11T12:15:55+05:30"
     },
     "https://www.bleepingcomputer.com/feed/": {
       "ids": [
+        "b1f8a32d1e54f1a3e414db30bed38474be753049",
+        "5692c67fced5413f9d95550dd3e3db1ad0b57380",
+        "3bbc0d594a27780e90c4df83c196b54c20dd1b82",
+        "d52e0e6da47f0f79f4f47a58a3c38e86e0ad928a",
         "7428c9d53106d16b9dbe1195add9af42faaadd1a",
         "83856a1a1e0697422f1ec3263de664cb20d39ad9",
         "6b7226fcd17615cee19a54e651671a35f4d95d41",
@@ -460,8 +468,8 @@
         "31d2c62eeb9005a777e422cb3a5f81f671137fe6",
         "8116241225e1b45a9936188699b25f1a4b786036"
       ],
-      "last_seen": "2026-07-11T01:47:47",
-      "last_max_date": "2026-07-10T12:37:01-04:00"
+      "last_seen": "2026-07-12T00:37:36",
+      "last_max_date": "2026-07-11T10:18:23-04:00"
     },
     "https://krebsonsecurity.com/feed/": {
       "ids": [
@@ -480,11 +488,13 @@
         "7440dc31a5ad03ea24e0a0b95a034503a1056304",
         "85675c691fb9ef0697a7ae515a3ba87e5b703a18"
       ],
-      "last_seen": "2026-07-11T01:47:47",
+      "last_seen": "2026-07-12T00:37:37",
       "last_max_date": "2026-07-08T12:31:39+00:00"
     },
     "https://www.darkreading.com/rss.xml": {
       "ids": [
+        "4589d058f0a0d0ff2ff344ffbd620d6cfa300639",
+        "7fed3296a43ea17e402951c232a05136c41b115e",
         "7a697bf9b4d155a89b00a4cf11638de7a548a2cf",
         "b26ef8b4e53755ce725506f4c8ba7c1642463472",
         "8b77b9cb653dc4e9c094bd31a5d895cf256a7f09",
@@ -650,7 +660,7 @@
         "f68d8c2a170cea85dfa5731ca2359f3420840c71",
         "5614e11053a64fca74d41d601dfde6a3135a639e"
       ],
-      "last_seen": "2026-07-11T01:47:48",
+      "last_seen": "2026-07-12T00:37:37",
       "last_max_date": "2026-09-16T11:00:00+00:00"
     },
     "https://www.securityweek.com/feed/": {
@@ -818,11 +828,12 @@
         "045f84e93f59f9228ae5e13237131757802e4c0e",
         "659a0983358229b2a9762d54256c79e0e8d89811"
       ],
-      "last_seen": "2026-07-11T01:47:48",
+      "last_seen": "2026-07-12T00:37:37",
       "last_max_date": "2026-07-10T15:01:19+00:00"
     },
     "https://www.theregister.com/security/headlines.atom": {
       "ids": [
+        "91bdc5b494322d3e243e0884a36c93e35484008c",
         "efd064a34f0b7ca7568beff60e9604bc8bac7b72",
         "f8930ac9bad30eb0850d9a9c3ed7e30ae18d261b",
         "53bed756d7f7ebdae26bbe0808ffc46a8b71ce46",
@@ -962,11 +973,12 @@
         "e831bee08b34da291acbea758ae4ccf78aa19f56",
         "d2310a28a780d950797646165cb81994d53139a2"
       ],
-      "last_seen": "2026-07-11T01:47:49",
-      "last_max_date": "2026-07-10T14:10:41+02:00"
+      "last_seen": "2026-07-12T00:37:38",
+      "last_max_date": "2026-07-10T19:35:00+02:00"
     },
     "https://www.schneier.com/feed/atom/": {
       "ids": [
+        "c3ae145deef39c5efc10bf77f9365589935edc41",
         "2e2f9953389092c5cdba1564c1cb9d6e92c79e14",
         "1a2896b9121623e38834dee39b05d67bd56857f2",
         "2bbf98cc2f9d337b8276fe5f4b6da311c2af2f95",
@@ -1001,8 +1013,8 @@
         "fea6454a1a1cca8f38a497120bd17876913b0ace",
         "327886a2d2f681c1144ac48b9b9b7cf4fb53a497"
       ],
-      "last_seen": "2026-07-11T01:47:49",
-      "last_max_date": "2026-07-10T11:02:51+00:00"
+      "last_seen": "2026-07-12T00:37:38",
+      "last_max_date": "2026-07-10T21:07:16+00:00"
     },
     "https://www.cisa.gov/cybersecurity-advisories/all.xml": {
       "ids": [
@@ -1051,6 +1063,15 @@
     },
     "https://www.boannews.com/media/news_rss.xml": {
       "ids": [
+        "f9b601382772802b8bce4088491e69eed36381b6",
+        "db2ab9489ae131ebe53676a2c5addb611ec11a81",
+        "60c5670216add4974f6d11aeadb886d12e5a358d",
+        "a1119aed76838d332cfba315749c830a70e6014b",
+        "da06975453dee846819148875c95cbe7b3873185",
+        "5747133458de2301570c4e132ab4e999c5dce9fa",
+        "cc5df8f5024c77d9ae6053a3afd9801c4b807000",
+        "e39f8c19e1d7a5d5e5ba86d2eb19e2313b45c7ed",
+        "6835e75112e0a478710f198a04a29a020bc1c838",
         "3c0f0da8d2b3f9f2aa052ac4b77c59ac911d2577",
         "e45a235f7abe077b52b2e7597682f937585b50fa",
         "e19161eccdb4431b3742938e692d1d4101514361",
@@ -1238,11 +1259,13 @@
         "06ffefddbfb028e54b85c22ccdcf012aa618e7dc",
         "48c396d6fef5120af4089a089239cabec3b848f4"
       ],
-      "last_seen": "2026-07-11T01:47:50",
-      "last_max_date": "2026-07-10T15:45:00+09:00"
+      "last_seen": "2026-07-12T00:37:39",
+      "last_max_date": "2026-07-11T16:17:00+09:00"
     },
     "https://www.dailysecu.com/rss/allArticle.xml": {
       "ids": [
+        "d16376ec9b108c80aab8a950bfc3f1346d2ea6bc",
+        "4c822280b54ade88f09d2ea19ae4968cc966943b",
         "db9de1fb0e0cb5320616930fed67d9ba83545ed7",
         "98d34fd1ff433d9a5a96e0c039ca9cbaa2394bbe",
         "fee8205b14bf791da385a58e9ef4df92ddc9b098",
@@ -1540,12 +1563,10 @@
         "cc222deb3a802b9dca5034c39f0033e0db0b1773",
         "5b6965b0ffe8f94f83755b4f158e6452876e294b",
         "28eedd09d69cd71995453aba61026ebe042b51ae",
-        "7d30fb2919a88fa358b02514c0acef1bfb418f5e",
-        "01640019d42ec009180fc9aa40d15efa6999415d",
-        "a841cccebc83363ac9598b48862d7f569d67bb51"
+        "7d30fb2919a88fa358b02514c0acef1bfb418f5e"
       ],
-      "last_seen": "2026-07-11T01:47:51",
-      "last_max_date": "2026-07-10T16:18:30+00:00"
+      "last_seen": "2026-07-12T00:37:40",
+      "last_max_date": "2026-07-11T22:55:51+00:00"
     },
     "https://asec.ahnlab.com/ko/feed/": {
       "ids": [
@@ -1601,7 +1622,7 @@
         "6a2d4d6bf6eaf901f860fc28da6e3ee7c143f5fe",
         "deb0f54ca18677b689b5e4362e4735c4fb3e65cd"
       ],
-      "last_seen": "2026-07-11T01:47:52",
+      "last_seen": "2026-07-12T00:37:41",
       "last_max_date": "2026-07-10T00:38:24+00:00"
     },
     "https://blog.alyac.co.kr/rss": {
@@ -1657,7 +1678,7 @@
         "946113ac3d9e20ec804017655fea33acea04668b",
         "4dea82b4ee5f96c7f9cc8a2be265bbc90707affe"
       ],
-      "last_seen": "2026-07-11T01:47:55",
+      "last_seen": "2026-07-12T00:37:46",
       "last_max_date": "2026-06-17T11:07:21+09:00"
     },
     "https://services.nvd.nist.gov/rest/json/cves/2.0": {
@@ -2089,7 +2110,7 @@
         "a534d4ec9c005b06e3216372aa0dae0a66adeb7b",
         "721cf9e2fe4ae04f4911a43a20fd5dd13f06b6e0"
       ],
-      "last_seen": "2026-07-11T01:47:56",
+      "last_seen": "2026-07-12T00:37:47",
       "last_max_date": "2026-07-10T07:00:00+00:00"
     },
     "https://deepmind.google/blog/rss.xml": {
@@ -2199,7 +2220,7 @@
         "9f6bdc5d4dfb5b71414f5e5694811fe9cce972fb",
         "c529fac0c8ec27917423c33d5715af291bdcfe9a"
       ],
-      "last_seen": "2026-07-11T01:47:57",
+      "last_seen": "2026-07-12T00:37:47",
       "last_max_date": "2026-07-03T14:25:43+00:00"
     },
     "https://blog.google/technology/ai/rss/": {
@@ -2232,7 +2253,7 @@
         "5af6fbd7f1ce709e04b527889960664ca3e617b1",
         "eeffe9e815ad9a588e806078af8cfc38594b2f03"
       ],
-      "last_seen": "2026-07-11T01:47:57",
+      "last_seen": "2026-07-12T00:37:47",
       "last_max_date": "2026-07-07T08:54:00+00:00"
     },
     "https://huggingface.co/blog/feed.xml": {
@@ -2538,7 +2559,7 @@
         "2b351ecfc9788586125dab93d1abe10d859a722f",
         "ccbd6564d761b828999f9c9150201a8da8410fe8"
       ],
-      "last_seen": "2026-07-11T01:47:57",
+      "last_seen": "2026-07-12T00:37:47",
       "last_max_date": "2026-07-10T00:00:00+00:00"
     },
     "https://www.technologyreview.com/topic/artificial-intelligence/feed/": {
@@ -2569,11 +2590,17 @@
         "e1076b3ae8414dd23be58c724174f0d0d54bc142",
         "0be4ee2c82f9753c243285b9216453905e9d24b7"
       ],
-      "last_seen": "2026-07-11T01:47:57",
+      "last_seen": "2026-07-12T00:37:47",
       "last_max_date": "2026-07-09T20:22:28+00:00"
     },
     "https://techcrunch.com/category/artificial-intelligence/feed/": {
       "ids": [
+        "c74d6a2edcd74641b9a2c7a0246bfbd490b4c807",
+        "4d2255833b78102bdadc0df570829e5e0e1d1f42",
+        "7de5cb2b4cc6c3e9c47757b0e9089b68b21c67a7",
+        "54ea982eb53164a75635929575c68e97a844bc39",
+        "a3d918336b6f430d1bd6e03327d764ec4b319270",
+        "7a37a59c1e416a09a8c5e7483d9b8fbe8f362b88",
         "095f1447b1d64f8ab2a044ffc6e54fdebb3d5b33",
         "a3ef7bfdb9d16a08c1845cb88eee2ea21230758f",
         "8c7ef7001386d0d523dca10d299cdfd824a3616b",
@@ -2777,8 +2804,8 @@
         "31dcb37ed29587da5837d30599d04530232f11cb",
         "1c2d1f5f590bb9d19b092766e5a545d04bfc7f3e"
       ],
-      "last_seen": "2026-07-11T01:47:57",
-      "last_max_date": "2026-07-10T00:16:54+00:00"
+      "last_seen": "2026-07-12T00:37:47",
+      "last_max_date": "2026-07-11T14:13:00+00:00"
     },
     "https://venturebeat.com/category/ai/feed/": {
       "ids": [
@@ -2790,11 +2817,18 @@
         "349950c141d60458e9fe663820aec1ed9436d0f8",
         "8d0338c948bf76fe168f8f9ce958b00084b1f141"
       ],
-      "last_seen": "2026-07-11T01:47:58",
+      "last_seen": "2026-07-12T00:37:48",
       "last_max_date": "2026-05-19T17:45:00+00:00"
     },
     "https://the-decoder.com/feed/": {
       "ids": [
+        "a87162ca1af2ea49eb00ab83208dc26f08047fb6",
+        "cd625e9d0501986bd656012fcd78921edafe03d9",
+        "0f7fa99437a0a91a90f748968ff72cadf859ae58",
+        "8183d82e7a3d85c7b30ae3fd68994c6ba83a6e6f",
+        "489f257036deb3ae129f328f166a50de069e159b",
+        "94dd6edf8c82a58ed88298a448fe68aff0a857ab",
+        "b89813e788df1830ef7fbdedb1ef392d2109a034",
         "80ab53925af61355ac9fe9a5a2474aafe3af6ce1",
         "43d4bd0480160adee941a66d267d3efbeccf63f4",
         "f793e6f26621e8aae30aff46137716099280227f",
@@ -2972,8 +3006,8 @@
         "de53871d91e7b331749b0f50277019f0d3f3b15a",
         "406e66822de7bd2e701aa7a646e70869df76c4f8"
       ],
-      "last_seen": "2026-07-11T01:47:59",
-      "last_max_date": "2026-07-10T12:19:21+00:00"
+      "last_seen": "2026-07-12T00:37:49",
+      "last_max_date": "2026-07-11T09:03:26+00:00"
     },
     "https://www.aitimes.com/rss/S1N1.xml": {
       "ids": [
@@ -3008,7 +3042,7 @@
         "e879a491b2d01bc74de5a1cbd773aeb184734666",
         "85ec6fcbb977fc0ccc5328d6f78654a8a903e4fa"
       ],
-      "last_seen": "2026-07-11T01:48:00",
+      "last_seen": "2026-07-12T00:37:50",
       "last_max_date": "2026-07-10T16:56:57+00:00"
     },
     "https://byline.network/feed/": {
@@ -3185,61 +3219,64 @@
         "35429c91d74990e9cf4b31871d82211486fc6047",
         "a86736bdb35df238b75e103910938756de06ab92"
       ],
-      "last_seen": "2026-07-11T01:48:01",
+      "last_seen": "2026-07-12T00:37:51",
       "last_max_date": "2026-07-10T10:38:41+00:00"
     },
     "https://api.github.com/search/repositories": {
       "ids": [
         "a86a271692d51fa8a153436ce4f5e8673a0ba43a",
         "71f0fa7d563fd8e1ba45a63b560804f2b88e575f",
-        "dbdd56e0ed4b68b30e36eecd1bb7c43bb88d4bf6",
+        "947bc852d6c624c91dcd7350ed2926edd1274b7f",
         "905809ad71135ba6db7a4829fe555e342d269b30",
+        "dbdd56e0ed4b68b30e36eecd1bb7c43bb88d4bf6",
         "2599a2b5b5cf84d05e241e3b6b6deea126aef6b8",
         "277b284700a38d8ffc855244adccb880348eec02",
-        "947bc852d6c624c91dcd7350ed2926edd1274b7f",
         "eda03521eb5b9c01e5a661e9a0c7f0ea9392c5c6",
         "26d7304cbe61288c55527aad3c622fc36d322021",
         "363ddcc45af6aa92c3d4c5c02a20f438708f1d96",
         "6ca25a02690266f55fd01ad274395afa52cd78f5",
         "5b7106295436cde7602cb2f3cf9f66c09acf5327",
         "77e917c9aea9df5c9861389b3a42ba1bcf4c84c0",
-        "d488377601a2760b8142b02a5e9686718f05627a",
         "f94f6ca699955a792f386fd76c610ba25ffe3c69",
+        "d488377601a2760b8142b02a5e9686718f05627a",
         "620c6da9f6fa98a6a97d388992c7c3943554a777",
         "c285347eff7d702f747987a8a7702e9fb23b23dc",
-        "1daba340552ca3f75dbc20dd1fd0849939fd2a48",
         "74576c9938c0d1f4fca576576efb0bb34b770bb7",
         "3b697d26d8486fc252b266167196c842939484a8",
         "7122fa737074778e9499289a12a3e086c2b297b7",
         "c77de7000433464356c0d9b268d04347f3bb6880",
+        "d3cb70162f2583c3b1d90dde4abb4056d55622e0",
         "9dbcedbbde03b413fda858ad1aa6be3da651f7c7",
-        "687f8e7d62c7c85825c15ef8a6d8bbe1e5fa96b6",
-        "b031779db4898035e0cb18106dd6c7330e0dce60",
-        "fd19f11d795f3d9163b5679f0a56dd5ee7374104",
         "f34d7f2f5022af106d130aa3545671f3f8b63bb4",
+        "b031779db4898035e0cb18106dd6c7330e0dce60",
+        "3298efb490db7546be5d970713bc309a0dfa8efe",
+        "fd19f11d795f3d9163b5679f0a56dd5ee7374104",
+        "a168acc1c27f0308f28dda862fd9e8313b60a09d",
         "1338974c890924fbe668f3ca5ad24d05e7fe10f5",
         "cea0774d6b6dcc72f4b3b96589ab4fc38abae5b1",
-        "3298efb490db7546be5d970713bc309a0dfa8efe",
         "059ac1f67cfc430e715bb3fc6e5e98ec8af48767",
-        "59ca221e0ffd947d4815ca47cc719fc0eded4729",
-        "2fcadf8bf96d929a300b4e9ac6b2fdee7a375595",
-        "c20f36cf379ffb68175476ff7e7dd6ebad1b328b",
         "f9b9b683144933f11516a2dd679eb820156d57d4",
+        "c20f36cf379ffb68175476ff7e7dd6ebad1b328b",
+        "59ca221e0ffd947d4815ca47cc719fc0eded4729",
         "c392b609ead678a84a56ede95a8d4a9f018025c5",
-        "e84a0ab8017e9c0aa08f559fadba4d58632ad8eb",
         "f09de41d5100ff0c57a8c40bd0277da6dc5afdc4",
-        "d3cb70162f2583c3b1d90dde4abb4056d55622e0",
-        "2090269326b9c67738c09d1f6fde494dcf6ffcc3",
-        "47b73c04b7f37ea078a031f140c6d031396d9c41",
+        "e84a0ab8017e9c0aa08f559fadba4d58632ad8eb",
         "ba7fe41144aaa416c9b96bee330ba8be2ca5c0f3",
+        "2090269326b9c67738c09d1f6fde494dcf6ffcc3",
         "bc85b5764efc9a7f73d23590a48d9ed71640340c",
+        "47b73c04b7f37ea078a031f140c6d031396d9c41",
+        "b4da8b0204572d78dd732c9a687a34e6d949756f",
         "2682ae933578367b9df251f64f975b12140ef8be",
         "87fbcfe77526b8135f4b5b7343cd4005b03d7267",
-        "b4da8b0204572d78dd732c9a687a34e6d949756f",
         "8551b4359ea5da8e65a0ac100fc854e5e694f9cc",
+        "7ad02c2436f449ade390448d610407d4c9d98d9d",
         "77d8946031f477c7cdbbda492cbd9067c3fe73b8",
-        "a168acc1c27f0308f28dda862fd9e8313b60a09d",
+        "d77ec8ed08eb0bffad4d3f9ec1e27a28caa59b9c",
         "d9ecf484cee9f8d899815a8c927e9e42df50e6dd",
+        "c10ad704f70cdd2a39efa31b6c88852aa76aa074",
+        "1daba340552ca3f75dbc20dd1fd0849939fd2a48",
+        "687f8e7d62c7c85825c15ef8a6d8bbe1e5fa96b6",
+        "2fcadf8bf96d929a300b4e9ac6b2fdee7a375595",
         "24b7792afdc5fca08b4f25bd76bd9d9b4aa43704",
         "eda5ecf19adce326138ca8c44973ab9dffbc2084",
         "ffca4b082dbe2da413e743bce894741d65e62ff3",
@@ -3249,8 +3286,6 @@
         "d0804a7218ece80a07cc7fe15dd7633e07e88371",
         "62f0195332e69f250e16d1f8db8bdbb0171cabd9",
         "34d707c9008b7312ae33fa2b4f1f20c95522c330",
-        "d77ec8ed08eb0bffad4d3f9ec1e27a28caa59b9c",
-        "c10ad704f70cdd2a39efa31b6c88852aa76aa074",
         "46db0727ea7e8a99337283507ce1f480e52f49b5",
         "1f3c6220cc4f09ab0460d23acd4c6cd5693fac7c",
         "c457d221a4a8cae6b8fd2353bbca42204a61cb0b",
@@ -3410,109 +3445,133 @@
         "f00ea957419bb40fa520434b01fc04876b2b1b7a",
         "effc193ec0691847f9da69d55f9056ff6d66f902"
       ],
-      "last_seen": "2026-07-11T01:48:02"
+      "last_seen": "2026-07-12T00:37:52"
     },
     "(AI OR 인공지능) (해커톤 OR 공모전 OR 경진대회 OR 챌린지) when:45d": {
       "ids": [
         "12ed0509f8160173ebcc64ea4447b74cf50d17cd",
         "865d6fe6fafa6eafbb1ade7fe140d55bc8e9d423",
-        "6f17094e214f0518a5538dd3efa32472914ba4d7",
+        "4aa2f963c917469fa8d0677109651cadfb0c4604",
         "0e04b8d69fda1df6d0495906002dcc66b2f7cfdd",
+        "6f17094e214f0518a5538dd3efa32472914ba4d7",
+        "0347fa9fd221b59faab55eb1bbac5549ae7b7141",
+        "413ae98574ee7340ad0806cbad62974ed85d17df",
+        "4e72d2549fab978dddeb37b53b7e2260b1c9e536",
+        "fdaf0f502c871f2e81213234338a9afa51f77844",
+        "927afa923d6fe05549552c086b89e969d80821d8",
+        "bea04f431e24a0574e461bbdb8efca4f1fad421b",
+        "86245820331d23bb3237f71f3918667fad46bd6c",
+        "640f480010e9dc6a790a5c7cefe1bdc649a7df0b",
+        "85be76e556a80109ee7d6e826c83e49d1eecf1d2",
+        "7074bdd789c0ee2bfa3330a05de586fc73c86388",
+        "06a22460e4780e6e89fb2074f36c5198241ee521",
+        "7a10ad29aa119731ac6d15155f653ce5e750cccd",
+        "331b72cef77c9144b6f2b35aaaa0db467e571130",
+        "f14898b60627d96582a9645fcd1aecd1a5fe75f8",
+        "d853140851c02478b8b443d35b4fd96c74d2a3b6",
+        "747a127ac34351da6530af9811ece4ada55955eb",
+        "2918a39e8b39bdf659fe6020cf4143ff18397993",
+        "74918c6417f2283ff8f01ea7bd7b3bfbe49b87dc",
+        "8393b30d6e904d2237b8915b78f0ff6b9a4c2eb0",
+        "e4162bd29005d0dafc5ddea49a4f05649e6f379a",
+        "c5771b6a5bc18cc526b76b8a4cb5dfae7f3be8e0",
+        "bd7e60e6c316d4dedd30536a08e31097ec0c1e5d",
+        "b5460abf8921d97770cd85715e3b5822d7e4c63b",
+        "6d0cd9e2ce53a64151bacbb505112ae5b185290a",
+        "a462526e7ef4f4ed75a9af4cb927d07587e62ad8",
+        "f003284b041a27baf396f5dbbf38fa0c70daf383",
+        "45612ea7e1b1cf2b77a38847a88432ce515e664c",
+        "acc9aee83383142859ca8624bc9108c63bbc84ac",
+        "0110542c9a6ba4ba0fa4286d10804dcdf4a79eae",
+        "e655dbc357f0e3d5ae7dc511e723b7f694be17ba",
+        "f7f229e8b1fc7f1c22238b1e522aa0db0bda4a37",
+        "dd9790c9bdfc9445f370dcc3ed8dd63f08bafaa8",
+        "02c582482171f6f6cbe15f4ca0761e98394c2ed4",
+        "4a496b168333962ef6220430de132d07a5be6e1a",
+        "76f3a629fa557a07680c52ade5ed8807ebcd89c2",
+        "1d3186847f6ec0ceacdc57dd3f81f704565f429e",
+        "6487ca5aa6bcd99de7d688d740d7bd27bd64d702",
+        "38a31e18f1dba0c12c67a268a37ea1b6abd6c280",
+        "c09bee452f4bcc71c0a733f301b34d578b1eb0e0",
+        "13942a592c123cdf71d2a1a521e70357fdfbfd6d",
+        "6bdc3ece2a7dd3c8e62699980b17456a48fec3ac",
+        "fadf2b20172856ab92e854e7731abb1e000ede93",
+        "ba19a61208e781274606425e7daf8685411bd7f3",
+        "b70b14c5c0d47d889b23dcceede35077d9b4f598",
+        "9d721f877f1ae9ef36d1bd391faa401dc4022f1b",
+        "79a8c181ac2a5fb1712b4c7da1fa3166fe9954e1",
+        "3c3103f68b6fcdfc2506bad091932a4387e0caa3",
+        "c6f18c2584c6642dd6cb5ef10edb4895f5178067",
+        "97d8e582cdaacf8f88bac7a54d5db5463de32174",
+        "d0f09656017ecdd022f33c40491a273f51224444",
+        "532d845f319b45a31f3128b33df121bb30ca5cdf",
+        "ee1ae8d34e43e07323cf7a591b7e0a4a735207a2",
+        "29daf2733ce74256651838260912217c89e2b207",
+        "87ce3c536a6db0648ae2826575fd8ceb305013e1",
+        "ec95cfcf85fb8dfbf7fb1418deac14cdfc175434",
+        "85de0f0d26b83fc67ea8d9bf789e78cf8dd43b65",
+        "9648e58a861f5850a17c4ed81ff02edd7977f0c3",
+        "21edf2376bb28a134d864917afa939bbd251db55",
+        "2d6790bf3c81eb984c493a8a8066efd0f6b4b6bc",
+        "31ab12250661fd68c316e9c117d38f5a04344fc1",
+        "e5d3168df114f286938840f49252f967a79e60dc",
+        "de81c56c52a52a24000d6f8532711f1eb8a5bcc4",
+        "ab213403949e244cb0b167864602b38e583f58dd",
+        "7209fb796ebe0dea92e7bb06a56b26ba82afa74f",
+        "5f7badbdb5636a36fe5e8c69c62d4c4a60dfb74c",
+        "df31a3ac2c71117ee6d4faf1ee5e64e235374563",
+        "1168e101092a592089dc54484fb601654f37d561",
+        "5baf53a94662d35c7d6471832f96d482cc069615",
+        "6b4d7a5058634b095f65dd4718dfdbc3713ce78c",
+        "72932946fbfca3a73255be6a2dbf669b406d981b",
+        "4051f52c78ec305eb0826d8dc84b40ccd372ea88",
+        "708922a8beb9396c374e0bade73676ddf4403fb5",
+        "e537b42c0ccf1f881c3f202b6ad0c27fff2878e8",
+        "5a77d4ed3953d1c4380ef7d49e7d6864c8c4a6aa",
+        "dc94908bbf04979c4e482f255d63a91b6489e78c",
+        "f2ddc218cb75edd4dd6a40a66b002e1addb59cbe",
+        "1dcb2230af4ffd0ca6ac082817b1ed6c43da1687",
+        "3425d4aa90da1b2beb7a9eee095220ae6561901f",
+        "15233bac31a722202d15da2e204d14ad47f99074",
+        "75c23f3bb8871dd44a3d282f7b0da20a51af6dfe",
+        "4a29296b5546b5a789495b09dd9fdea1f8c2a432",
+        "b4826c96c2adca4346121eec1cbb70f8c8bc2fd7",
+        "25e2243cc6d87ea3b2b1049a3d22eb78fdd78ee7",
+        "4811da7924f51d6bb89487abd9a4dd28c4ca6cc3",
+        "b1531ad8b881faadab1b5534000e1426bc15ebab",
+        "c28ddb7b4967e6d32fb8c2ab989e90f759abaa21",
+        "4249a653a428c1f663ecc0328028be98ec5a225d",
+        "c363c05f71bb4d77651ab4e02647df3add5a310f",
+        "7e53a1a3f822592965d7723f4608c56795d4472d",
+        "3d4a11c407e2f44a8a440140297c1f95a97a5521",
+        "af7e19f0c35bb6b9e6afc903e0deeb27b7f0de96",
+        "222eb6df79ce2ecc115202c7bb2aa67aac5c2f97",
+        "e9ad571bebc632889f7aad2a261b8a6c57873bb5",
+        "225c8acfa2455cba73866255c40669888617acc1",
+        "340cca19d5578fc1458dc31a52c987879429f29f",
         "c5c16e8f2b1339a3c616ddf041586eb23e44b1c6",
         "4f67db8a35a5bce40f7a6f1ae37f58e6b5fce3e1",
-        "0347fa9fd221b59faab55eb1bbac5549ae7b7141",
-        "927afa923d6fe05549552c086b89e969d80821d8",
-        "fdaf0f502c871f2e81213234338a9afa51f77844",
-        "bea04f431e24a0574e461bbdb8efca4f1fad421b",
-        "4e72d2549fab978dddeb37b53b7e2260b1c9e536",
-        "4aa2f963c917469fa8d0677109651cadfb0c4604",
-        "640f480010e9dc6a790a5c7cefe1bdc649a7df0b",
-        "7a10ad29aa119731ac6d15155f653ce5e750cccd",
-        "d853140851c02478b8b443d35b4fd96c74d2a3b6",
-        "331b72cef77c9144b6f2b35aaaa0db467e571130",
-        "2918a39e8b39bdf659fe6020cf4143ff18397993",
         "593999682bc28bb1ba69c7e19daa503d56aa5965",
-        "06a22460e4780e6e89fb2074f36c5198241ee521",
         "1d7ff1187c4c78dd2ae6cdada6247ed9f3fd8efa",
         "68500a3cc812ae9098aa552014378de230f3fbcb",
         "92d2112b7af2034573fe927e3fc87e46d84f7ffa",
-        "74918c6417f2283ff8f01ea7bd7b3bfbe49b87dc",
-        "8393b30d6e904d2237b8915b78f0ff6b9a4c2eb0",
-        "f14898b60627d96582a9645fcd1aecd1a5fe75f8",
-        "b5460abf8921d97770cd85715e3b5822d7e4c63b",
-        "c5771b6a5bc18cc526b76b8a4cb5dfae7f3be8e0",
-        "e4162bd29005d0dafc5ddea49a4f05649e6f379a",
-        "f003284b041a27baf396f5dbbf38fa0c70daf383",
-        "6d0cd9e2ce53a64151bacbb505112ae5b185290a",
-        "7074bdd789c0ee2bfa3330a05de586fc73c86388",
         "34035b018c1df78bfd21673d8ee88ada0419d9c2",
-        "acc9aee83383142859ca8624bc9108c63bbc84ac",
-        "a462526e7ef4f4ed75a9af4cb927d07587e62ad8",
         "ab696249ca9512f93f2e9d94dcb36cdeabd78c64",
-        "bd7e60e6c316d4dedd30536a08e31097ec0c1e5d",
-        "e655dbc357f0e3d5ae7dc511e723b7f694be17ba",
-        "45612ea7e1b1cf2b77a38847a88432ce515e664c",
-        "c363c05f71bb4d77651ab4e02647df3add5a310f",
-        "02c582482171f6f6cbe15f4ca0761e98394c2ed4",
-        "4a496b168333962ef6220430de132d07a5be6e1a",
-        "1d3186847f6ec0ceacdc57dd3f81f704565f429e",
-        "13942a592c123cdf71d2a1a521e70357fdfbfd6d",
         "f84a53a588d209544a804ab62548fe46eb1ac740",
-        "b70b14c5c0d47d889b23dcceede35077d9b4f598",
         "761c3141b39e5fd4765ab5b44672b8fab5269fdd",
-        "9d721f877f1ae9ef36d1bd391faa401dc4022f1b",
-        "79a8c181ac2a5fb1712b4c7da1fa3166fe9954e1",
-        "532d845f319b45a31f3128b33df121bb30ca5cdf",
-        "87ce3c536a6db0648ae2826575fd8ceb305013e1",
-        "21edf2376bb28a134d864917afa939bbd251db55",
-        "2d6790bf3c81eb984c493a8a8066efd0f6b4b6bc",
-        "ab213403949e244cb0b167864602b38e583f58dd",
-        "6bdc3ece2a7dd3c8e62699980b17456a48fec3ac",
-        "de81c56c52a52a24000d6f8532711f1eb8a5bcc4",
         "27b2f152773a8651aa12b8805cb1ad5204f7db4b",
-        "31ab12250661fd68c316e9c117d38f5a04344fc1",
-        "5baf53a94662d35c7d6471832f96d482cc069615",
-        "5f7badbdb5636a36fe5e8c69c62d4c4a60dfb74c",
-        "c6f18c2584c6642dd6cb5ef10edb4895f5178067",
-        "7209fb796ebe0dea92e7bb06a56b26ba82afa74f",
-        "9648e58a861f5850a17c4ed81ff02edd7977f0c3",
-        "ee1ae8d34e43e07323cf7a591b7e0a4a735207a2",
-        "6b4d7a5058634b095f65dd4718dfdbc3713ce78c",
-        "df31a3ac2c71117ee6d4faf1ee5e64e235374563",
-        "29daf2733ce74256651838260912217c89e2b207",
-        "72932946fbfca3a73255be6a2dbf669b406d981b",
-        "e537b42c0ccf1f881c3f202b6ad0c27fff2878e8",
         "ddce7ce8d58f4f17bbbd60a026b18c041c347885",
-        "1168e101092a592089dc54484fb601654f37d561",
-        "4051f52c78ec305eb0826d8dc84b40ccd372ea88",
         "7d94df79c09525ce510108a07a03a46874888eeb",
-        "fadf2b20172856ab92e854e7731abb1e000ede93",
         "987db5187b6cd438f94f03edad13cf3a337bc53c",
-        "ec95cfcf85fb8dfbf7fb1418deac14cdfc175434",
-        "85de0f0d26b83fc67ea8d9bf789e78cf8dd43b65",
         "eca6966406d10f54293c92cd1f355b2f3c64b648",
-        "d0f09656017ecdd022f33c40491a273f51224444",
-        "dc94908bbf04979c4e482f255d63a91b6489e78c",
-        "3c3103f68b6fcdfc2506bad091932a4387e0caa3",
         "025c3262391834dcd64fb6cf0366945f272f6941",
         "e2348dafc82582bc876981d17d512790132430ef",
         "3189536736fca597a9fb167ad4beea24174f9489",
-        "708922a8beb9396c374e0bade73676ddf4403fb5",
-        "4a29296b5546b5a789495b09dd9fdea1f8c2a432",
-        "5a77d4ed3953d1c4380ef7d49e7d6864c8c4a6aa",
-        "1dcb2230af4ffd0ca6ac082817b1ed6c43da1687",
-        "340cca19d5578fc1458dc31a52c987879429f29f",
-        "b4826c96c2adca4346121eec1cbb70f8c8bc2fd7",
-        "25e2243cc6d87ea3b2b1049a3d22eb78fdd78ee7",
-        "e9ad571bebc632889f7aad2a261b8a6c57873bb5",
         "531db12f614778c7384f3a15f3eec873b22e7f18",
         "06dd9be88f6f838dc7fa43275c10856d3f40ed3d",
         "210ab8bcb249b1bc8859e48692ff6b1fc00d822e",
-        "af7e19f0c35bb6b9e6afc903e0deeb27b7f0de96",
         "b645b760b6a800edaf4d7ba9314555b7296e50f4",
-        "222eb6df79ce2ecc115202c7bb2aa67aac5c2f97",
         "2606fecf5d6fd7dc0c86306774af4b0588c9385e",
-        "225c8acfa2455cba73866255c40669888617acc1",
         "790fe2f33bacf8f042a4a4301ef340f592e28ca1",
         "dcd688055f0e7251dc81fdae4a09433dd8c4e581",
         "7807394eeef774af64a6612817ab7ff5e2b4c59d",
@@ -3521,19 +3580,15 @@
         "0631db33d1cc34f41fe6c42bcc56b50df97afed8",
         "7648323fabb0cb5de18b79b12d01286d17c4bba4",
         "01919e43fcd6c2e10778c40d80947f2eea8ecbc7",
-        "38a31e18f1dba0c12c67a268a37ea1b6abd6c280",
         "e64ca9b0e150f4992bd1aa3a7c17e50f4bfd8ad2",
-        "6487ca5aa6bcd99de7d688d740d7bd27bd64d702",
         "ff48b51782b11aab392233f5b935ba90ad53f9b0",
         "6f0da1a0aac1126fb96ef60c8cd87f7c519ac42a",
         "ab770a3eb25593b257835e8488c1fb1ae3a5ecd4",
-        "75c23f3bb8871dd44a3d282f7b0da20a51af6dfe",
         "ceac27bac94d6d427054a3fa675248cba14b5566",
         "ddf24a05b3d78551f106842beca100307ebf95a8",
         "e7de201f92521951d595e7cefe314fd696913f1e",
         "d07f6e4f126cc15b6c563e08a25ff9c62d572e9d",
         "af9e8fcb53a26133beda3d2937d77d3bc681b0bb",
-        "3d4a11c407e2f44a8a440140297c1f95a97a5521",
         "3140c6e13133b167066530d8c91b0187f815e116",
         "6a08b677901956b445b0eee6dca7c03208b428a2",
         "659be0d09fa42955f625c3e58949305bb6969dfb",
@@ -3541,23 +3596,17 @@
         "33b0732f8eb426ada3efe5b37422f727c3147e99",
         "4317b1b9aefcba6b62186e71d36a4ae790d48275",
         "e7759b6c178f799faa0b79af640f9a6acf34e8e5",
-        "413ae98574ee7340ad0806cbad62974ed85d17df",
         "32161eb4f55dbfefc1d36ec59efe28569a5c4af2",
         "1079bcc3f8fd674e20dc2ec0514fc5cc99a4fb19",
-        "0110542c9a6ba4ba0fa4286d10804dcdf4a79eae",
         "ebbcc106cd69cd1c6c226a2d073eee78dfd9f78b",
         "e0a379a01bcdf01aa76cece1699dfa57450eda6f",
-        "e5d3168df114f286938840f49252f967a79e60dc",
-        "f7f229e8b1fc7f1c22238b1e522aa0db0bda4a37",
         "8cf673a25e3ed99d0b0602051b53ef27a0084bef",
-        "ba19a61208e781274606425e7daf8685411bd7f3",
         "0da32dbaab586866f847ace2683f901be029f0b6",
         "98d2b7c719b9730bde15f904da9d4ef913802bd0",
         "6fa01951f78aa7f565a8a1396f583edc41fbd149",
         "b9431143e1064a482810515960f1d1415e6fed17",
         "67754a6ad417e62ffa620983245163f7c8f0a8c9",
         "03bf79ce25d6e3bb4955169bc8d5bbc826c1dff9",
-        "4249a653a428c1f663ecc0328028be98ec5a225d",
         "bba9129b0350a6e7f85f6ec2722524a17e09e592",
         "1d2b7028fa8d692f6811cff1fa1de1adedac0421",
         "e1a291b0ac6bb1ad59461e47b6740e4d32540c4e",
@@ -3685,7 +3734,6 @@
         "83489f8faf8d481a01c87e08841c14444e1da177",
         "9b3b1648564efaae32b67745784c194326bb1a86",
         "d927dc3d1d2be430f0b8b4e2a677740b54453662",
-        "76f3a629fa557a07680c52ade5ed8807ebcd89c2",
         "d4a87497a530a6027e48d181423b0d521baa1891",
         "ff933ab8327ff62b9f19e229261c1cc41156e3e0",
         "bbf35b0ca3ce37de5ca6f1f3654091463fd5e86a",
@@ -3700,38 +3748,27 @@
         "6cad051268c06abaaf317bcfb8742b3914f20440",
         "1c37ea094dee6a38c601f020a5cf5c8a0e4441c3",
         "878ac16a6c8c338bcbec523e095df784292369b7",
-        "d4424c058f21ccab99acf0158b12ba73cdf0cb68",
-        "9f89b9426689d05c4f11d5cea6ee446b4fc3b4e9",
-        "5484f2a960582e52a5da2308b39b04f42bbb152e",
-        "92023fdd359205836c174009ebf0c3146ce1e5d0",
-        "25311480ba5a0ca8a54f27858387b0e989414958",
-        "6a25ff60958774379536d4af5b802f6ef913f4ec",
-        "97cc09574bff397369d03521cc1bc593c35a11c2",
-        "96c4586bee48ffef35470eda83a58772afb0de15",
-        "aaf1c49deb6ca5d03eedc6e562210e1a14b1045e",
-        "8c5393d0079ce1ab89f5d9d3ddd9758f55281181",
-        "183565339a37c0f7c7d58836ab39cc1709e09986",
-        "9d7eed14c2a7497a7517b13fa80675792ce8038b",
-        "c99aa590d88b4973fca8a3a4570e3423ef29d1a3",
-        "8d429db66bf28f9277cf58f4a106ab01e056de04"
+        "d4424c058f21ccab99acf0158b12ba73cdf0cb68"
       ],
-      "last_seen": "2026-07-11T01:48:03"
+      "last_seen": "2026-07-12T00:37:52"
     },
     "(보안 OR 해킹 OR 정보보호 OR CTF) (해커톤 OR 공모전 OR 경진대회 OR 대회) when:45d": {
       "ids": [
         "888f3abafd5f12fc635cbdf29429e9e5fe3be427",
         "272d9bddff612287e5e2afacb449d27e6b5e67eb",
         "ef2646758db3bc1277a2d407e7347e51a049aae7",
-        "33efc2151153c0caaf5b0a2c5c1d869a07b88c82",
-        "ee775d60881ec698b1cacbdf6b2e064cd4ab795c",
         "b0c762085c43ac17b9e001a12170d658a850bf59",
-        "7426dd742f3b82c21a0f686e57d00705b2f9a87e",
+        "ee775d60881ec698b1cacbdf6b2e064cd4ab795c",
+        "33efc2151153c0caaf5b0a2c5c1d869a07b88c82",
+        "6c98cef6d2a80997c30c7f23e437ae7342936036",
         "284db0c956adec21d39a23f7f9fa334613a09e57",
         "b566da399805955bae1ecd6f4d78fdb31cde61bb",
+        "7426dd742f3b82c21a0f686e57d00705b2f9a87e",
         "42c170c9b6444827aaadcf63b406cc60fa2ceeba",
         "9ac139b009c1cb3594d01de8b21b083d70903c5f",
-        "5fa48a65752c451743747a4fe14da014598a7a42",
         "841ea2a1e9a65411ed837e69e68a88be40c1ad1b",
+        "5fa48a65752c451743747a4fe14da014598a7a42",
+        "17e174380b8830bce16588f9cadb7fa3dbed831c",
         "cc9daf91e65a7a6fef0e9cebcb42cd00f7035738",
         "7bae5a9ad282882bbae759851480ffe9d1a23a67",
         "4dcdba374cbab7ddbb6dc3fe2d7d0b2a446ad256",
@@ -3739,90 +3776,102 @@
         "6d59e9ede79bc67ddbf775171c179525c56fb2ab",
         "9f5f835d04e454a9c73d8a8ffa41980b016edc06",
         "24d2f3ebebe4313fe24810b203c6a2f506ac3d1b",
+        "2131fee44e1e0787c8eac58df90cc02a5992fb71",
+        "3694e2937be12afd4059e00e4c5eefbc5f897a56",
         "2b86c255a13eb27d9172bf3aaec5f1fcfc2d8efc",
         "a4edbed29dd353c8ca1dd89e449131f717aae5bf",
-        "0a020f6a6d16d3f18c4ed13e05a2ea3e3d72f989",
-        "3c79c2eb1d0098a93a8a0777df6cfa3ebc947b4f",
-        "2cb7ca105d91f470d105cd4d6da37bcb63b4fe96",
-        "13ae2619ce0ee78ca8fb1cf62ce7fe3d929ebdfd",
         "327bab414bfc696ee3ff531c3ff9225cd5cb8861",
+        "33580cbfd2321851ba04acdfc9cd49cb1e4da4f1",
         "d7d2fb44f5fc368dfcb7f35f34af9cd2a6731cd1",
         "a8ca294d1af1053d8493ef410c4fcc8702715418",
-        "44deffef23f33aacb16d9981c36190dfef848b76",
         "5b483b27a9a95bd2969773fd69f88feca1e0b24e",
-        "33580cbfd2321851ba04acdfc9cd49cb1e4da4f1",
-        "ddb89c545a19f512935898dcc8c4a10655bbd155",
         "e3e981571235f142551c08c128a41629bcb46b77",
+        "ddb89c545a19f512935898dcc8c4a10655bbd155",
+        "9fd3a05f43900fdf2bf82ccfedee7b460923ad6c",
         "266c5ec3e5882108ec349aa208badf2a95ed282e",
-        "ad140f3641745fe226029203993dfe484faed35e",
-        "2131fee44e1e0787c8eac58df90cc02a5992fb71",
-        "6317b21dcc61b099c3ae480996c4174eb723fc0f",
         "a5b6f6af7acc66bcdef17f33e7b92b08c44485d2",
-        "491fc670a7ef6d230b3a0aa2ca6c775729875ad5",
+        "6317b21dcc61b099c3ae480996c4174eb723fc0f",
+        "d07e1263eb3553ce038c6c35b1de2aa9c034c3ac",
         "222d50c2342b5ad9760d8d80c028776835937d9b",
-        "370854ccda0c565f7059f5fd45c36d4479529e47",
         "042e749242d202dbf24f476804560d1a0d8e44ae",
         "dc8021fa4915e4b2ce320bc6de5808888d79305a",
         "c62beb3f1e7cad79450593195b340391dee5fb6e",
         "f3cc850c1f55aaace765a239440810826af33eb8",
+        "370854ccda0c565f7059f5fd45c36d4479529e47",
         "4048f83b4e47fe41a471675b63df69ca1e1fd604",
         "1cfe17f3d05c56a46e5ddb7549c65a90e46fbcc8",
         "d7bceb38c006182965c8af94db24991a38b96e46",
-        "e90b5d1def58bd5d27a293594d90dfa7819d0f44",
         "aedb029e11c75f80d80cb446863b802e8e9b6135",
-        "3a877ed6772720e69aa15516d059a26735e23fce",
-        "7ff1e251fee7a5188f21881b07a90a9b689c7899",
+        "e90b5d1def58bd5d27a293594d90dfa7819d0f44",
+        "7331a11ec8f63696e17dd37c4ca5b69c6567ce2d",
         "72fe78ce5fffa063f84c30527bade97b402c28be",
+        "3a877ed6772720e69aa15516d059a26735e23fce",
         "2638e3e65bbe8ad7cdc97e9f19e1a18d4836db71",
         "422dc699e3683fe5f1508e736f08bffa9f4e5d39",
+        "5b99e669b5136083a4f22f525c17086a5f004a2e",
         "b4cd6b358836630bce0ad9010f42e95fe21ab276",
         "2b8eb8257da81aafcaa4bb915d20390fa468a072",
         "ac9d872041be1933d0175d8b5f914e96534e9112",
-        "f3c3d1d6c2e2b1cc1fd6a4ffbd331df757d55cd9",
         "c329547c621e445135933b8d3dcc6433f97ad37d",
-        "7331a11ec8f63696e17dd37c4ca5b69c6567ce2d",
-        "9cbab1245384c4e32741ae283d0bbf67268fd307",
-        "3694e2937be12afd4059e00e4c5eefbc5f897a56",
-        "ea137bceda005ff8e4e84da0259df76933bf73cb",
-        "9e854782a83efdca26920862467b4f757acad920",
+        "54162cbef462387a3143fb1bbf28ab20ba93a62a",
         "d3623d456d5fdf90c680c00533b21ddcd5187d7b",
+        "ea137bceda005ff8e4e84da0259df76933bf73cb",
+        "df664576b41ab50e3031d01a308bab27da301b85",
         "c3e3fa4969d8c050dab6087e00da0edd6bb207fe",
-        "58cd7ac06c194b407c2f81b6a8906f390585b71d",
-        "ce6451a327d317d5f8f5366e391ea1410b6e2d28",
         "d87c311610bce921228d7d4558279ad95d5aa863",
-        "466fc2b873014c6fc74839f4fdedd3036ee6ec00",
-        "1c03b038d928f46a3d782427be2940015ead4c90",
+        "ce6451a327d317d5f8f5366e391ea1410b6e2d28",
+        "4d4b25128fcb8c126345df6e3ad77971b786d9c7",
         "978417da7e4e24fa46fb0ea0d812cff079262547",
+        "466fc2b873014c6fc74839f4fdedd3036ee6ec00",
         "d9fe6cd8c3266cddd1021275c1f92e17895edda5",
-        "f3e126d38369f8c9ad86ab8f7a891d19a65f8a76",
         "170e3c6a1840753de3e60746ac2b7a3722487f85",
-        "e8c56a1c5d7287083c36aa720e5d4c9b46ddb98e",
         "6bb828d2346249d66d0e0db1ac72400abc182867",
-        "7e53a9aa8c788d47ac390405180c05e04fc3cf21",
+        "e8c56a1c5d7287083c36aa720e5d4c9b46ddb98e",
         "6ade7065c50e51d711517d203ac09d258c19394d",
-        "e2430fddc1a6b2e175b1dee8ff003a7c7ea40639",
-        "0ab40b129c74098b99a7bfa827323be53e71207f",
+        "7e53a9aa8c788d47ac390405180c05e04fc3cf21",
+        "8d21b1c76a983c0e49dfc26510684c4b7e424a9c",
+        "f3e126d38369f8c9ad86ab8f7a891d19a65f8a76",
         "763423de3d7b9a8bd1b9b9bfd31168b041d949a8",
+        "0ab40b129c74098b99a7bfa827323be53e71207f",
         "a35cd74d0898ef6da250f673653574363a867278",
         "4cc5edb88a47b8fa5207b7835f123f04087d2b3d",
-        "b8ae5f7008d43ff6599910b478fc7f58d17f7743",
         "83a963d3dd8c5b254ea5fe6d31fe2bd9214661f0",
-        "8d21b1c76a983c0e49dfc26510684c4b7e424a9c",
+        "b8ae5f7008d43ff6599910b478fc7f58d17f7743",
         "6416213fbc05c4b341e31aaae2f4b02ab8dd7eb6",
-        "76f69ad0a5086ac90a048d1d8628b11b0dca0648",
         "0e078406b97c431aeddbe289748318297e12b605",
         "7e201126d147627baf32e0a11579e1791068034c",
+        "bebb4ddb58849ccbb982bc25c881918707bf6f87",
+        "3c93dc9d80c64834d46590d7eefbf91382e01e34",
         "24b639bc34cc7635d69abc9fbe040d4b54ae5297",
         "bc13ea6ed12c7011985697e4689d7dd6b4c35fa6",
-        "bebb4ddb58849ccbb982bc25c881918707bf6f87",
+        "4d2d69427fd3fcb7de38d638f3fce54ba8030143",
         "8ca882eb76fb1893f6858959ee84dcd749f42d30",
-        "3c93dc9d80c64834d46590d7eefbf91382e01e34",
         "c9344618f4064352c73f365d03e60a4ba89a7053",
+        "7268a27a58b1c5ab9d2cbb562722abb0fc47d7d9",
+        "2c015240e36d23cab6b837c2ae626a5ff478a3e6",
+        "2fbe2e48686ca1757420c8b34f02cbcfa1e614a5",
+        "c3c20abe1eaba76902f77752daaad73cee0c8e65",
+        "a74b7105c5eadd26930535c2f6c955277fe4196a",
+        "bd2648546031dc60248442f80602c5e2df39fe9c",
+        "5c43f31ac15e62768ae8f1585c88b6426f310c45",
+        "0a020f6a6d16d3f18c4ed13e05a2ea3e3d72f989",
+        "3c79c2eb1d0098a93a8a0777df6cfa3ebc947b4f",
+        "2cb7ca105d91f470d105cd4d6da37bcb63b4fe96",
+        "13ae2619ce0ee78ca8fb1cf62ce7fe3d929ebdfd",
+        "44deffef23f33aacb16d9981c36190dfef848b76",
+        "ad140f3641745fe226029203993dfe484faed35e",
+        "491fc670a7ef6d230b3a0aa2ca6c775729875ad5",
+        "7ff1e251fee7a5188f21881b07a90a9b689c7899",
+        "f3c3d1d6c2e2b1cc1fd6a4ffbd331df757d55cd9",
+        "9cbab1245384c4e32741ae283d0bbf67268fd307",
+        "9e854782a83efdca26920862467b4f757acad920",
+        "58cd7ac06c194b407c2f81b6a8906f390585b71d",
+        "1c03b038d928f46a3d782427be2940015ead4c90",
+        "e2430fddc1a6b2e175b1dee8ff003a7c7ea40639",
+        "76f69ad0a5086ac90a048d1d8628b11b0dca0648",
         "675c7e4ead39812d47ef7044cd734bd9640a6c2b",
         "06ae35fcc86bde374215f9906b1de5b257c00a3a",
         "2a2d5ee2d027f801c0ed1d185a33405bc103a87a",
-        "6c98cef6d2a80997c30c7f23e437ae7342936036",
-        "17e174380b8830bce16588f9cadb7fa3dbed831c",
         "b6ac893fadc07130bc9d5b9c5c688a031d82414c",
         "20daed944dbb0993722420b52772e28fae0a596b",
         "75be08302a026e27a82ba6be3ee46ec2e8b16ab2",
@@ -3835,16 +3884,9 @@
         "c95bb7bca28b2c4b62dfa9b9f2bf357f2f337ee8",
         "a92d9e935c9daad56c7f7ee9e32b2b460879d5b4",
         "36177bd108aa2bc22d93ad227d7f87cbde369591",
-        "4d2d69427fd3fcb7de38d638f3fce54ba8030143",
         "a365ca7d9845eff9f3a5bd48ecfbdd4cefdc8487",
-        "2c015240e36d23cab6b837c2ae626a5ff478a3e6",
-        "a74b7105c5eadd26930535c2f6c955277fe4196a",
-        "c3c20abe1eaba76902f77752daaad73cee0c8e65",
-        "5c43f31ac15e62768ae8f1585c88b6426f310c45",
-        "bd2648546031dc60248442f80602c5e2df39fe9c",
         "905d4775c675b438d4ade8900da84fe28ff35d01",
         "b1fe96a41b0811fc1339cf4ef71b7bfc6371953d",
-        "7268a27a58b1c5ab9d2cbb562722abb0fc47d7d9",
         "189d8b89fba6d024ec114be347da1efbedd40f0d",
         "fa9e42e50d439085bc7dfd45f748a6595836eec7",
         "8ba02127bbad389a8258ac9231d84ee58b400319",
@@ -3853,7 +3895,6 @@
         "8a1490a537d5694cf5666eb6f92e7e9a16115898",
         "61c710c42b5738846ae849eccf82474f068302df",
         "f9352f96b1de7a7a81d4a4dfad73d22ae4a8c106",
-        "df664576b41ab50e3031d01a308bab27da301b85",
         "1a5e75fe2e7d28d67aacf7ae023b6b57a6353782",
         "37c8f83ed675d5e7c625345e24e33be2252b5c16",
         "785bfe8a0ed95030ef1a65cb7e95997b2835cb02",
@@ -3864,7 +3905,6 @@
         "3f23f3f528347ea590f9b8694bb76c4bf43912b5",
         "4dfc771d88efdeae481b1b40cf8079bf7f67201d",
         "3477bb66607347f68c84b1e2bbd27e201e3c4d0e",
-        "4d4b25128fcb8c126345df6e3ad77971b786d9c7",
         "ab7530b920efb9f6def6b5ebff57d98244d92f06",
         "3a3aed15b5ee54296e2175f28bfc04ffd8c7e4ac",
         "81480cf2dae3c47e386ec606e19a61ad4cb5edab",
@@ -3927,7 +3967,6 @@
         "d75ee0e0f154ba6260a713caa7576c95a53d5e09",
         "4875b4dac1a3a2ff98bb7338905334766a08e747",
         "0698aca9233f47ce99c285a9709d465371c69a69",
-        "2fbe2e48686ca1757420c8b34f02cbcfa1e614a5",
         "927f4348f0f091b74d22b9683960f0ffc6c36cb7",
         "393e4cdf700030be7f0062343b1702558604feba",
         "0c559ef1c42333d89aca33d6245f301cf2d832bf",
@@ -3935,7 +3974,6 @@
         "00ccb2ff305ddb117a2f30b2748e7264b8353f91",
         "3202e6583d6b10eacef1bdfa49c39563ab4ecb6c",
         "40b75ebbe75001df3d13ad4d874e651d39b1e6a6",
-        "54162cbef462387a3143fb1bbf28ab20ba93a62a",
         "73073a8b25b1a057417d00ece76bb4c826386e4f",
         "f6ead04c0836a411916baab0367b98a3148920c8",
         "68eb91900cc7c101d0d59f4095d0e0089f2a0622",
@@ -4015,12 +4053,9 @@
         "4ed0d62846dbe2a16c20aee4463c64e5ed3fe292",
         "32f42671b1cece797ba005f309fd476e2f9e6d45",
         "26f4988def9e89fac87f2650de6e3e86f397ab3d",
-        "ef6edbabb463ad25906f20a3f950af51c8e2e733",
-        "fdb025bfc24a3fd03d9b097be368b2ed4e3eff6f",
-        "339538844d50a91dc2515355abafcc80b13acf42",
-        "0e418b5915685d5700edd85affb5839fe73e13fa"
+        "ef6edbabb463ad25906f20a3f950af51c8e2e733"
       ],
-      "last_seen": "2026-07-11T01:48:03"
+      "last_seen": "2026-07-12T00:37:52"
     },
     "http://export.arxiv.org/rss/cs.CR": {
       "ids": [
@@ -4325,7 +4360,7 @@
         "b8a250adcb5dfd64f717429262713944c097d562",
         "4ee78d00733463f5d0abee4122103e8f84d3961d"
       ],
-      "last_seen": "2026-07-11T01:48:03",
+      "last_seen": "2026-07-12T00:37:53",
       "last_max_date": "2026-07-10T00:00:00-04:00"
     },
     "http://export.arxiv.org/rss/cs.AI": {
@@ -4631,11 +4666,37 @@
         "dbac50dc5cc2d56eee434c2eadc5bdac17e371d6",
         "d7b496bf026f95cabe738748f8df48e088a5204c"
       ],
-      "last_seen": "2026-07-11T01:48:03",
+      "last_seen": "2026-07-12T00:37:53",
       "last_max_date": "2026-07-10T00:00:00-04:00"
     },
     "https://api.github.com/advisories": {
       "ids": [
+        "3bebf403e5ab19645b079c04b3c17b22183fec11",
+        "21204d97b9e740ec9d815b5ea6ed5aded0e16ce5",
+        "27c78ba11354ec18a53991d7c5a3ab93afe95e34",
+        "02b2cf7a4da1d1e0479b0d4722510e85c670c9f0",
+        "c5ec2b76b93fc66bf0aff9aa5b08d59889acb726",
+        "48f9a233e989bc948bcca28808e406cc43f49755",
+        "700bf732063db2453f3a7c995c22384cb06c3b57",
+        "447be4dd08656c54d339ef76fe2c9dad6eb15563",
+        "3f18cd53e38074c7a106bf3bdc6a518b6d6626b2",
+        "81a53ad7266d4ed62d4995ee74630d7a8b39fcf4",
+        "e000f9676eefef2922cfd5b48de1997febed3d81",
+        "a8d9433e47385cf2d8771ae09b8993e20486a8eb",
+        "eaf6409006f71a909ace545b729696a64de821c8",
+        "6f91499f9ccc1c5f88503e6dfb15c45fc0a2337c",
+        "712b520980870f90982fb620f1f46ab08fab469c",
+        "10cbc584b89ff17765a7efd6b63915e78552ba58",
+        "3b01d9023465b3cfd134c554af7a1b7b95f3ce72",
+        "4df01369062ac24537feef970a434ceed88d4bc5",
+        "4831f3a813c83eda36df71d99beebcf53943c01f",
+        "847286790b8049baa4abe63cc1389859a616d386",
+        "a34558eeba9907476770f7c25d6de18306508887",
+        "cc82d2f1334c51c0d3b0204aae262e0eb3ce26b6",
+        "ecfc45aed3fb87679a8a520f5392353f19407d57",
+        "f0c0f7bd6b0b2637d29cbf63895f1ec3576ee4cc",
+        "682b2b57908317a6fe1d28a304c42264cbf01d33",
+        "c7a9c838328d790a7e2634b40fa52cedd8d94d8d",
         "da8e896676602326b0dfd77e4b02073d8cb6e45e",
         "28b8265d0e4a0c0ab03969cc0d93501cc7967a15",
         "d799831943608b0c45b2444fddd2e9b670331af9",
@@ -4909,36 +4970,10 @@
         "21a9265d959bbc7b037a40e1e6d65e6dff77779b",
         "a970320bddb8f5d36727408bedfd3b4d056c27f1",
         "f3e6d1e8fc5e9933c2e017e0ddcd2bfb33e4e716",
-        "db5ab0f3ef7828bba4009bdec7b9f4e109a1b0da",
-        "b4597aeeef90f4f8deb846004a6442b2283c0a51",
-        "e86e11569a94e8d37b963f3e045dcf54e45f19b7",
-        "1b5e99b9edddf83a2a01987261e5747b654fdfd2",
-        "6c5a9d6e16f55f09806ea766cc48472c6cbd2f04",
-        "4dc4909ee1bd025e0e50950e65462358538b9bc8",
-        "bc770369fef7f54df804d004eace1688488b2b66",
-        "901fd60f64d522c727396f885a2fa6b02a5aa819",
-        "ad1272eefbaa184b394886d40a26d1f53370648a",
-        "635dfd0f85fa085e720be21445e6794c4b7eb06f",
-        "c6086a5e72c4bc26ccf595ab95f318751da8bb54",
-        "1ee34ef516ad060e05ee381b1d59b40459904189",
-        "dfab8a95c5c2cf9ff98a9f1ee255dc9f4c7c4da2",
-        "4fb3c1fe3f8a0678fa88bda54cf2fa0ca6b5f4da",
-        "e412a0cb5917944b94c9d2ecf20ab87f9b73e2cc",
-        "c899d7a563f312d8f37710c74d0f5f14caddd010",
-        "defa43d29d379f3046d6efe63db4c940ca2762e1",
-        "8b055bd3340200646e60c98893660e1de6f7e834",
-        "72409b2078e5dc45324be1592774a390c0528bf8",
-        "bdcbb16b5c0da611f1d19e9415cba2adfcdaa891",
-        "70e01d6e4f8975d9e9a07e94ecfb0714cee4c705",
-        "6ce96776e526bba0da84bfaa4ab538dbee2b44b4",
-        "ad267852278f71a7d7a9a575633b559118bc0f93",
-        "baddb293e6ec71852a29039871cf99fa4f246e8e",
-        "ff8718634c9c9e9d0a4e7fc64fcac8f3c369467b",
-        "09215446a2598ff99223c655c612c34d7b366435",
-        "c82b344a68d0e6f68f9bf277e2e4fb3590cf13fe"
+        "db5ab0f3ef7828bba4009bdec7b9f4e109a1b0da"
       ],
-      "last_seen": "2026-07-11T01:47:56",
-      "last_max_date": "2026-07-10T16:05:00+00:00"
+      "last_seen": "2026-07-12T00:37:46",
+      "last_max_date": "2026-07-10T21:43:13+00:00"
     }
   }
 }
