@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>보안·AI 데일리 브리핑 — 2026년 08월 22일 (23:59)</title>
+<style>
+
+:root{
+  --bg:#f5f6f8; --card:#ffffff; --text:#1b1f24; --muted:#5b6470; --line:#e4e7eb;
+  --accent:#3b66f5; --high:#137333; --high-bg:#e6f4ea; --medium:#9a6700;
+  --medium-bg:#fff4d6; --low:#b3261e; --low-bg:#fce8e6;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0f1318; --card:#171c23; --text:#e7ebf0; --muted:#9aa4b1; --line:#262d36;
+    --accent:#6f8cff; --high:#6cd58a; --high-bg:#10301d; --medium:#e8c46a;
+    --medium-bg:#332a10; --low:#f08a82; --low-bg:#3a1614;
+  }
+}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Malgun Gothic",Roboto,sans-serif;
+  line-height:1.5;-webkit-text-size-adjust:100%;}
+.wrap{max-width:860px;margin:0 auto;padding:16px;}
+.top{padding:14px 4px 6px;}
+.top h1{font-size:22px;margin:0 0 4px;}
+.date{color:var(--muted);margin:0 0 12px;font-size:14px;}
+.stats{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px;}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:999px;
+  padding:4px 12px;font-size:13px;color:var(--muted);}
+.stat b{color:var(--text);font-size:14px;}
+.stat.high b{color:var(--high);} .stat.medium b{color:var(--medium);} .stat.low b{color:var(--low);}
+.catnav{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;gap:8px;
+  padding:10px 4px;margin:0 -4px 4px;background:var(--bg);
+  border-bottom:1px solid var(--line);}
+.nav-chip{text-decoration:none;font-size:13px;color:var(--text);background:var(--card);
+  border:1px solid var(--line);border-radius:999px;padding:6px 13px;white-space:nowrap;}
+.nav-chip:hover{border-color:var(--accent);color:var(--accent);}
+.nav-chip b{color:var(--accent);}
+.nav-chip.cat-vuln{border-color:var(--low);}
+.nav-chip.cat-vuln b{color:var(--low);}
+.nav-chip.cat-headline{border-color:var(--accent);background:rgba(59,102,245,.12);}
+.cat.headline .cat-title{border-bottom-color:var(--accent);}
+.cat-note{font-size:12px;color:var(--muted);margin:-6px 0 12px;}
+.cat.headline .card{border-left-color:var(--accent);}
+.rankno{display:inline-flex;align-items:center;justify-content:center;
+  width:22px;height:22px;border-radius:50%;background:var(--accent);color:#fff;
+  font-size:12px;font-weight:700;margin-right:2px;}
+.catbadge{background:var(--bg);border:1px solid var(--line);border-radius:6px;
+  padding:1px 7px;font-size:11px;}
+.sortbar{display:flex;align-items:center;gap:8px;margin:6px 0 14px;flex-wrap:wrap;}
+.sortlabel{font-size:13px;color:var(--muted);margin-right:2px;}
+.sortbtn{cursor:pointer;font-size:13px;color:var(--text);background:var(--card);
+  border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-family:inherit;}
+.sortbtn.active{background:var(--accent);color:#fff;border-color:var(--accent);}
+.cat{margin:22px 0 8px;scroll-margin-top:60px;}
+.cat-title{font-size:17px;display:flex;align-items:center;gap:8px;
+  border-bottom:2px solid var(--line);padding-bottom:6px;margin:0 0 12px;}
+.count{font-size:13px;color:#fff;background:var(--accent);border-radius:999px;
+  padding:1px 9px;font-weight:600;}
+.card{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--line);
+  border-radius:12px;padding:14px 16px;margin-bottom:12px;}
+.card.tier-high{border-left-color:var(--high);}
+.card.tier-medium{border-left-color:var(--medium);}
+.card.tier-low{border-left-color:var(--low);}
+.card-head{display:flex;flex-wrap:wrap;align-items:center;gap:8px;justify-content:space-between;}
+.badge{font-size:12px;font-weight:700;border-radius:6px;padding:2px 8px;white-space:nowrap;}
+.badge.tier-high{color:var(--high);background:var(--high-bg);}
+.badge.tier-medium{color:var(--medium);background:var(--medium-bg);}
+.badge.tier-low{color:var(--low);background:var(--low-bg);}
+.meta{font-size:12px;color:var(--muted);}
+.meta .source{font-weight:600;color:var(--text);}
+.title{font-size:16px;margin:8px 0 6px;line-height:1.4;}
+.title a{color:var(--text);text-decoration:none;}
+.title a:hover{color:var(--accent);text-decoration:underline;}
+.sumbox{margin:2px 0 8px;}
+.sumtoggle{cursor:pointer;display:inline-block;font-size:12px;color:var(--accent);
+  background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:3px 10px;
+  list-style:none;user-select:none;}
+.sumtoggle::-webkit-details-marker{display:none;}
+.sumtoggle::marker{content:"";}
+.sumbox[open] .sumtoggle{margin-bottom:6px;border-color:var(--accent);}
+.summary{font-size:14px;color:var(--muted);margin:0 0 4px;}
+.corrob{font-size:12px;color:var(--accent);margin:0 0 8px;}
+.chips{display:flex;flex-wrap:wrap;gap:6px;}
+.chip{font-size:11px;color:var(--muted);background:var(--bg);border:1px solid var(--line);
+  border-radius:6px;padding:2px 7px;}
+.empty{color:var(--muted);text-align:center;padding:30px 0;}
+.sources{margin:24px 0;background:var(--card);border:1px solid var(--line);border-radius:12px;
+  padding:10px 14px;}
+.sources summary{cursor:pointer;font-weight:600;font-size:14px;}
+table.status{width:100%;border-collapse:collapse;margin-top:10px;font-size:13px;}
+table.status th,table.status td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line);}
+table.status td.num,table.status th:nth-child(2){text-align:right;}
+table.status tr.fail td{color:var(--low);}
+.foot{color:var(--muted);font-size:12px;margin:24px 0 40px;text-align:center;}
+.foot .gen{opacity:.7;margin-top:6px;}
+@media (max-width:520px){
+  .top h1{font-size:19px;} .title{font-size:15px;} .wrap{padding:12px;}
+}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <h1>🛰️ 보안 · AI 데일리 브리핑</h1>
+    <p class="date">📅 2026-08-22 하루 동안 · 신규 80건 · 생성 2026년 08월 22일 (23:59)</p>
+    <div class="stats"><span class="stat"><b>13</b> 🛡️ 보안(해외)</span><span class="stat"><b>0</b> 🇰🇷 보안(국내)</span><span class="stat"><b>17</b> 🐞 취약점(CVE)</span><span class="stat"><b>14</b> 🤖 AI</span><span class="stat"><b>2</b> 🚀 신기술(Trending)</span><span class="stat"><b>34</b> 🏆 대회·해커톤(국내)</span><span class="stat"><b>0</b> 📄 연구(arXiv)</span></div>
+    <div class="stats tiers"><span class="stat high"><b>0</b> 높음</span><span class="stat medium"><b>45</b> 보통</span><span class="stat low"><b>35</b> 주의</span></div>
+  </header>
+
+  <nav class="catnav"><a class="nav-chip cat-headline" href="#cat-headline">📌 헤드라인 (꼭 읽어볼 것) <b>6</b></a><a class="nav-chip cat-security" href="#cat-security">🛡️ 보안(해외) <b>13</b></a><a class="nav-chip cat-vuln" href="#cat-vuln">🐞 취약점(CVE) <b>17</b></a><a class="nav-chip cat-ai" href="#cat-ai">🤖 AI <b>14</b></a><a class="nav-chip cat-tech" href="#cat-tech">🚀 신기술(Trending) <b>2</b></a><a class="nav-chip cat-contest" href="#cat-contest">🏆 대회·해커톤(국내) <b>34</b></a></nav>
+
+  <div class="sortbar">
+    <span class="sortlabel">정렬</span>
+    <button class="sortbtn active" data-mode="custom" onclick="__applySort('custom')">⭐ 맞춤형</button>
+    <button class="sortbtn" data-mode="latest" onclick="__applySort('latest')">🕒 최신순</button>
+  </div>
+
+  
+    <section class="cat headline" id="cat-headline">
+      <h2 class="cat-title">📌 헤드라인 (꼭 읽어볼 것) <span class="count">6</span></h2>
+      <p class="cat-note">오늘 하루 중 중요도(교차보도·고위험 키워드·취약점 심각도 등)를 기준으로 자동 선별했습니다.</p>
+      
+      <article class="card tier-medium" data-ts="1787345797" data-rank="10.0">
+        <div class="card-head">
+          <span class="rankno">1</span><span class="badge tier-medium">신뢰도 보통 · 60</span>
+          <div class="meta"><span class="catbadge">🐞 취약점(CVE)</span> · <span class="source">CVE (GitHub Advisory)</span> · <span class="when">2026-08-22 05:56</span></div>
+        </div>
+        <h3 class="title"><a href="https://github.com/advisories/GHSA-x2rj-828p-hx9m" target="_blank" rel="noopener">CVE-2026-61539 · 심각 10.0</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">Xinference의 Llama3 도구 호출(tool-call) 파싱 과정에서 안전하지 않은 `eval()` 함수가 사용되어 원격 코드 실행(RCE) 취약점이 발견되었습니다. CVSS 점수 10.0의 심각한 보안 결함으로, 공격자가 이를 악용할 경우 시스템에 대한 완전한 제어권을 획득할 수 있어 즉각적인 업데이트가 필요합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 90%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1787345756" data-rank="9.5">
+        <div class="card-head">
+          <span class="rankno">2</span><span class="badge tier-medium">신뢰도 보통 · 60</span>
+          <div class="meta"><span class="catbadge">🐞 취약점(CVE)</span> · <span class="source">CVE (GitHub Advisory)</span> · <span class="when">2026-08-22 05:55</span></div>
+        </div>
+        <h3 class="title"><a href="https://github.com/advisories/GHSA-hrwp-4hh9-c8r8" target="_blank" rel="noopener">CVE-2026-59989 · 심각 9.5</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">Phalcon Volt 컴파일러의 `join` 필터에서 컴파일 타임 PHP 코드 주입 취약점이 발견되어 원격 코드 실행(RCE)으로 이어질 수 있는 심각도 9.5의 보안 위협이 확인되었습니다. 공격자가 템플릿 엔진을 통해 악의적인 코드를 삽입할 수 있으므로, 해당 프레임워크 사용자는 최신 보안 패치를 적용하여 서버 제어권 탈취 위험을 방지해야 합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 90%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1787343941" data-rank="9.8">
+        <div class="card-head">
+          <span class="rankno">3</span><span class="badge tier-medium">신뢰도 보통 · 60</span>
+          <div class="meta"><span class="catbadge">🐞 취약점(CVE)</span> · <span class="source">CVE (GitHub Advisory)</span> · <span class="when">2026-08-22 05:25</span></div>
+        </div>
+        <h3 class="title"><a href="https://github.com/advisories/GHSA-mqjf-5f49-2fjh" target="_blank" rel="noopener">CVE-2026-76904 · 심각 9.8</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">GeoTools의 jsonArrayContains 필터 함수에서 인증되지 않은 사용자가 PostGIS 레이어를 대상으로 SQL 인젝션을 수행할 수 있는 취약점(CVE-2026-76904)이 발견되었습니다. 해당 취약점은 CVSS 점수 9.8의 심각한 수준으로, 공격자가 원격에서 데이터베이스를 임의로 조작할 위험이 있어 즉각적인 보안 패치가 필요합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 90%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1787346259" data-rank="9.5">
+        <div class="card-head">
+          <span class="rankno">4</span><span class="badge tier-medium">신뢰도 보통 · 60</span>
+          <div class="meta"><span class="catbadge">🐞 취약점(CVE)</span> · <span class="source">CVE (GitHub Advisory)</span> · <span class="when">2026-08-22 06:04</span></div>
+        </div>
+        <h3 class="title"><a href="https://github.com/advisories/GHSA-66mm-25pp-rfff" target="_blank" rel="noopener">CVE-2026-77415 · 심각 9.5</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">JSONata 라이브러리에서 조작된 표현식을 통해 임의 코드 실행(ACE)이 가능한 취약점(CVE-2026-77415)이 발견되었습니다. 해당 취약점은 CVSS 점수 9.5로 매우 심각한 수준이며, 공격자가 악의적인 JSONata 구문을 주입하여 시스템 제어권을 탈취할 위험이 있습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 90%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1787345881" data-rank="9.5">
+        <div class="card-head">
+          <span class="rankno">5</span><span class="badge tier-medium">신뢰도 보통 · 60</span>
+          <div class="meta"><span class="catbadge">🐞 취약점(CVE)</span> · <span class="source">CVE (GitHub Advisory)</span> · <span class="when">2026-08-22 05:58</span></div>
+        </div>
+        <h3 class="title"><a href="https://github.com/advisories/GHSA-2943-5xfg-gq5f" target="_blank" rel="noopener">CVE-2026-77414 · 심각 9.5</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">JSONata 라이브러리에서 조작된 표현식을 통해 임의 코드 실행(ACE)이 가능한 취약점(CVE-2026-77414)이 발견되었습니다. CVSS 점수 9.5의 심각한 보안 결함으로, 공격자가 악의적인 JSONata 구문을 주입하여 시스템 권한을 탈취할 위험이 있어 즉각적인 업데이트가 필요합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 90%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1787345827" data-rank="9.5">
+        <div class="card-head">
+          <span class="rankno">6</span><span class="badge tier-medium">신뢰도 보통 · 60</span>
+          <div class="meta"><span class="catbadge">🐞 취약점(CVE)</span> · <span class="source">CVE (GitHub Advisory)</span> · <span class="when">2026-08-22 05:57</span></div>
+        </div>
+        <h3 class="title"><a href="https://github.com/advisories/GHSA-8gq3-vp5j-2grp" target="_blank" rel="noopener">CVE-2026-77413 · 심각 9.5</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">JSONata 라이브러리에서 조작된 표현식을 통해 임의 코드 실행(ACE)이 가능한 취약점(CVE-2026-77413)이 발견되었습니다. 해당 취약점은 CVSS 점수 9.5로 매우 심각한 수준이며, 공격자가 악의적인 JSONata 구문을 주입하여 시스템 내에서 임의의 코드를 실행할 수 있어 즉각적인 보안 업데이트가 필요합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 90%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+    </section>
+    <section class="cat" id="cat-security">
+      <h2 class="cat-title">🛡️ 보안(해외) <span class="count">13</span></h2>
+      
+      <article class="card tier-medium" data-ts="1787408064" data-rank="87">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 72</span>
+          <div class="meta"><span class="source">BleepingComputer</span> · <span class="when">2026-08-22 23:14</span></div>
+        </div>
+        <h3 class="title"><a href="https://www.bleepingcomputer.com/news/security/hackers-infect-android-car-head-units-with-proxy-botnet-malware/" target="_blank" rel="noopener">Hackers infect Android car head units with proxy botnet malware</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">안드로이드 기반 차량용 헤드 유닛의 공식 업데이트 앱을 악용한 공급망 공격이 발생하여, 감염된 기기가 프록시 봇넷이나 광고 사기 도구로 악용되고 있습니다. 이는 신뢰할 수 있는 업데이트 경로가 보안 위협의 통로가 될 수 있음을 보여주며, 차량용 인포테인먼트 시스템의 보안 관리 중요성을 시사합니다.</p></details>
+        <div class="corrob">🔗 교차보도: The Hacker News</div>
+        <div class="chips"><span class="chip">출처 신뢰도 90%</span><span class="chip">1개 타 매체 교차보도</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1787326904" data-rank="74">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 70</span>
+          <div class="meta"><span class="source">The Hacker News</span> · <span class="when">2026-08-22 00:41</span></div>
+        </div>
+        <h3 class="title"><a href="https://thehackernews.com/2026/08/android-car-malware-spreads-through.html" target="_blank" rel="noopener">Android Car Malware Spreads Through Built-In Updaters for Ad Fraud, Proxy Botnet</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">DoFun이 개발한 안드로이드 차량용 헤드 유닛 펌웨어의 내장 업데이트 기능을 통해 악성코드가 유포되고 있음이 확인되었습니다. 해당 악성코드는 다단계 다운로더를 실행하여 광고 사기 및 프록시 봇넷 구축에 악용되는 것으로 밝혀졌습니다.</p></details>
+        <div class="corrob">🔗 교차보도: BleepingComputer</div>
+        <div class="chips"><span class="chip">출처 신뢰도 85%</span><span class="chip">1개 타 매체 교차보도</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1787331157" data-rank="36">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 60</span>
+          <div class="meta"><span class="source">Schneier on Security</span> · <span class="when">2026-08-22 01:52</span></div>
+        </div>
+        <h3 class="title"><a href="https://www.schneier.com/blog/archives/2026/08/ai-is-learning-to-write-genetic-code.html" target="_blank" rel="noopener">AI Is Learning to Write Genetic Code</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">최근 AI 모델이 박테리오파지 ΦX174의 전체 유전체 코드를 성공적으로 생성하며 인공지능이 생물학적 유전 정보를 설계할 수 있는 수준에 도달했음을 입증했습니다. 이는 AI를 활용한 신약 개발 등 생명공학 분야의 혁신 가능성을 보여주는 동시에, 병원균 설계 등 생물학적 보안 위협에 대한 우려를 제기하고 있습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 90%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1787346447" data-rank="36">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 60</span>
+          <div class="meta"><span class="source">Schneier on Security</span> · <span class="when">2026-08-22 06:07</span></div>
+        </div>
+        <h3 class="title"><a href="https://www.schneier.com/blog/archives/2026/08/friday-squid-blogging-neon-flying-squid.html" target="_blank" rel="noopener">Friday Squid Blogging: Neon Flying Squid</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">태평양에서 약 100마리의 네온 날오징어 떼가 수면 위로 솟구쳐 올라 약 30미터 거리를 비행하는 모습이 최초로 포착되었습니다. 연구진은 이 희귀한 집단 비행 장면을 사진으로 기록했으며, 이는 오징어의 생태적 행동을 이해하는 데 중요한 사례가 됩니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 90%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1787403609" data-rank="36">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 60</span>
+          <div class="meta"><span class="source">BleepingComputer</span> · <span class="when">2026-08-22 22:00</span></div>
+        </div>
+        <h3 class="title"><a href="https://www.bleepingcomputer.com/news/security/named-pipes-under-attack-securing-windows-interprocess-communication/" target="_blank" rel="noopener">Named Pipes Under Attack: Securing Windows Interprocess Communication</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">Windows의 명명된 파이프(Named Pipes)는 프로세스 간 통신을 지원하지만, 취약한 접근 제어로 인해 권한 상승 공격에 노출될 위험이 있습니다. 이를 방지하기 위해서는 엔드포인트 검증, 명령 승인, 엄격한 입력 유효성 검사 및 최소 권한 원칙을 적용하여 보안을 강화해야 합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 90%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1787335290" data-rank="48">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 60</span>
+          <div class="meta"><span class="source">BleepingComputer</span> · <span class="when">2026-08-22 03:01</span></div>
+        </div>
+        <h3 class="title"><a href="https://www.bleepingcomputer.com/news/security/new-synkloader-malware-pushed-in-microsoft-teams-phishing-campaign/" target="_blank" rel="noopener">New SynkLoader malware pushed in Microsoft Teams phishing campaign</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">마이크로소프트 팀즈를 악용한 피싱 캠페인을 통해 &#x27;SynkLoader&#x27;라는 신종 악성코드가 유포되고 있습니다. 해당 악성코드는 가짜 잠금 화면을 띄워 사용자 계정 정보를 탈취하는 방식으로 작동하며, 기업 협업 툴을 노린 보안 위협이 증가하고 있음을 보여줍니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 90%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1787327715" data-rank="48">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 60</span>
+          <div class="meta"><span class="source">BleepingComputer</span> · <span class="when">2026-08-22 00:55</span></div>
+        </div>
+        <h3 class="title"><a href="https://www.bleepingcomputer.com/news/security/hundreds-of-leaked-aws-keys-give-full-control-over-corporate-accounts/" target="_blank" rel="noopener">Hundreds of leaked AWS keys give full control over corporate accounts</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">2022년 8월부터 2026년 8월 사이 유출된 9,300개 이상의 AWS 액세스 키가 여전히 활성 상태로 방치되어 있어 기업 계정에 대한 무단 접근 및 제어권 탈취 위험이 매우 큽니다. 이는 클라우드 보안 설정 미흡으로 인한 심각한 보안 취약점을 드러내며, 즉각적인 키 폐기 및 보안 점검이 필요한 상황입니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 90%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1787338380" data-rank="47">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 58</span>
+          <div class="meta"><span class="source">The Hacker News</span> · <span class="when">2026-08-22 03:53</span></div>
+        </div>
+        <h3 class="title"><a href="https://thehackernews.com/2026/08/14-trojanized-npm-packages-drop-redc2.html" target="_blank" rel="noopener">14 Trojanized npm Packages Drop RedC2 4.0 Linux Backdoor With AI-Assisted C2</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">보안 연구원들이 정상적인 유틸리티로 위장하여 리눅스용 백도어인 &#x27;RedC2 4.0&#x27;을 배포하는 14개의 악성 npm 패키지를 발견했습니다. 해당 패키지는 설치 시 AI 기반의 악성 바이너리를 백그라운드에서 자동으로 실행하도록 설계되어 있어 사용자 시스템의 보안을 위협합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 85%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1787327530" data-rank="59">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 58</span>
+          <div class="meta"><span class="source">The Hacker News</span> · <span class="when">2026-08-22 00:52</span></div>
+        </div>
+        <h3 class="title"><a href="https://thehackernews.com/2026/08/microsoft-defenders-own-driver-can-be.html" target="_blank" rel="noopener">Microsoft Defender&#x27;s Own Driver Can Be Weaponized to Delete Security Software at Boot</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">마이크로소프트 디펜더의 정상적인 부팅 드라이버(BTR.sys)를 악용해 윈도우 커널 수준에서 파일과 레지스트리를 임의로 조작할 수 있는 취약점이 발견되었습니다. 별도의 외부 드라이버 설치나 소프트웨어 결함 없이도 보안 소프트웨어를 강제 삭제할 수 있어, 시스템 보안 체계를 무력화할 위험이 있습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 85%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1787329672" data-rank="35">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 58</span>
+          <div class="meta"><span class="source">SecurityWeek</span> · <span class="when">2026-08-22 01:27</span></div>
+        </div>
+        <h3 class="title"><a href="https://www.securityweek.com/former-nsa-director-paul-nakasone-launches-national-security-advisory-firm/" target="_blank" rel="noopener">Former NSA Director Paul Nakasone Launches National Security Advisory Firm</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">폴 나카소네 전 미국 국가안보국(NSA) 국장이 사이버 보안, 지정학적 리스크, 개인 보안 문제를 전문으로 다루는 자문 기업 &#x27;나카소네 그룹&#x27;을 설립했습니다. 이 기업은 정부 기관과 기업, 개인 고객을 대상으로 보안 전략 및 리스크 관리 컨설팅을 제공할 예정입니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 85%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1787387400" data-rank="59">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 58</span>
+          <div class="meta"><span class="source">SecurityWeek</span> · <span class="when">2026-08-22 17:30</span></div>
+        </div>
+        <h3 class="title"><a href="https://www.securityweek.com/banking-trojans-manic-grandoreiro-toxicpanda-2-0-in-the-spotlight/" target="_blank" rel="noopener">Banking Trojans Manic, Grandoreiro, ToxicPanda 2.0 in the Spotlight</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">최근 라틴 아메리카와 유럽을 중심으로 스파이웨어 기능을 갖춘 &#x27;매닉(Manic)&#x27;, 지속적인 공격을 이어가는 &#x27;그란도레이로(Grandoreiro)&#x27;, 기능이 확장된 &#x27;톡식판다 2.0(ToxicPanda 2.0)&#x27; 등 뱅킹 트로이 목마의 위협이 고조되고 있습니다. 이들 악성코드는 금융 정보를 탈취하기 위한 공격 기법을 고도화하고 있어 사용자 및 금융 보안 체계의 각별한 주의가 요구됩니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 85%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1787329740" data-rank="46">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 55</span>
+          <div class="meta"><span class="source">The Register · Security</span> · <span class="when">2026-08-22 01:29</span></div>
+        </div>
+        <h3 class="title"><a href="https://www.theregister.com/patches/2026/08/21/homeland-security-cybercops-say-patch-trueconf-russias-zoom-if-youre-using-it/5291156" target="_blank" rel="noopener">Homeland security cybercops say patch TrueConf (Russia&#x27;s Zoom) if you&#x27;re using it</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">미국 국토안보부는 러시아의 화상회의 소프트웨어인 ‘트루콘프(TrueConf)’에서 발견된 보안 취약점을 악용하는 사례가 확인됨에 따라 즉각적인 보안 패치 적용을 권고했습니다. 해당 취약점은 우크라이나 해킹 그룹에 의해 공격에 활용되고 있으며, 전 세계적으로 사용되는 소프트웨어인 만큼 광범위한 보안 위협이 우려됩니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 80%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1787355761" data-rank="46">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 55</span>
+          <div class="meta"><span class="source">The Register · Security</span> · <span class="when">2026-08-22 08:42</span></div>
+        </div>
+        <h3 class="title"><a href="https://www.theregister.com/security/2026/08/22/aws-security-makes-an-inscrutable-choice-corey-quinn/5291446" target="_blank" rel="noopener">AWS Security makes an inscrutable choice</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">AWS가 유출된 자격 증명을 단순히 격리하는 기존 방식은 보안상 충분하지 않다는 지적이 제기되었습니다. 유출된 정보는 이미 악용될 위험이 크므로, 격리를 넘어 자격 증명 자체를 즉시 무효화하고 교체하는 보다 근본적인 대응 체계가 필요합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 80%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+    </section>
+    <section class="cat" id="cat-vuln">
+      <h2 class="cat-title">🐞 취약점(CVE) <span class="count">17</span></h2>
+      
+      <article class="card tier-medium" data-ts="1787345797" data-rank="10.0">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 60</span>
+          <div class="meta"><span class="source">CVE (GitHub Advisory)</span> · <span class="when">2026-08-22 05:56</span></div>
+        </div>
+        <h3 class="title"><a href="https://github.com/advisories/GHSA-x2rj-828p-hx9m" target="_blank" rel="noopener">CVE-2026-61539 · 심각 10.0</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">Xinference의 Llama3 도구 호출(tool-call) 파싱 과정에서 안전하지 않은 `eval()` 함수가 사용되어 원격 코드 실행(RCE) 취약점이 발견되었습니다. CVSS 점수 10.0의 심각한 보안 결함으로, 공격자가 이를 악용할 경우 시스템에 대한 완전한 제어권을 획득할 수 있어 즉각적인 업데이트가 필요합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 90%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1787343941" data-rank="9.8">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 60</span>
+          <div class="meta"><span class="source">CVE (GitHub Advisory)</span> · <span class="when">2026-08-22 05:25</span></div>
+        </div>
+        <h3 class="title"><a href="https://github.com/advisories/GHSA-mqjf-5f49-2fjh" target="_blank" rel="noopener">CVE-2026-76904 · 심각 9.8</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">GeoTools의 jsonArrayContains 필터 함수에서 인증되지 않은 사용자가 PostGIS 레이어를 대상으로 SQL 인젝션을 수행할 수 있는 취약점(CVE-2026-76904)이 발견되었습니다. 해당 취약점은 CVSS 점수 9.8의 심각한 수준으로, 공격자가 원격에서 데이터베이스를 임의로 조작할 위험이 있어 즉각적인 보안 패치가 필요합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 90%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1787345756" data-rank="9.5">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 60</span>
+          <div class="meta"><span class="source">CVE (GitHub Advisory)</span> · <span class="when">2026-08-22 05:55</span></div>
+        </div>
+        <h3 class="title"><a href="https://github.com/advisories/GHSA-hrwp-4hh9-c8r8" target="_blank" rel="noopener">CVE-2026-59989 · 심각 9.5</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">Phalcon Volt 컴파일러의 `join` 필터에서 컴파일 타임 PHP 코드 주입 취약점이 발견되어 원격 코드 실행(RCE)으로 이어질 수 있는 심각도 9.5의 보안 위협이 확인되었습니다. 공격자가 템플릿 엔진을 통해 악의적인 코드를 삽입할 수 있으므로, 해당 프레임워크 사용자는 최신 보안 패치를 적용하여 서버 제어권 탈취 위험을 방지해야 합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 90%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1787346259" data-rank="9.5">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 60</span>
+          <div class="meta"><span class="source">CVE (GitHub Advisory)</span> · <span class="when">2026-08-22 06:04</span></div>
+        </div>
+        <h3 class="title"><a href="https://github.com/advisories/GHSA-66mm-25pp-rfff" target="_blank" rel="noopener">CVE-2026-77415 · 심각 9.5</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">JSONata 라이브러리에서 조작된 표현식을 통해 임의 코드 실행(ACE)이 가능한 취약점(CVE-2026-77415)이 발견되었습니다. 해당 취약점은 CVSS 점수 9.5로 매우 심각한 수준이며, 공격자가 악의적인 JSONata 구문을 주입하여 시스템 제어권을 탈취할 위험이 있습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 90%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1787345881" data-rank="9.5">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 60</span>
+          <div class="meta"><span class="source">CVE (GitHub Advisory)</span> · <span class="when">2026-08-22 05:58</span></div>
+        </div>
+        <h3 class="title"><a href="https://github.com/advisories/GHSA-2943-5xfg-gq5f" target="_blank" rel="noopener">CVE-2026-77414 · 심각 9.5</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">JSONata 라이브러리에서 조작된 표현식을 통해 임의 코드 실행(ACE)이 가능한 취약점(CVE-2026-77414)이 발견되었습니다. CVSS 점수 9.5의 심각한 보안 결함으로, 공격자가 악의적인 JSONata 구문을 주입하여 시스템 권한을 탈취할 위험이 있어 즉각적인 업데이트가 필요합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 90%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1787345827" data-rank="9.5">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 60</span>
+          <div class="meta"><span class="source">CVE (GitHub Advisory)</span> · <span class="when">2026-08-22 05:57</span></div>
+        </div>
+        <h3 class="title"><a href="https://github.com/advisories/GHSA-8gq3-vp5j-2grp" target="_blank" rel="noopener">CVE-2026-77413 · 심각 9.5</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">JSONata 라이브러리에서 조작된 표현식을 통해 임의 코드 실행(ACE)이 가능한 취약점(CVE-2026-77413)이 발견되었습니다. 해당 취약점은 CVSS 점수 9.5로 매우 심각한 수준이며, 공격자가 악의적인 JSONata 구문을 주입하여 시스템 내에서 임의의 코드를 실행할 수 있어 즉각적인 보안 업데이트가 필요합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 90%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1787345696" data-rank="8.2">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 60</span>
+          <div class="meta"><span class="source">CVE (GitHub Advisory)</span> · <span class="when">2026-08-22 05:54</span></div>
+        </div>
+        <h3 class="title"><a href="https://github.com/advisories/GHSA-jg4p-g6xj-4qmf" target="_blank" rel="noopener">CVE-2026-61824 · 높음 8.2</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">Defuddle의 사이트 추출기(site extractor)에서 속성 보간(attribute interpolation)이 이스케이프 처리되지 않아 크로스 사이트 스크립팅(XSS) 취약점이 발견되었습니다. 공격자는 이를 악용해 악성 스크립트를 실행할 수 있으며, CVSS 점수 8.2점으로 보안 위험도가 높아 즉각적인 패치가 필요합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 90%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1787345843" data-rank="8.2">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 60</span>
+          <div class="meta"><span class="source">CVE (GitHub Advisory)</span> · <span class="when">2026-08-22 05:57</span></div>
+        </div>
+        <h3 class="title"><a href="https://github.com/advisories/GHSA-5h77-88j3-r659" target="_blank" rel="noopener">CVE-2026-63135 · 높음 8.2</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">YOURLS의 참조 통계 차트에서 조작된 Referer 헤더를 통해 저장형 XSS(교차 사이트 스크립팅) 취약점이 발견되었습니다. 공격자가 악성 스크립트를 삽입할 경우 관리자 권한 탈취 등 보안 위협이 발생할 수 있어 주의가 필요합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 90%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1787345733" data-rank="8.1">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 60</span>
+          <div class="meta"><span class="source">CVE (GitHub Advisory)</span> · <span class="when">2026-08-22 05:55</span></div>
+        </div>
+        <h3 class="title"><a href="https://github.com/advisories/GHSA-26w5-6g95-gj28" target="_blank" rel="noopener">CVE-2026-64679 · 높음 8.1</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">Atlantis Workspace Handling에서 경로 탐색(Path Traversal) 취약점이 발견되어, 공격자가 권한 범위를 벗어난 디렉터리를 임의로 생성하거나 삭제할 수 있습니다. 해당 취약점은 CVSS 점수 8.1점으로 위험도가 높으며, 시스템 파일 조작을 통한 서비스 장애나 데이터 손실을 유발할 수 있어 주의가 필요합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 90%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1787345816" data-rank="8.0">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 60</span>
+          <div class="meta"><span class="source">CVE (GitHub Advisory)</span> · <span class="when">2026-08-22 05:56</span></div>
+        </div>
+        <h3 class="title"><a href="https://github.com/advisories/GHSA-xhj3-7xw9-vr34" target="_blank" rel="noopener">CVE-2026-77354 · 높음 8.0</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">kin-openapi 라이브러리의 openapi3filter가 deepObject 쿼리 매개변수를 디코딩하는 과정에서 제어되지 않는 리소스 소비 취약점이 발견되었습니다. 이 취약점은 서비스 거부(DoS) 공격에 악용될 수 있어 시스템 가용성에 중대한 위협이 됩니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 90%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1787345851" data-rank="7.8">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 60</span>
+          <div class="meta"><span class="source">CVE (GitHub Advisory)</span> · <span class="when">2026-08-22 05:57</span></div>
+        </div>
+        <h3 class="title"><a href="https://github.com/advisories/GHSA-2cp2-2r3c-7p7r" target="_blank" rel="noopener">CVE-2026-68508 · 높음 7.8</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">Hydra 라이브러리의 `instantiate` 함수에서 신뢰할 수 없는 설정값을 처리할 때 임의 코드 실행(RCE)이 가능한 취약점이 발견되었습니다. 공격자가 조작된 설정 파일을 주입할 경우 시스템 권한을 탈취할 수 있어, Hydra를 사용하는 애플리케이션의 보안 업데이트와 설정값 검증이 필수적입니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 90%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1787345746" data-rank="7.5">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 60</span>
+          <div class="meta"><span class="source">CVE (GitHub Advisory)</span> · <span class="when">2026-08-22 05:55</span></div>
+        </div>
+        <h3 class="title"><a href="https://github.com/advisories/GHSA-mmfr-pmjx-hw9w" target="_blank" rel="noopener">CVE-2026-76905 · 높음 7.5</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">kin-openapi의 openai3filter에서 비정상적인 multipart/form-data 요청 처리 시 널 포인터 역참조로 인한 서비스 거부(DoS) 취약점이 발견되었습니다. 인증되지 않은 공격자가 악의적인 요청을 보내 애플리케이션을 강제 종료시킬 수 있어 보안 업데이트가 필요합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 90%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1787339677" data-rank="7.5">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 60</span>
+          <div class="meta"><span class="source">CVE (GitHub Advisory)</span> · <span class="when">2026-08-22 04:14</span></div>
+        </div>
+        <h3 class="title"><a href="https://github.com/advisories/GHSA-r5pq-6chh-j3xp" target="_blank" rel="noopener">CVE-2026-63462 · 높음 7.5</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">Unleash의 OpenAPI 유효성 검사 오류 포맷터에서 인증되지 않은 사용자가 단일 요청만으로 서비스 거부(DoS)를 유발할 수 있는 취약점(CVE-2026-63462)이 발견되었습니다. 이 취약점은 CVSS 점수 7.5로 &#x27;높음&#x27; 등급에 해당하며, 원격 공격자가 시스템 가용성을 저해할 수 있어 신속한 보안 업데이트가 필요합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 90%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1787345711" data-rank="7.5">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 60</span>
+          <div class="meta"><span class="source">CVE (GitHub Advisory)</span> · <span class="when">2026-08-22 05:55</span></div>
+        </div>
+        <h3 class="title"><a href="https://github.com/advisories/GHSA-cqmq-8755-7xvh" target="_blank" rel="noopener">CVE-2026-63421 · 높음 7.5</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">Keystone의 `graphql.maxTake` 설정이 음수 값을 입력하는 방식으로 우회되는 취약점(CVE-2026-63421)이 발견되었습니다. 공격자가 이를 악용할 경우 데이터베이스 쿼리 제한을 무력화하여 시스템 리소스를 과도하게 점유하거나 서비스 거부(DoS)를 유발할 수 있어 주의가 필요합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 90%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1787339685" data-rank="5.5">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 60</span>
+          <div class="meta"><span class="source">CVE (GitHub Advisory)</span> · <span class="when">2026-08-22 04:14</span></div>
+        </div>
+        <h3 class="title"><a href="https://github.com/advisories/GHSA-5vf6-jrqr-78fj" target="_blank" rel="noopener">CVE-2026-63004 · 중간 5.5</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">Unleash의 애드온 웹훅 URL 설정 과정에서 내부 주소 필터링이 누락되어 서버 측 요청 위조(SSRF) 취약점이 발생합니다. 이를 통해 공격자는 내부 서비스나 클라우드 메타데이터에 접근하고 설정된 요청 헤더 정보를 탈취할 수 있습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 90%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1787339699" data-rank="5.0">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 60</span>
+          <div class="meta"><span class="source">CVE (GitHub Advisory)</span> · <span class="when">2026-08-22 04:14</span></div>
+        </div>
+        <h3 class="title"><a href="https://github.com/advisories/GHSA-8hgv-xc77-jmcr" target="_blank" rel="noopener">GHSA-8hgv-xc77-jmcr · 중간 5.0</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">Grav CMS의 Twig 샌드박스 내 `assets.addJs` 및 `addCss` 허용 목록 설정에서 페이지 편집자가 임의의 스크립트를 삽입할 수 있는 취약점이 발견되었습니다. 이 취약점을 악용하면 공격자가 관리자 권한을 탈취할 수 있어 보안상 위험이 큽니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 90%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1787339692" data-rank="4.1">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 60</span>
+          <div class="meta"><span class="source">CVE (GitHub Advisory)</span> · <span class="when">2026-08-22 04:14</span></div>
+        </div>
+        <h3 class="title"><a href="https://github.com/advisories/GHSA-w4mq-xh27-6xpx" target="_blank" rel="noopener">CVE-2026-63466 · 중간 4.1</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">Unleash 라이브러리의 `Mustache.escape` 재정의 설정이 전체 프로세스의 HTML 이스케이프 기능을 비활성화하여 보안 취약점을 유발합니다. 이로 인해 공격자가 사용자 이름을 악용해 Slack이나 Teams에서 링크 주입 공격을 수행할 수 있어 주의가 필요합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 90%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+    </section>
+    <section class="cat" id="cat-ai">
+      <h2 class="cat-title">🤖 AI <span class="count">14</span></h2>
+      
+      <article class="card tier-medium" data-ts="1787351858" data-rank="43">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 67</span>
+          <div class="meta"><span class="source">TechCrunch AI</span> · <span class="when">2026-08-22 07:37</span></div>
+        </div>
+        <h3 class="title"><a href="https://techcrunch.com/2026/08/21/nvidia-partners-with-data-center-developer-cloverleaf/" target="_blank" rel="noopener">Nvidia partners with data center developer Cloverleaf</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">엔비디아가 데이터 센터 개발 기업인 클로버리프(Cloverleaf)와 파트너십을 체결했습니다. 이는 AI 데이터 센터 수요 급증에 따른 인프라 확장을 가속화하고, 자사 하드웨어의 수익성을 극대화하기 위한 전략적 행보입니다.</p></details>
+        <div class="corrob">🔗 교차보도: The Decoder</div>
+        <div class="chips"><span class="chip">출처 신뢰도 80%</span><span class="chip">1개 타 매체 교차보도</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1787336744" data-rank="54">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 64</span>
+          <div class="meta"><span class="source">The Decoder</span> · <span class="when">2026-08-22 03:25</span></div>
+        </div>
+        <h3 class="title"><a href="https://the-decoder.com/data-center-opposition-surged-from-42-to-75-percent-in-just-one-year-survey-finds/" target="_blank" rel="noopener">Data center opposition surged from 42 to 75 percent in just one year, survey finds</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">최근 설문조사에 따르면 데이터 센터 건립에 반대하는 미국인의 비율이 1년 만에 42%에서 75%로 급증했으며, 이 중 61%는 강력하게 반대하는 것으로 나타났습니다. 데이터 센터에 대한 지역 주민의 거부감이 단기간에 크게 확산함에 따라 향후 인프라 구축 과정에서 상당한 사회적 갈등과 난관이 예상됩니다.</p></details>
+        <div class="corrob">🔗 교차보도: TechCrunch AI</div>
+        <div class="chips"><span class="chip">출처 신뢰도 75%</span><span class="chip">1개 타 매체 교차보도</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1787378544" data-rank="28">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 55</span>
+          <div class="meta"><span class="source">AI타임스</span> · <span class="when">2026-08-22 15:02</span></div>
+        </div>
+        <h3 class="title"><a href="https://www.aitimes.com/news/articleView.html?idxno=214237" target="_blank" rel="noopener">정부, ‘미래대응기금’ 신설…초과세수로 AI·첨단기술 집중 투자</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">정부가 반도체 호황 등으로 발생한 초과 세수를 활용해 ‘미래대응기금’을 신설하고 AI 및 첨단기술 분야에 집중 투자하기로 했습니다. 이는 향후 2~3년을 국가 시스템 재설계와 미래 성장동력 확보의 골든타임으로 보고, 국가적 차원의 기술 주도권을 선점하기 위한 전략입니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 80%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1787353645" data-rank="28">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 55</span>
+          <div class="meta"><span class="source">TechCrunch AI</span> · <span class="when">2026-08-22 08:07</span></div>
+        </div>
+        <h3 class="title"><a href="https://techcrunch.com/2026/08/21/anthropics-opus-4-6-is-a-smut-machine/" target="_blank" rel="noopener">Anthropic’s Opus 4.6 is a smut-machine</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">앤스로픽의 클로드(Claude) 모델은 성인용 콘텐츠 생성을 금지하고 있으나, 테크크런치(TechCrunch)의 테스트 결과 간단한 우회 기법으로 해당 제한을 쉽게 돌파할 수 있는 것으로 확인되었습니다. 이는 AI 모델의 안전 가드레일이 여전히 취약하며, 콘텐츠 필터링 정책의 실효성에 문제가 있음을 시사합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 80%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1787341419" data-rank="28">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 55</span>
+          <div class="meta"><span class="source">TechCrunch AI</span> · <span class="when">2026-08-22 04:43</span></div>
+        </div>
+        <h3 class="title"><a href="https://techcrunch.com/2026/08/21/nvidia-just-showed-that-the-harness-not-the-ai-model-is-now-the-real-hero/" target="_blank" rel="noopener">Nvidia just showed that the harness, not the AI model, is now the real hero</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">엔비디아 연구 결과, AI 모델 자체의 성능이 다소 부족하더라도 정교한 파인튜닝과 제어 체계를 갖추면 AI 에이전트가 높은 작업 수행 능력을 발휘할 수 있음이 확인되었습니다. 이는 AI 시스템의 성과를 결정짓는 핵심 요소가 모델의 규모보다 이를 운용하는 제어 및 최적화 기술로 이동하고 있음을 시사합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 80%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-low" data-ts="1787400910" data-rank="27">
+        <div class="card-head">
+          <span class="badge tier-low">주의 필요 · 52</span>
+          <div class="meta"><span class="source">The Decoder</span> · <span class="when">2026-08-22 21:15</span></div>
+        </div>
+        <h3 class="title"><a href="https://the-decoder.com/study-explains-why-ai-agents-benefit-from-skills-and-when-they-fail/" target="_blank" rel="noopener">Study explains why AI agents benefit from &quot;skills&quot; and when they fail</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">프린스턴대와 UC 샌디에이고 연구진은 AI 에이전트의 성능 향상이 지식 추가가 아닌 구조화된 워크플로우를 통한 &#x27;기술(skills)&#x27; 활용에서 비롯됨을 확인했습니다. 다만, 기술 라이브러리가 방대해질수록 에이전트가 적절한 명령 조합을 선택하는 데 어려움을 겪는다는 한계가 발견되었습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 75%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-low" data-ts="1787389220" data-rank="27">
+        <div class="card-head">
+          <span class="badge tier-low">주의 필요 · 52</span>
+          <div class="meta"><span class="source">The Decoder</span> · <span class="when">2026-08-22 18:00</span></div>
+        </div>
+        <h3 class="title"><a href="https://the-decoder.com/world-models-that-ignore-human-beliefs-predict-the-wrong-actions-new-research-shows/" target="_blank" rel="noopener">World models that ignore human beliefs predict the wrong actions, new research shows</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">기존의 세계 모델(World models)은 물리적 현상만 모의할 뿐 인간의 의도나 신념을 고려하지 않아 행동 예측에 한계가 있습니다. 새로 제안된 &#x27;정신적 세계 모델링(Mental World Modeling)&#x27; 프레임워크는 인간의 심리적 변수를 통합하여 모델의 예측 성능을 향상시켰습니다. 다만, 물리적 상태와 정신적 상태의 상호 변화를 동시에 예측하는 것이 기술적 과제로 남아 있습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 75%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-low" data-ts="1787383816" data-rank="27">
+        <div class="card-head">
+          <span class="badge tier-low">주의 필요 · 52</span>
+          <div class="meta"><span class="source">The Decoder</span> · <span class="when">2026-08-22 16:30</span></div>
+        </div>
+        <h3 class="title"><a href="https://the-decoder.com/netflix-tests-language-model-as-alternative-to-hand-built-recommendation-logic/" target="_blank" rel="noopener">Netflix tests language model as alternative to hand-built recommendation logic</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">넷플릭스는 기존의 수작업 기반 추천 엔진을 대체하기 위해 시청 기록을 텍스트로 변환하여 학습하는 자체 거대언어모델 &#x27;GenRec&#x27;을 도입해 테스트를 진행했습니다. 실험 결과 GenRec이 기존 알고리즘보다 우수한 추천 성능을 보였으며, 넷플릭스는 이를 추천 시스템 고도화를 위한 초기 단계의 유망한 성과로 평가하고 있습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 75%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-low" data-ts="1787340937" data-rank="39">
+        <div class="card-head">
+          <span class="badge tier-low">주의 필요 · 52</span>
+          <div class="meta"><span class="source">The Decoder</span> · <span class="when">2026-08-22 04:35</span></div>
+        </div>
+        <h3 class="title"><a href="https://the-decoder.com/anthropic-puts-its-most-powerful-model-claude-mythos-5-to-work-for-cyber-defense/" target="_blank" rel="noopener">Anthropic puts its most powerful model Claude Mythos 5 to work for cyber defense</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">앤스로픽은 자사의 최신 AI 모델 &#x27;클로드 미토스 5(Claude Mythos 5)&#x27;를 보안 스캐너에 도입하여 코드 취약점 탐지, 위험도 평가 및 패치 제안 기능을 강화했습니다. 또한, 해당 모델을 주요 기반 시설을 보호하는 파트너사의 보안 제품군에 연동하여 사이버 방어 역량을 확대하고 있습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 75%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-low" data-ts="1787326041" data-rank="27">
+        <div class="card-head">
+          <span class="badge tier-low">주의 필요 · 52</span>
+          <div class="meta"><span class="source">바이라인네트워크</span> · <span class="when">2026-08-22 00:27</span></div>
+        </div>
+        <h3 class="title"><a href="https://byline.network/2026/08/21_921827/" target="_blank" rel="noopener">카카오가 인적분할하려는 이유 (feat. 일문일답)</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">카카오는 문어발식 확장과 경영 논란으로 하락한 기업 가치를 회복하고 &#x27;AI 기업&#x27;으로 재평가받기 위해 인적 분할을 추진합니다. 카카오톡 기반의 AI 사업을 전담할 신설법인 &#x27;카카오AI&#x27;와 투자 및 신사업 발굴을 맡을 &#x27;카카오X&#x27;로 조직을 분리해 사업 효율성과 시장 내 입지를 강화하려는 전략입니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 75%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-low" data-ts="1787382005" data-rank="27">
+        <div class="card-head">
+          <span class="badge tier-low">주의 필요 · 52</span>
+          <div class="meta"><span class="source">The Decoder</span> · <span class="when">2026-08-22 16:00</span></div>
+        </div>
+        <h3 class="title"><a href="https://the-decoder.com/psychological-methods-reveal-major-weaknesses-in-ai-security-testing/" target="_blank" rel="noopener">Psychological methods reveal major weaknesses in AI security testing</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">영국 AI 안전 연구소는 기존 언어 모델의 안전성 벤치마크가 일관된 지표를 측정하지 못하며, 단순히 요청을 차단하는 방식이 모델의 유용성을 저해하면서 안전 점수만 높일 수 있음을 확인했다. 연구진은 모델이 테스트 환경과 실제 사용 환경에서 다르게 행동하는 &#x27;위장된 안전성&#x27;을 탐지할 수 있는 심리측정 기반의 새로운 평가 방법을 제시했다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 75%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-low" data-ts="1787339307" data-rank="27">
+        <div class="card-head">
+          <span class="badge tier-low">주의 필요 · 52</span>
+          <div class="meta"><span class="source">The Decoder</span> · <span class="when">2026-08-22 04:08</span></div>
+        </div>
+        <h3 class="title"><a href="https://the-decoder.com/deepseek-releases-experimental-flash-vision-model-that-rivals-opus-4-8-on-agent-benchmarks/" target="_blank" rel="noopener">Deepseek releases experimental Flash vision model that rivals Opus 4.8 on agent benchmarks</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">Deepseek가 기존 V4-Flash 모델에 이미지 이해 능력을 추가한 실험적 멀티모달 모델 &#x27;V4-Flash-Vision-Exp&#x27;를 공개했습니다. 해당 모델은 자체 멀티모달 에이전트 벤치마크에서 Opus 4.8과 대등하거나 일부 항목을 상회하는 성능을 기록했습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 75%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-low" data-ts="1787325509" data-rank="39">
+        <div class="card-head">
+          <span class="badge tier-low">주의 필요 · 52</span>
+          <div class="meta"><span class="source">The Decoder</span> · <span class="when">2026-08-22 00:18</span></div>
+        </div>
+        <h3 class="title"><a href="https://the-decoder.com/us-wants-to-force-partner-countries-to-choose-between-washington-and-beijing-in-the-ai-race/" target="_blank" rel="noopener">US wants to force partner countries to choose between Washington and Beijing in the AI race</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">미국 정부가 인공지능 기술 패권 경쟁에서 동맹국들에게 미국과 중국 중 하나를 선택하도록 압박하는 서한을 준비 중인 것으로 알려졌다. 이는 글로벌 AI 공급망과 기술 표준 설정 과정에서 중국의 영향력을 차단하고 미국의 기술적 우위를 공고히 하려는 전략적 조치로 풀이된다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 75%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-low" data-ts="1787385614" data-rank="27">
+        <div class="card-head">
+          <span class="badge tier-low">주의 필요 · 52</span>
+          <div class="meta"><span class="source">The Decoder</span> · <span class="when">2026-08-22 17:00</span></div>
+        </div>
+        <h3 class="title"><a href="https://the-decoder.com/rayneos-new-ai-glasses-skip-the-camera-focus-on-text-overlays/" target="_blank" rel="noopener">RayNeo&#x27;s new AI glasses skip the camera, focus on text overlays</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">RayNeo가 카메라와 스피커를 제거하고 텍스트 오버레이 기능에 집중한 새로운 AI 안경을 출시한다. 하드웨어 구성을 단순화하여 개인정보 보호와 기능적 효율성을 높인 것이 핵심이다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 75%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+    </section>
+    <section class="cat" id="cat-tech">
+      <h2 class="cat-title">🚀 신기술(Trending) <span class="count">2</span></h2>
+      
+      <article class="card tier-medium" data-ts="1787313399" data-rank="1253">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 58</span>
+          <div class="meta"><span class="source">GitHub 신기술</span> · <span class="when">2026-08-21 20:56</span></div>
+        </div>
+        <h3 class="title"><a href="https://github.com/MengTo/threeui" target="_blank" rel="noopener">MengTo/threeui · ⭐1,253 · HTML</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">ThreeUI는 웹 인터페이스 개발을 위한 오픈소스 컴포넌트 카탈로그로, 실시간 상호작용이 가능한 UI 요소와 전체 소스 코드를 제공합니다. 개발자는 이를 통해 검증된 UI 컴포넌트를 즉시 활용하여 웹 프로젝트의 개발 효율성을 높일 수 있습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 85%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1786318752" data-rank="809">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 58</span>
+          <div class="meta"><span class="source">GitHub 신기술</span> · <span class="when">2026-08-10 08:39</span></div>
+        </div>
+        <h3 class="title"><a href="https://github.com/Leonxlnx/unlazy" target="_blank" rel="noopener">Leonxlnx/unlazy · ⭐809 · JavaScript</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">&#x27;unlazy&#x27;는 AI 에이전트의 과소평가 및 조기 종료 문제를 해결하기 위해 &#x27;Depth Tree&#x27; 방식을 도입한 도구입니다. 이 방식은 작업을 N단계로 분할하고 각 하위 작업에 전체 작업과 동일한 시간 예산을 할당하여, 작업 깊이에 비례해 AI의 사고력을 증폭시킵니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 85%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+    </section>
+    <section class="cat" id="cat-contest">
+      <h2 class="cat-title">🏆 대회·해커톤(국내) <span class="count">34</span></h2>
+      
+      <article class="card tier-medium" data-ts="1785481200" data-rank="34">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 60</span>
+          <div class="meta"><span class="source">보안 대회·해커톤</span> · <span class="when">2026-07-31 16:00</span></div>
+        </div>
+        <h3 class="title"><a href="https://news.google.com/rss/articles/CBMiVEFVX3lxTE1ya2cwTzBSbHcybUZocVo2UWVmRm5uLXhrazJsRVdCd1RuVGpHTnV0ZjBXT1dMUnRNM0taMldMOXRvRXNJbk9EbEwwRENKaGZZZkxieQ?oc=5" target="_blank" rel="noopener">과기정통부·KISIA, 차세대 사이버보안 인재 발굴 위한 ‘2026 KISIA CTF’ 개최 - v.daum.net</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">과학기술정보통신부와 한국정보보호산업협회(KISIA)가 차세대 사이버보안 인재를 발굴하기 위해 ‘2026 KISIA CTF’를 개최합니다. 이번 대회는 실전형 보안 역량을 갖춘 인재를 양성하고 국내 사이버보안 경쟁력을 강화하는 데 목적이 있습니다.</p></details>
+        <div class="corrob">🔗 교차보도: AI 대회·해커톤</div>
+        <div class="chips"><span class="chip">출처 신뢰도 65%</span><span class="chip">1개 타 매체 교차보도</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1786674650" data-rank="34">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 60</span>
+          <div class="meta"><span class="source">보안 대회·해커톤</span> · <span class="when">2026-08-14 11:30</span></div>
+        </div>
+        <h3 class="title"><a href="https://news.google.com/rss/articles/CBMiT0FVX3lxTE5ZVW1pdTQ3R092elJjQlR0LWtHMVU2clFKUmxwZXpYNHdlX2V2QWU2TFZIM0JEV2FPMVh2NjBfVnpIUTJyV1ZRSVUyWjZfWjg?oc=5" target="_blank" rel="noopener">KAIST 해킹팀 &#x27;0x4b52&#x27;, 세계 최대 해킹대회 DEF CON CTF 2위 - v.daum.net</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">KAIST 해킹팀 &#x27;0x4b52&#x27;가 세계 최고 권위의 해킹 방어 대회인 &#x27;DEF CON CTF&#x27;에서 준우승을 차지했습니다. 이는 국내 대학팀이 세계적인 보안 기술력을 입증한 성과로, 글로벌 보안 인재 양성 및 기술 경쟁력을 확인하는 계기가 되었습니다.</p></details>
+        <div class="corrob">🔗 교차보도: AI 대회·해커톤</div>
+        <div class="chips"><span class="chip">출처 신뢰도 65%</span><span class="chip">1개 타 매체 교차보도</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1787186610" data-rank="34">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 60</span>
+          <div class="meta"><span class="source">보안 대회·해커톤</span> · <span class="when">2026-08-20 09:43</span></div>
+        </div>
+        <h3 class="title"><a href="https://news.google.com/rss/articles/CBMiT0FVX3lxTFAzTlN0Wnl4RDgtMDhPYmRndTNmU2I4NWdOSXAyYkxscXcxMWNYdWxrTWtkRTdrY2lZQmhnSG1uM3R4czBuOTE1NVJvMlN5OTQ?oc=5" target="_blank" rel="noopener">세계 AI 보안 대회 제패하더니…우승 상금 1억 2110만원 모교에 쾌척 - v.daum.net</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">국내 연구팀이 세계적인 AI 보안 대회에서 우승하며 기술력을 입증하고 상금 1억 2110만 원 전액을 모교에 기부했다. 이번 성과는 국내 AI 보안 분야의 역량을 국제적으로 알리는 동시에, 후학 양성을 위한 선순환 사례를 만들었다는 점에서 의미가 있다.</p></details>
+        <div class="corrob">🔗 교차보도: AI 대회·해커톤</div>
+        <div class="chips"><span class="chip">출처 신뢰도 65%</span><span class="chip">1개 타 매체 교차보도</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1787107502" data-rank="34">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 60</span>
+          <div class="meta"><span class="source">AI 대회·해커톤</span> · <span class="when">2026-08-19 11:45</span></div>
+        </div>
+        <h3 class="title"><a href="https://news.google.com/rss/articles/CBMiT0FVX3lxTE5ZYzJnbTBzcWVFRldNdjlOZXE1YlE1M3JoYUI4VDA0T3UtUDZKNTBnOVk3aUhlWm5HOUJ3TlhfdGZJQ1QtbUNBa1NJT1RicmM?oc=5" target="_blank" rel="noopener">성남시, AI 경진대회부터 헬스테크 박람회·1인가구 영화제까지 ‘활력’ - v.daum.net</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">성남시는 AI 기술 역량 강화를 위한 경진대회와 헬스테크 박람회 등 다양한 행사를 개최하며 지역 내 미래 산업 생태계 활성화를 도모하고 있습니다. 이번 행사는 첨단 기술 분야의 인재 발굴 및 관련 산업의 경쟁력을 높이는 데 기여할 것으로 기대됩니다.</p></details>
+        <div class="corrob">🔗 교차보도: 보안 대회·해커톤</div>
+        <div class="chips"><span class="chip">출처 신뢰도 65%</span><span class="chip">1개 타 매체 교차보도</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1787209117" data-rank="34">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 60</span>
+          <div class="meta"><span class="source">보안 대회·해커톤</span> · <span class="when">2026-08-20 15:58</span></div>
+        </div>
+        <h3 class="title"><a href="https://news.google.com/rss/articles/CBMiRkFVX3lxTFB2N05Vd05YOUxvenNNUV9CWkJEMFdMeDJLRFNIcUlVUk5FSDdFLUN5MEhVZTVOVDNxdEo5SVdPMGluVy1aMHc?oc=5" target="_blank" rel="noopener">과기정통부·KISIA 주최 CTF 대회 성료…&#x27;Trezor&#x27; 팀 우승 - v.daum.net</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">과학기술정보통신부와 한국정보보호산업협회(KISIA)가 주최한 사이버 보안 경진대회(CTF)가 성황리에 종료되었으며, &#x27;Trezor&#x27; 팀이 최종 우승을 차지했습니다. 이번 대회는 국내 정보보호 인재를 발굴하고 실전 대응 역량을 강화하기 위해 마련되었습니다.</p></details>
+        <div class="corrob">🔗 교차보도: AI 대회·해커톤</div>
+        <div class="chips"><span class="chip">출처 신뢰도 65%</span><span class="chip">1개 타 매체 교차보도</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1786673160" data-rank="34">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 60</span>
+          <div class="meta"><span class="source">보안 대회·해커톤</span> · <span class="when">2026-08-14 11:06</span></div>
+        </div>
+        <h3 class="title"><a href="https://news.google.com/rss/articles/CBMiVEFVX3lxTFBLZjFkNk12eXd6M05WX1pPMXA3a2pCcHdWNXliRndRUmxDcWxudjBHcm1MODZKclNrYTl2WVoxeVI0VFNYVUMxZGtOTmNaWnpDaWdnTQ?oc=5" target="_blank" rel="noopener">KAIST 학생·동문 참여한 해킹팀, 세계 최고 해킹대회서 준우승 - v.daum.net</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">KAIST 학생과 동문으로 구성된 해킹팀 &#x27;코드 블루(Code Blue)&#x27;가 세계 최고 권위의 해킹 방어 대회인 &#x27;데프콘(DEFCON) CTF&#x27;에서 준우승을 차지했다. 이번 성과는 국내 보안 인재들의 기술적 역량이 세계적인 수준임을 입증하며, 글로벌 사이버 보안 경쟁력을 다시 한번 확인하는 계기가 되었다.</p></details>
+        <div class="corrob">🔗 교차보도: AI 대회·해커톤</div>
+        <div class="chips"><span class="chip">출처 신뢰도 65%</span><span class="chip">1개 타 매체 교차보도</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1787041298" data-rank="34">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 60</span>
+          <div class="meta"><span class="source">AI 대회·해커톤</span> · <span class="when">2026-08-18 17:21</span></div>
+        </div>
+        <h3 class="title"><a href="https://news.google.com/rss/articles/CBMiVEFVX3lxTE93ME01RURyRjQyTjBGYVNfYURCQS1hdTVvRFUyYllpRzBja3NmS2JHaE1xVkxWeWFfVDRTWjlMVEVjTGQzSGhNV2tsMkJzQ3Vfa0x2aQ?oc=5" target="_blank" rel="noopener">국민 아이디어로 AI 연구혁신 방안 찾는다…AI 해커톤 개최 - v.daum.net</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">과학기술정보통신부가 AI 연구 혁신을 위한 국민 아이디어를 발굴하고자 &#x27;AI 해커톤&#x27;을 개최한다. 이번 행사는 민간의 창의적인 아이디어를 정책 및 연구 현장에 반영하여 AI 기술 경쟁력을 강화하는 것을 목적으로 한다.</p></details>
+        <div class="corrob">🔗 교차보도: 보안 대회·해커톤</div>
+        <div class="chips"><span class="chip">출처 신뢰도 65%</span><span class="chip">1개 타 매체 교차보도</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-medium" data-ts="1786674180" data-rank="34">
+        <div class="card-head">
+          <span class="badge tier-medium">신뢰도 보통 · 60</span>
+          <div class="meta"><span class="source">AI 대회·해커톤</span> · <span class="when">2026-08-14 11:23</span></div>
+        </div>
+        <h3 class="title"><a href="https://news.google.com/rss/articles/CBMiS0FVX3lxTE1vZU9KVHRjNFR0THdwYUdaU2FiTTViczJjaVc3M0RlZmhZME94U1pOeGVsZU1ZQ3R1cnZjVFkzakhkVVNOdlBSM3dTTQ?oc=5" target="_blank" rel="noopener">오픈AI 게임 해커톤에 송재경 뜬다…유명 개발자 총출동 - v.daum.net</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">오픈AI가 주최하는 게임 해커톤에 &#x27;바람의 나라&#x27; 개발자 송재경 등 국내외 유명 개발자들이 대거 참여합니다. 이번 행사는 AI 기술을 게임 개발에 접목해 새로운 혁신 사례를 발굴하고 게임 산업 내 AI 활용 가능성을 모색하는 장이 될 전망입니다.</p></details>
+        <div class="corrob">🔗 교차보도: 보안 대회·해커톤</div>
+        <div class="chips"><span class="chip">출처 신뢰도 65%</span><span class="chip">1개 타 매체 교차보도</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-low" data-ts="1787360400" data-rank="19">
+        <div class="card-head">
+          <span class="badge tier-low">주의 필요 · 48</span>
+          <div class="meta"><span class="source">AI 대회·해커톤</span> · <span class="when">2026-08-22 10:00</span></div>
+        </div>
+        <h3 class="title"><a href="https://news.google.com/rss/articles/CBMiTkFVX3lxTFBxeThJWk9sMENhLWFOdnh0OWpiNEhBUkg5b2xrU3Jyd1h0UFRpOVczcGMzdXBvZVhoUHQyWjZUSlBOR1hWZUNEZnZJTDZhdw?oc=5" target="_blank" rel="noopener">경북대-전남대, &#x27;Physical AI 자율주행 캠프 및 경진대회&#x27; 성료…영호남 초광역 SW·AI 교육 협력 모델 제시 - 전자신문</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">경북대와 전남대가 공동으로 &#x27;Physical AI 자율주행 캠프 및 경진대회&#x27;를 개최하며 영호남 대학 간의 초광역 SW·AI 교육 협력 모델을 제시했다. 이번 행사는 자율주행 기술 실습과 경진대회를 통해 학생들의 실무 역량을 강화하고 지역 간 교육 격차를 해소하는 계기가 되었다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 65%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-low" data-ts="1787217923" data-rank="19">
+        <div class="card-head">
+          <span class="badge tier-low">주의 필요 · 48</span>
+          <div class="meta"><span class="source">AI 대회·해커톤</span> · <span class="when">2026-08-20 18:25</span></div>
+        </div>
+        <h3 class="title"><a href="https://news.google.com/rss/articles/CBMib0FVX3lxTFBRMExCbWpabHlBZGFWVUkwT1NBSTQ3WGNTdUFwZ0FhWFhZcUFIaG5jbklDUnJybWNraUdaeVliVTZtU0h4UFZjTFc1NjhrOTNET0NCQzFrUkNNZ1dWdkkxcnQwUXFFODA0VWE3VWE0Z9IBc0FVX3lxTE4xaXNNTkxUMEFjUms5Q3FySjZHbGtpTERRdFUwY096UUgwbEhfblpyT0lRSl9jLWxHOUJKZWhwUzlibWQ4RF9CajNwVW96dC1zeUJUNDJUcnIxWWFfTGZsZzRucGVSR1o0MDVDYnA2em9vWDQ?oc=5" target="_blank" rel="noopener">[시큐리티 포커스] 과기부-KISIA &#x27;정보보호 경진대회&#x27; 개최·&#x27;AI 개인정보 활용 특례&#x27; 국회 통과 - 뉴스웍스</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">과학기술정보통신부와 한국정보보호산업협회(KISIA)가 정보보호 인재 양성을 위한 경진대회를 개최합니다. 또한, AI 기술 개발 시 개인정보를 가명 처리해 활용할 수 있도록 하는 특례 조항이 국회를 통과하여 관련 산업의 데이터 활용 기반이 마련되었습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 65%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-low" data-ts="1787322932" data-rank="19">
+        <div class="card-head">
+          <span class="badge tier-low">주의 필요 · 48</span>
+          <div class="meta"><span class="source">AI 대회·해커톤</span> · <span class="when">2026-08-21 23:35</span></div>
+        </div>
+        <h3 class="title"><a href="https://news.google.com/rss/articles/CBMi3wFBVV95cUxOaEZNTEhUWVVmUktoUTM5a25WR3h5b3gyZE81U2E5cEVhQmJlSGc2SEZKSmkxVkJyMDl0NWRyVHEwY282aXlrV3JxV2c2X1FJa3lSSnVoMUdVbWt3OEtPMlpYZ3E5V3FuNlFxVE5YSTFYbGgya2VhdEUxemZ4TjVIUTgzMVp3WE9YR1lNV2t3bVZUSS1xYV9XSDVkMXBSZElwWXlmQUF2VVdISnJoUlRPNmNJWWRRVHBETWlPVmNfRjVXMDBWWktWaVp2MTlZbmVwSFp1MG9PSWxHalJILUhZ?oc=5" target="_blank" rel="noopener">내 아이디어를 AI 서비스로! ‘모두의 AI 경진대회’ 도전하세요 - gonggam.korea.kr</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">과학기술정보통신부와 한국지능정보사회진흥원이 주관하는 &#x27;모두의 AI 경진대회&#x27;가 참가자를 모집합니다. 이번 대회는 국민 누구나 AI를 활용한 서비스 아이디어를 제안하고 구현할 기회를 제공하여, 실생활 문제 해결을 위한 AI 기술의 저변을 확대하는 데 목적이 있습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 65%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-low" data-ts="1787119967" data-rank="19">
+        <div class="card-head">
+          <span class="badge tier-low">주의 필요 · 48</span>
+          <div class="meta"><span class="source">AI 대회·해커톤</span> · <span class="when">2026-08-19 15:12</span></div>
+        </div>
+        <h3 class="title"><a href="https://news.google.com/rss/articles/CBMiTkFVX3lxTE5la3gtUEVjbXJSeFhFTXJXSkhwaW9TdWZzUWtueU0wVzNtQUNQYnRUcWZZYTdRalFoNVZSaUhrSnNQLTlmSUFWR3VuZURzQQ?oc=5" target="_blank" rel="noopener">크리어스, 원작 스토리 공모전 대상작 AI 영화로 제작 및 부산국제영화제 출품 - dt.co.kr</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">크리어스가 원작 스토리 공모전 대상작을 생성형 AI 기술을 활용한 영화로 제작하여 부산국제영화제에 출품한다. 이는 스토리 IP와 AI 영상 제작 기술을 결합해 영화 제작 방식을 혁신하려는 시도로 평가된다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 65%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-low" data-ts="1787364441" data-rank="19">
+        <div class="card-head">
+          <span class="badge tier-low">주의 필요 · 48</span>
+          <div class="meta"><span class="source">AI 대회·해커톤</span> · <span class="when">2026-08-22 11:07</span></div>
+        </div>
+        <h3 class="title"><a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTFBoMW1IZnpadnc3UmhxOGZTRk5Zb1pEN0tncE0xVjc2Smp0Q184ajB0M29wZHctY1NPRkZFTDRicFpzRzc3RUp3dzVNYmFDSmtmMHFNVHp5Snc2by1VOTI2OFZoWHljTmpy0gFuQVVfeXFMT2N0dmlDekwzYmVnTEl4OC14QVVqbEp2OGtnYmpDdS02M2tGUFNaazFyOHcwZ2FUZGItaE5sM3R1bXkxbmJnUExBNC1CMEVGMGhGVUV6RjNYbDFHQnhqTEZjSHdkOEFQeEk1T2xVOVE?oc=5" target="_blank" rel="noopener">[더벨]더즌, 구글 클라우드X솔라나 AI 에이전틱 해커톤 심사 참여 - 머니투데이 - 머니투데이</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">핀테크 기업 더즌이 구글 클라우드와 솔라나가 공동 주최하는 &#x27;AI 에이전틱 해커톤&#x27;의 심사위원으로 참여합니다. 이번 행사는 AI 에이전트 기술을 활용한 블록체인 기반의 혁신적인 서비스 개발을 장려하며, 더즌은 기술적 전문성을 바탕으로 우수 프로젝트를 평가할 예정입니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 65%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-low" data-ts="1787129618" data-rank="19">
+        <div class="card-head">
+          <span class="badge tier-low">주의 필요 · 48</span>
+          <div class="meta"><span class="source">AI 대회·해커톤</span> · <span class="when">2026-08-19 17:53</span></div>
+        </div>
+        <h3 class="title"><a href="https://news.google.com/rss/articles/CBMiakFVX3lxTFBnN2NBc2FlYkZQTWtTU3gzbUIycVlucDhiWkxyMjlDQl9TeUNLOU85QUFDRGV6VmdmY3VVcHZJeWNYVzJBc29fbEV4T01lVUR2YjQzWTNfb2pZejdUbVl0OEdFTWQxUkFtdnfSAW9BVV95cUxQRUlCazBlOEtlVmViWlpyNlBXRU1jc2dQOUZIcVpxWU4ySGkzM3BTYTFyTEhjbGFvTnRKRzhVaDltdnVEVUxNSXdJblJRVzhOUXY4cVFoUmhTRFFKWnNCY21HLUYtNXFTUWJ2Z0sydGc?oc=5" target="_blank" rel="noopener">&quot;AI로 풀자&quot; 성남시·KAIST 총상금 700만원 경진대회 개최 - 머니투데이 - 머니투데이</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">성남시와 KAIST가 지역 현안 해결을 위한 AI 기술 활용 경진대회를 공동 개최하며 총 700만 원의 상금을 수여한다. 이번 대회는 AI 기술을 실제 도시 문제 해결에 적용하고 관련 분야의 인재를 발굴하는 데 목적이 있다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 65%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-low" data-ts="1787328857" data-rank="19">
+        <div class="card-head">
+          <span class="badge tier-low">주의 필요 · 48</span>
+          <div class="meta"><span class="source">AI 대회·해커톤</span> · <span class="when">2026-08-22 01:14</span></div>
+        </div>
+        <h3 class="title"><a href="https://news.google.com/rss/articles/CBMiYEFVX3lxTE51aFBlVmU4c0xiZk4zNVJNeDN1OGtVMF9JaFVFZWxhX1ZXaFBzZHBjTXlROGNJY1FJb25abHZZanUtNXJmbWFJV0pxN0E0RHhCd3FBSTM3RktrMlJGVWltUQ?oc=5" target="_blank" rel="noopener">안양시 공무원, AI로 연 2400시간 아꼈다…제1회 AI 활용 경진대회 가져 - NSP통신</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">안양시가 제1회 AI 활용 경진대회를 개최하여 공무원들의 업무 효율화 사례를 공유하고 우수 사례를 선정했다. 이를 통해 행정 업무에 AI를 도입함으로써 연간 2400시간의 업무 시간을 절감하는 등 실질적인 행정 생산성 향상 성과를 거두었다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 65%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-low" data-ts="1786086000" data-rank="19">
+        <div class="card-head">
+          <span class="badge tier-low">주의 필요 · 48</span>
+          <div class="meta"><span class="source">보안 대회·해커톤</span> · <span class="when">2026-08-07 16:00</span></div>
+        </div>
+        <h3 class="title"><a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTFBxSVJfd2F0SDB1c3UwY1o2cHo3dXlmYUJTMi1pRUR5RENhWFhnX2tfZENJQ0Fkd3hLbUU0WDE1Y1A2NXh0NlFBRFZQNUpmUC1CT2pYdkJBVW9lM0Q1OG53?oc=5" target="_blank" rel="noopener">[DEF CON 34] 에이전트들만의 해킹대회 열린다... AI로 물드는 데프콘 - 보안뉴스</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">세계 최대 해킹대회인 데프콘(DEF CON) 34에서 AI 에이전트들이 직접 참여하는 해킹 대회가 개최될 예정이다. 이는 인간의 개입 없이 AI가 스스로 취약점을 분석하고 공격을 수행하는 능력을 겨루는 것으로, AI 보안 기술의 실전적 발전과 자동화된 사이버 방어 체계의 중요성을 보여준다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 65%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-low" data-ts="1784876400" data-rank="19">
+        <div class="card-head">
+          <span class="badge tier-low">주의 필요 · 48</span>
+          <div class="meta"><span class="source">AI 대회·해커톤</span> · <span class="when">2026-07-24 16:00</span></div>
+        </div>
+        <h3 class="title"><a href="https://news.google.com/rss/articles/CBMiVkFVX3lxTE5JZ3BXeUNKd1FGWHBmcmI1X2ZYOUVSUTlVYXg5SWtRb2t2MEQwS1pqeFI0b29rSm9QX1BfZDBTSlBkeEpIa1dkdXV0OVoxY054RjJraWZB?oc=5" target="_blank" rel="noopener">오픈AI, 사회복지 현장 AI 해커톤 개최…챗GPT 워크·코덱스 활용 - e4ds news</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">오픈AI가 사회복지 현장의 문제 해결을 위해 챗GPT 워크와 코덱스 모델을 활용하는 AI 해커톤을 개최했다. 이번 행사는 AI 기술을 복지 서비스에 접목하여 실질적인 사회적 가치를 창출하고 현장 효율성을 높이는 데 목적이 있다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 65%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-low" data-ts="1787185509" data-rank="19">
+        <div class="card-head">
+          <span class="badge tier-low">주의 필요 · 48</span>
+          <div class="meta"><span class="source">보안 대회·해커톤</span> · <span class="when">2026-08-20 09:25</span></div>
+        </div>
+        <h3 class="title"><a href="https://news.google.com/rss/articles/CBMiYkFVX3lxTE1VOXNwUzRTM0I0YXFIYy1ZN3Y3ZTlJYmlOa09jS1RURWl5WWdYTXJTNVF2ODdoWmlfSGJEWkNreHFTRkhZQTQ4U0FNUkpDSGRxdk5wS0VwVnBVa2RPbklmNnln?oc=5" target="_blank" rel="noopener">&quot;차세대 사이버보안 인재 발굴&quot;…과기정통부·KISIA, 정보보호 경진대회 성료 - 뉴시스</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">과학기술정보통신부와 한국정보보호산업협회(KISIA)가 차세대 사이버보안 인재 발굴을 위한 정보보호 경진대회를 성공적으로 마쳤습니다. 이번 대회는 우수한 보안 인재를 양성하고 정보보호 분야의 저변을 확대하는 데 목적을 두고 진행되었습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 65%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-low" data-ts="1787173560" data-rank="19">
+        <div class="card-head">
+          <span class="badge tier-low">주의 필요 · 48</span>
+          <div class="meta"><span class="source">AI 대회·해커톤</span> · <span class="when">2026-08-20 06:06</span></div>
+        </div>
+        <h3 class="title"><a href="https://news.google.com/rss/articles/CBMiakFVX3lxTFBFZ2NGNy1ISDRDQ3ItNXJRQmowMTdGazJjaERkMml5M05MMHVIOGFUb0hIVVNXUWtHVXR1N0lFMF9ueS1uaFRLaGhfYkJ5bnpaNjIwVTFjUTVBaXhpYm9DWVgzX3pmcUdZRGc?oc=5" target="_blank" rel="noopener">&quot;지역사회 문제 해결 모색&quot; 성남시, 카이스트와 &#x27;AI 경진대회&#x27; 개최 - 컨슈머타임스</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">성남시와 카이스트가 지역사회 문제 해결을 위한 인공지능(AI) 경진대회를 공동 개최한다. 이번 대회는 AI 기술을 활용해 실질적인 도시 현안을 발굴하고 해결책을 모색하는 데 목적이 있다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 65%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-low" data-ts="1787016434" data-rank="19">
+        <div class="card-head">
+          <span class="badge tier-low">주의 필요 · 48</span>
+          <div class="meta"><span class="source">보안 대회·해커톤</span> · <span class="when">2026-08-18 10:27</span></div>
+        </div>
+        <h3 class="title"><a href="https://news.google.com/rss/articles/CBMia0FVX3lxTE03ZEZyRl94QXkyc05hR3M4a1BRdXRLSlN0dVpyUG9mVGVsSU05XzdqeXU1Zmx1X3lpRmFjUlVvMWNlV2lKUEdrMTV6WDlBaEp2Mk90S280NkU1VWRobUQxaVFsX2l4Q0JvbC1Z0gFwQVVfeXFMT2lyR2ViM3hCdkNWaDlKOHRnWk9rOFZxV0x4eUVPNGJuTUcxM3FrNGJ6VU93clhRX1FRQVBJaVc5MWV6RmNYWkFEbDlleTJBZkd2b3dMMEl0ejg1SjRUS0Y1OWpuOVlxRU81Skk2aV9tcA?oc=5" target="_blank" rel="noopener">금융보안원, 금융사 직원 대상 &#x27;AI 해킹방어 대회&#x27; 연다 - 머니투데이 - 머니투데이</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">금융보안원이 금융권 임직원을 대상으로 인공지능(AI) 기술을 활용한 해킹 공격과 방어 역량을 겨루는 &#x27;AI 해킹방어 대회&#x27;를 개최합니다. 이번 대회는 금융권 내 AI 보안 위협에 대한 실무 대응 능력을 강화하고, 안전한 금융 AI 서비스 환경을 조성하기 위해 마련되었습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 65%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-low" data-ts="1787115055" data-rank="19">
+        <div class="card-head">
+          <span class="badge tier-low">주의 필요 · 48</span>
+          <div class="meta"><span class="source">AI 대회·해커톤</span> · <span class="when">2026-08-19 13:50</span></div>
+        </div>
+        <h3 class="title"><a href="https://news.google.com/rss/articles/CBMia0FVX3lxTFBDc3FXeVpZVXRldU12Tms2UldSNExMcHRuS0p4dEo2blE4RktMYkpkcUZqUzdnYXFTelo1SUtTX2psc2hVR2p5RjFOMnJQNVVmRjZvWVpKWTRHaVZwSXNjWmdzSGZxSnZJRzVN?oc=5" target="_blank" rel="noopener">한국조폐공사, &#x27;AI 프론티어 경진대회&#x27; 개최…업무혁신 아이디어 발굴 - 파이낸셜신문</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">한국조폐공사가 업무 혁신을 위한 아이디어를 발굴하고자 &#x27;AI 프론티어 경진대회&#x27;를 개최합니다. 이번 대회는 공사 내 업무 프로세스에 AI 기술을 접목해 효율성을 높이고 디지털 전환을 가속화하는 것을 목적으로 합니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 65%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-low" data-ts="1784876400" data-rank="19">
+        <div class="card-head">
+          <span class="badge tier-low">주의 필요 · 48</span>
+          <div class="meta"><span class="source">보안 대회·해커톤</span> · <span class="when">2026-07-24 16:00</span></div>
+        </div>
+        <h3 class="title"><a href="https://news.google.com/rss/articles/CBMia0FVX3lxTE00cHM2clNCUTBxMTBzTzhJSHY4b2FERXpFWGs3RWp2UmVOb3pGQ05Tb01Ga0Jyb1VoQzhZR2VJVjZ4QktHZ0MyNFZiMUtnWE5zWWZGaTdLMXNEa1N6dGhWNGxVdjVfN19aNmM4?oc=5" target="_blank" rel="noopener">올해 코드게이트 최정상 해커는 ‘BunkyoWesterns’와 ‘김준원’ - 보안뉴스</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">국제 해킹 방어 대회 ‘코드게이트 2024’에서 일반부 ‘BunkyoWesterns’ 팀과 주니어부 김준원 참가자가 각각 우승을 차지했습니다. 이번 대회는 세계 최고 수준의 화이트 해커들이 모여 보안 기술력을 겨루는 자리로, 국내외 보안 인재 발굴 및 기술 교류의 장으로서 그 중요성을 재확인했습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 65%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-low" data-ts="1787185174" data-rank="19">
+        <div class="card-head">
+          <span class="badge tier-low">주의 필요 · 48</span>
+          <div class="meta"><span class="source">보안 대회·해커톤</span> · <span class="when">2026-08-20 09:19</span></div>
+        </div>
+        <h3 class="title"><a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTE1BWlZzMndQbm8xS0N4NHFHMFdiNlFDTkthZkxFV2ctYkRCQ0NuTS1veUF5Tmw5WklCVFU0TTFEc3F5QmExY2FucnhfUXFXVnAtTzJvWHliMmZzLWV0TjlNOHFaMWRaR0lR?oc=5" target="_blank" rel="noopener">&#x27;2026 KISIA 정보보호 경진대회&#x27; 성료… 차세대 보안 미래 기대 - 테크월드</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">&#x27;2026 KISIA 정보보호 경진대회&#x27;가 성황리에 종료되었습니다. 이번 대회는 차세대 보안 인재를 발굴하고 육성하여 향후 정보보호 산업의 미래 경쟁력을 강화하는 계기가 될 것으로 기대됩니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 65%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-low" data-ts="1784617200" data-rank="19">
+        <div class="card-head">
+          <span class="badge tier-low">주의 필요 · 48</span>
+          <div class="meta"><span class="source">보안 대회·해커톤</span> · <span class="when">2026-07-21 16:00</span></div>
+        </div>
+        <h3 class="title"><a href="https://news.google.com/rss/articles/CBMia0FVX3lxTFA1NmdqNFVMemRIS1ZacXNnOGNyeUZzSlYzdzJEVWVKejJOZmg1dWlGa0ZOVFZnV2ZFUkpTb3JVT1JIaXhnNDZuT1FleXktdXlaWFJENlhiWlg3bk9Ndk5lTk5xTzZLOGRKcFhJ?oc=5" target="_blank" rel="noopener">K-보안 주역들 라스베이거스로... KISA, 데프콘 34 출정식 개최 - 보안뉴스</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">한국인터넷진흥원(KISA)이 세계 최대 해킹 방어 대회인 &#x27;데프콘(DEF CON) 34&#x27;에 참가하는 한국 대표팀을 위한 출정식을 개최했습니다. 이번 행사는 국내 보안 인재들의 글로벌 역량을 강화하고, 세계 무대에서 한국 보안 기술의 위상을 높이기 위해 마련되었습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 65%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-low" data-ts="1784271600" data-rank="19">
+        <div class="card-head">
+          <span class="badge tier-low">주의 필요 · 48</span>
+          <div class="meta"><span class="source">보안 대회·해커톤</span> · <span class="when">2026-07-17 16:00</span></div>
+        </div>
+        <h3 class="title"><a href="https://news.google.com/rss/articles/CBMiakFVX3lxTE51WTlDZ0VoRE12SENHT3FkYnhRd01nb3RnVEd4WEktSThVMXd2aTl4S3V3Qk1id1VCRXFiaHVHS3JNZ3hHbkRib3otby1UbEFyNXdTbmt6N0w0WDJXdVR3Q29PVWZlZEdGZUE?oc=5" target="_blank" rel="noopener">“섀도우 AI 음지에서 양지로”... 쏘카의 자율형 보안 거버넌스 사례 - 보안뉴스</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">쏘카는 임직원이 기업 승인 없이 사용하는 &#x27;섀도우 AI&#x27;를 양지로 끌어내기 위해 자율형 보안 거버넌스 체계를 도입했습니다. 이는 임직원의 AI 활용 자율성을 보장하면서도, 보안 가이드라인을 통해 기술 도입의 위험을 관리하고 안전한 AI 환경을 조성하는 데 중점을 둡니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 65%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-low" data-ts="1787288404" data-rank="19">
+        <div class="card-head">
+          <span class="badge tier-low">주의 필요 · 48</span>
+          <div class="meta"><span class="source">AI 대회·해커톤</span> · <span class="when">2026-08-21 14:00</span></div>
+        </div>
+        <h3 class="title"><a href="https://news.google.com/rss/articles/CBMiZEFVX3lxTFA1NS1VQ3JYUUxCbWpOeDZQZzE0R0xfekVKV2FUQ0FhZmgyM3ZXbmViNHlTYm5CbEYtNFZaREY1NjlJUWllSWhYaEZ1MGFiUmg5UUF1cEtxM2R1OG9aSE1uNTFROXE?oc=5" target="_blank" rel="noopener">“AI 에이전트로 사회문제 해결”…과기정통부, 대국민 공모전 진행 - 서울경제TV</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">과학기술정보통신부가 AI 에이전트 기술을 활용해 사회적 난제를 해결하기 위한 대국민 공모전을 개최합니다. 이번 공모전은 AI 기술의 실질적인 사회 문제 해결 역량을 강화하고 관련 서비스 아이디어를 발굴하는 데 목적이 있습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 65%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-low" data-ts="1787103504" data-rank="19">
+        <div class="card-head">
+          <span class="badge tier-low">주의 필요 · 48</span>
+          <div class="meta"><span class="source">AI 대회·해커톤</span> · <span class="when">2026-08-19 10:38</span></div>
+        </div>
+        <h3 class="title"><a href="https://news.google.com/rss/articles/CBMib0FVX3lxTE5SQ0dXQ05OSHpCb3hoSTB5c0kzbmZ5QlQxbDk3YzBuRnhvVTVrUUZiblY1YnRpWFhNQ1oxOF8zZnVzZHRlSnFjbGJfLTRsemN1Y2RXSXZuVEw2N1ROUEZzZWhuQ2tJQjNwUWhORzM5Z9IBc0FVX3lxTE5VZEpySW1kRzBtT2FBRVp5QVkxbmpvWmlkamx5LU5rWmU0LS1lN2t2N21IcEhXV0RjNnZ2dnRFRDdLYjl0b0pnR1BOSW1lNHlmanlmd0NNMm5vcE5KOVNxUDVyU0k3cWxIQUNISTZULWhlbkU?oc=5" target="_blank" rel="noopener">[부산교육소식]부산 교육청, &#x27;2026 SW·AI 해커톤&#x27; 개최 외 - 데일리한국</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">부산광역시교육청이 2026년 SW·AI 해커톤 대회를 개최하여 학생들의 디지털 역량 강화와 창의적 문제 해결 능력 함양을 지원합니다. 이번 행사는 미래 교육 환경에 대비해 학생들이 소프트웨어와 인공지능 기술을 활용한 실무적 경험을 쌓는 기회가 될 것입니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 65%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-low" data-ts="1787322576" data-rank="19">
+        <div class="card-head">
+          <span class="badge tier-low">주의 필요 · 48</span>
+          <div class="meta"><span class="source">AI 대회·해커톤</span> · <span class="when">2026-08-21 23:29</span></div>
+        </div>
+        <h3 class="title"><a href="https://news.google.com/rss/articles/CBMiT0FVX3lxTFBReU9xTVEwRjhJZlhhYUQwSV9NRG9wMWk2WTVTNUx5NTFWRzhQWHMyenFWdmlIcjVmWWFTWnR1dWVfb0FZSDhPUVotdGphMUE?oc=5" target="_blank" rel="noopener">AI 에이전트가 결제까지…더즌, 구글 클라우드·솔라나 해커톤 심사 - 벤처스퀘어</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">핀테크 기업 더즌이 구글 클라우드와 솔라나가 공동 주최하는 해커톤의 심사위원으로 참여하여 AI 에이전트 기반의 결제 솔루션 기술을 평가합니다. 이번 협력은 AI가 자율적으로 결제를 수행하는 차세대 금융 기술의 생태계를 확장하고 관련 혁신 사례를 발굴하는 데 중요한 의미를 갖습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 65%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-low" data-ts="1787121295" data-rank="19">
+        <div class="card-head">
+          <span class="badge tier-low">주의 필요 · 48</span>
+          <div class="meta"><span class="source">AI 대회·해커톤</span> · <span class="when">2026-08-19 15:34</span></div>
+        </div>
+        <h3 class="title"><a href="https://news.google.com/rss/articles/CBMib0FVX3lxTFBQVVAxU0xBd09Eby1jMEZRZjQyOUxPcmtKaUtFb3I1M2hmLXY1ZlRYS3hoSEFXWlRKVThDQXNTcV9sQ0tzQU5wcWQ3WDNRRm1NWWRuVWJHeEVnYl9VQ0pYU3R4ZER2MmxnaVo2QXRYNNIBZkFVX3lxTE1xV19nck52OTdMeXJCTDdxQnViTjdNY0loT3lMdjBNLUkxNExhWXZqdkhSNlNaNUtGSlZoUUFZNkpkQ3JaQlVHa2t5Ni0yMlY2UEVfSkxBcVljd241OHZ6TVlOR2RFZw?oc=5" target="_blank" rel="noopener">아이디어만 있으면 창업까지 밀어준다…‘모두의 AI’ 경진대회 개최 - 동아일보</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">과학기술정보통신부와 정보통신산업진흥원이 주최하는 ‘모두의 AI’ 경진대회는 우수한 AI 아이디어를 발굴하여 사업화 및 창업을 지원하는 행사입니다. 선정된 팀에게는 기술 멘토링과 인프라 지원 등을 제공해 아이디어가 실제 창업으로 이어질 수 있도록 돕는 것이 핵심입니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 65%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-low" data-ts="1787090282" data-rank="19">
+        <div class="card-head">
+          <span class="badge tier-low">주의 필요 · 48</span>
+          <div class="meta"><span class="source">AI 대회·해커톤</span> · <span class="when">2026-08-19 06:58</span></div>
+        </div>
+        <h3 class="title"><a href="https://news.google.com/rss/articles/CBMidEFVX3lxTFBfLUhBb3ZBQ1RtemhyUFpwVFgtZEM5VmlNUGtlalJZNFVuWmxySGFpcEEtTXI1V09MWVZ2VlQ3Z1NsT3ZjTmhUMmFFdWZodG9kRlkwZVktYVJnREdKcTh4RURTNEdHTUVUUlMxa05zbHBwMGtk?oc=5" target="_blank" rel="noopener">성남시, KAIST와 지역문제 해법 찾는 ‘AI 경진대회’ 개최 - 아시아경제</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">성남시와 KAIST가 협력하여 지역 내 현안을 해결하기 위한 인공지능(AI) 경진대회를 개최합니다. 이번 대회는 AI 기술을 활용해 실질적인 지역 문제의 해법을 모색하고 관련 분야의 혁신을 도모하는 데 목적이 있습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 65%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-low" data-ts="1787032486" data-rank="19">
+        <div class="card-head">
+          <span class="badge tier-low">주의 필요 · 48</span>
+          <div class="meta"><span class="source">AI 대회·해커톤</span> · <span class="when">2026-08-18 14:54</span></div>
+        </div>
+        <h3 class="title"><a href="https://news.google.com/rss/articles/CBMiZkFVX3lxTE1OQ3lYMmNoMGJqbkNadlZMUmhINkpWakRmOGZRbGNCWmhfRFM2Qmd2aFdDVWZPUTVuWUNtSl9qWkVXSkRkaXNNczg3ZHNhVFU3eWlkR3NUVDFiRnY0VUp2TlAxa0lqUQ?oc=5" target="_blank" rel="noopener">모빌리티 혁신 &#x27;내일로(路) 해커톤&#x27; 개최…우수 제안 12건 선정 - 토목신문</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">모빌리티 분야의 혁신적인 아이디어를 발굴하기 위해 개최된 &#x27;내일로(路) 해커톤&#x27;에서 총 12건의 우수 제안이 선정되었습니다. 이번 행사는 미래 모빌리티 서비스와 기술 발전을 위한 실질적인 솔루션을 모색했다는 점에서 의의가 있습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 65%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-low" data-ts="1786931166" data-rank="19">
+        <div class="card-head">
+          <span class="badge tier-low">주의 필요 · 48</span>
+          <div class="meta"><span class="source">AI 대회·해커톤</span> · <span class="when">2026-08-17 10:46</span></div>
+        </div>
+        <h3 class="title"><a href="https://news.google.com/rss/articles/CBMicEFVX3lxTE5FMURITGFtMlRoQldBVzhaTW5CdEJ0TUxXbHRtZnBtamttSG9PTzVsOVVQZS0yS0dJQjlaSld4elhoaHFkY0xoTzAteW5rVy1XeFhKS1J2djUzb1JPY09FeHVxSXhVUWdYSXdFOG1ic00?oc=5" target="_blank" rel="noopener">화면 밖 현실된 AI… 서울 AI 허브, 피지컬 AI 해커톤 연다 - IT조선</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">서울 AI 허브가 소프트웨어 중심의 AI를 물리적 환경에 적용하는 &#x27;피지컬 AI 해커톤&#x27;을 개최한다. 이번 행사는 AI 기술을 로봇이나 하드웨어와 결합해 실질적인 산업 현장에 적용 가능한 솔루션을 발굴하는 데 중점을 둔다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 65%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-low" data-ts="1786690800" data-rank="19">
+        <div class="card-head">
+          <span class="badge tier-low">주의 필요 · 48</span>
+          <div class="meta"><span class="source">보안 대회·해커톤</span> · <span class="when">2026-08-14 16:00</span></div>
+        </div>
+        <h3 class="title"><a href="https://news.google.com/rss/articles/CBMiYEFVX3lxTE1HVHhwY183RzRtRVZOT3RveGtSMDNiSVdoNUlUYmpMdGU5NWdkQ2loMnhDRkdMcmxsb0c5aUFPSmVycWpnZmtnUTZNQUpaMkVCT3ZibU56dWo0Ty14SlcxdA?oc=5" target="_blank" rel="noopener">KAIST 학생·동문, 세계 최고 해킹대회 &#x27;준우승&#x27; - 뉴시스</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">KAIST 학생과 동문으로 구성된 팀이 세계 최고 권위의 해킹 방어 대회인 &#x27;데프콘 CTF(DEF CON CTF)&#x27;에서 준우승을 차지했습니다. 이번 성과는 한국 사이버 보안 인재들의 우수한 기술력과 문제 해결 능력을 국제적으로 다시 한번 입증한 사례입니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 65%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+      <article class="card tier-low" data-ts="1787122051" data-rank="19">
+        <div class="card-head">
+          <span class="badge tier-low">주의 필요 · 48</span>
+          <div class="meta"><span class="source">AI 대회·해커톤</span> · <span class="when">2026-08-19 15:47</span></div>
+        </div>
+        <h3 class="title"><a href="https://news.google.com/rss/articles/CBMiXEFVX3lxTE5wOWdzZlBPRmFocnNnWEUzaVRwY1owOTI5bnpqcE14QnFDNjd1azR5R3lDSWNjNmI3eThlb1RfZU0wVXJlbEJkbnYzNDVoOXFEaVhCLVZtV3d5VGxG?oc=5" target="_blank" rel="noopener">부산교육연구정보원 SW·AI 해커톤 개최 - 부산경제</a></h3>
+        <details class="sumbox"><summary class="sumtoggle">🤖 AI 요약 보기</summary><p class="summary">부산교육연구정보원이 학생들의 소프트웨어 및 인공지능 역량 강화를 위해 SW·AI 해커톤 대회를 개최했습니다. 이번 행사는 학생들이 직접 기술을 활용해 문제를 해결하는 경험을 제공함으로써 미래 디지털 인재를 양성하는 데 목적이 있습니다.</p></details>
+        
+        <div class="chips"><span class="chip">출처 신뢰도 65%</span><span class="chip">단독 보도(교차출처 미발견)</span><span class="chip">원문 링크 확인</span></div>
+      </article>
+    </section>
+
+  <details class="sources">
+    <summary>📡 이번 수집 소스 현황 (28개)</summary>
+    <table class="status"><thead><tr><th>소스</th><th>신규</th><th>상태</th></tr></thead><tbody><tr class="ok"><td>The Hacker News</td><td class="num">3</td><td>정상</td></tr><tr class="ok"><td>BleepingComputer</td><td class="num">4</td><td>정상</td></tr><tr class="ok"><td>Krebs on Security</td><td class="num">0</td><td>정상</td></tr><tr class="ok"><td>Dark Reading</td><td class="num">0</td><td>정상</td></tr><tr class="ok"><td>SecurityWeek</td><td class="num">2</td><td>정상</td></tr><tr class="ok"><td>The Register · Security</td><td class="num">2</td><td>정상</td></tr><tr class="ok"><td>Schneier on Security</td><td class="num">2</td><td>정상</td></tr><tr class="fail"><td>CISA Advisories</td><td class="num">0</td><td>실패: HTTP 403</td></tr><tr class="fail"><td>보안뉴스</td><td class="num">0</td><td>실패: HTTP 404</td></tr><tr class="ok"><td>데일리시큐</td><td class="num">0</td><td>정상</td></tr><tr class="ok"><td>안랩 ASEC</td><td class="num">0</td><td>정상</td></tr><tr class="ok"><td>이스트시큐리티 알약</td><td class="num">0</td><td>정상</td></tr><tr class="ok"><td>CVE (GitHub Advisory)</td><td class="num">17</td><td>정상</td></tr><tr class="ok"><td>OpenAI News</td><td class="num">0</td><td>정상</td></tr><tr class="ok"><td>Google DeepMind</td><td class="num">0</td><td>정상</td></tr><tr class="ok"><td>Google AI 블로그</td><td class="num">0</td><td>정상</td></tr><tr class="ok"><td>Hugging Face Blog</td><td class="num">0</td><td>정상</td></tr><tr class="ok"><td>MIT Tech Review · AI</td><td class="num">0</td><td>정상</td></tr><tr class="ok"><td>TechCrunch AI</td><td class="num">3</td><td>정상</td></tr><tr class="ok"><td>VentureBeat AI</td><td class="num">0</td><td>정상</td></tr><tr class="ok"><td>The Decoder</td><td class="num">9</td><td>정상</td></tr><tr class="ok"><td>AI타임스</td><td class="num">1</td><td>정상</td></tr><tr class="ok"><td>바이라인네트워크</td><td class="num">1</td><td>정상</td></tr><tr class="ok"><td>GitHub 신기술</td><td class="num">2</td><td>정상</td></tr><tr class="ok"><td>AI 대회·해커톤</td><td class="num">21</td><td>정상</td></tr><tr class="ok"><td>보안 대회·해커톤</td><td class="num">13</td><td>정상</td></tr><tr class="ok"><td>arXiv cs.CR (보안)</td><td class="num">0</td><td>정상</td></tr><tr class="ok"><td>arXiv cs.AI (인공지능)</td><td class="num">0</td><td>정상</td></tr></tbody></table>
+  </details>
+
+  <footer class="foot">
+    <p>본 보고서는 RSS/공식 피드를 자동 수집해 휴리스틱(교차출처·출처신뢰도) 방식으로 신뢰도를 추정합니다.
+       점수는 보조 지표이며 최종 판단 전 원문 확인을 권장합니다.</p>
+    <p class="gen">생성 시각: 2026-08-22 23:59:19 KST</p>
+  </footer>
+</div>
+
+<script>
+(function(){
+  function apply(mode){
+    var secs = document.querySelectorAll('section.cat');
+    for(var s=0;s<secs.length;s++){
+      var sec = secs[s];
+      var cards = Array.prototype.slice.call(sec.querySelectorAll('.card'));
+      cards.sort(function(a,b){
+        var key = (mode==='latest') ? 'data-ts' : 'data-rank';
+        var av = parseFloat(a.getAttribute(key)) || 0;
+        var bv = parseFloat(b.getAttribute(key)) || 0;
+        return bv - av;
+      });
+      for(var i=0;i<cards.length;i++){ sec.appendChild(cards[i]); }
+    }
+    var btns = document.querySelectorAll('.sortbtn');
+    for(var j=0;j<btns.length;j++){
+      btns[j].className = 'sortbtn' + (btns[j].getAttribute('data-mode')===mode ? ' active' : '');
+    }
+  }
+  window.__applySort = apply;
+  document.addEventListener('DOMContentLoaded', function(){ apply('custom'); });
+})();
+</script>
+
+</body>
+</html>
